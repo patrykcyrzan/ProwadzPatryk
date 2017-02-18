@@ -6,24 +6,46 @@
         android:fitsSystemWindows="true"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <FrameLayout
+    <org.osmdroid.views.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:paddingBottom="10dp"
+            android:layout_marginTop="5dp"
+            tools:visibility="invisible"/>
+
+    <LinearLayout
             android:alpha="0"
             android:id="@+id/dim"
             android:fitsSystemWindows="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/dimBg" >
+            android:weightSum="1"
+            android:orientation="vertical">
 
-    </FrameLayout>
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.02"
+                android:background="@drawable/gradient_rectangle">
 
-    <!--<org.osmdroid.views.MapView
-            android:id="@+id/map"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="10dp"
-            tools:visibility="invisible"/>-->
+        </FrameLayout>
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.98"
+                android:background="@color/dimBg" >
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+
+
 
     <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"

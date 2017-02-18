@@ -3,8 +3,6 @@ package pl.cyrzan.prowadzpatryk.di.module;
 import android.app.Activity;
 import android.content.Context;
 
-import pl.cyrzan.prowadzpatryk.di.ActivityContext;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -23,12 +21,6 @@ public class ActivityModule {
 
     @Provides
     Activity provideActivity() {
-        return activity;
-    }
-
-    @Provides
-    @ActivityContext
-    Context providesContext() {
         return activity;
     }
 }

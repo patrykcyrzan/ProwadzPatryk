@@ -3,6 +3,7 @@ package pl.cyrzan.prowadzpatryk.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.annotation.DimenRes;
 import android.view.inputmethod.InputMethodManager;
 
 /**
@@ -25,5 +26,29 @@ public final class ViewUtil {
         InputMethodManager imm =
                 (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(), 0);
+    }
+
+    public static int getNavBarHeight(Context context, @DimenRes int defaultRes) {
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+        return resources.getDimensionPixelSize(resourceId > 0 ? resourceId : defaultRes);
+    }
+
+    public static int getNavBarHeight(Context context) {
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+        return resourceId > 0 ? resources.getDimensionPixelSize(resourceId) : 0;
+    }
+
+    public static int getStatusBarHeight(Context context, @DimenRes int defaultRes) {
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        return resources.getDimensionPixelSize(resourceId > 0 ? resourceId : defaultRes);
+    }
+
+    public static int getStatusBarHeight(Context context) {
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        return resources.getDimensionPixelSize(resourceId);
     }
 }

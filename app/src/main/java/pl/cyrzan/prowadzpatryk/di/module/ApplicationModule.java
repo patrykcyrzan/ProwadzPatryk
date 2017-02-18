@@ -5,7 +5,6 @@ import android.content.Context;
 
 import pl.cyrzan.prowadzpatryk.api.ApiFactory;
 import pl.cyrzan.prowadzpatryk.api.ApiService;
-import pl.cyrzan.prowadzpatryk.di.ApplicationContext;
 
 import javax.inject.Singleton;
 
@@ -16,6 +15,7 @@ import dagger.Provides;
  * Created by Patryk on 08.02.2017.
  */
 
+@Singleton
 @Module
 public class ApplicationModule {
 
@@ -26,13 +26,8 @@ public class ApplicationModule {
     }
 
     @Provides
-    Application provideApplication() {
-        return application;
-    }
-
-    @Provides
-    @ApplicationContext
-    Context provideContext() {
+    @Singleton
+    public Application provideApplication() {
         return application;
     }
 

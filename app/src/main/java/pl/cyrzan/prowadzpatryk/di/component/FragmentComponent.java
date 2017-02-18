@@ -1,11 +1,8 @@
 package pl.cyrzan.prowadzpatryk.di.component;
 
 import pl.cyrzan.prowadzpatryk.di.module.FragmentModule;
-import pl.cyrzan.prowadzpatryk.di.scope.PerFragment;
-import pl.cyrzan.prowadzpatryk.view.base.BaseActivity;
-import pl.cyrzan.prowadzpatryk.view.base.BaseFragment;
-import pl.cyrzan.prowadzpatryk.view.main.MapWithFormFragment;
-import pl.cyrzan.prowadzpatryk.view.main.TripsFragment;
+import pl.cyrzan.prowadzpatryk.ui.main.MapWithFormFragment;
+import pl.cyrzan.prowadzpatryk.ui.main.TripsFragment;
 
 import dagger.Subcomponent;
 
@@ -14,11 +11,12 @@ import dagger.Subcomponent;
  * This component inject dependencies to all Fragments across the application
  */
 
-@PerFragment
-@Subcomponent(modules = FragmentModule.class)
+@Subcomponent(
+        modules = {
+                FragmentModule.class,
+        }
+)
 public interface FragmentComponent {
-
-    void inject(BaseFragment baseFragment);
 
     void inject(MapWithFormFragment mapWithFormFragment);
 

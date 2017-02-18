@@ -16,7 +16,7 @@
             android:supportsRtl="true"
             android:theme="@style/PatrykProwadzTheme.NoActionBar"
             android:name=".ProwadzPatrykApplication">
-        <activity android:name=".view.main.MainActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

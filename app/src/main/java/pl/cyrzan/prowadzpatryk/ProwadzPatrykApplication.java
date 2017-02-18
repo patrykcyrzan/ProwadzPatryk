@@ -4,10 +4,13 @@ import android.app.Application;
 import android.content.Context;
 
 import com.facebook.stetho.Stetho;
+import com.squareup.sqlbrite.BriteDatabase;
 
 import pl.cyrzan.prowadzpatryk.di.component.ApplicationComponent;
 import pl.cyrzan.prowadzpatryk.di.component.DaggerApplicationComponent;
 import pl.cyrzan.prowadzpatryk.di.module.ApplicationModule;
+
+import javax.inject.Inject;
 
 import timber.log.Timber;
 
@@ -16,6 +19,9 @@ import timber.log.Timber;
  */
 
 public class ProwadzPatrykApplication extends Application {
+
+    @Inject
+    BriteDatabase db;
 
     private ApplicationComponent applicationComponent;
 

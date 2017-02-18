@@ -1,9 +1,9 @@
 package pl.cyrzan.prowadzpatryk.di.component;
 
 import pl.cyrzan.prowadzpatryk.di.module.ActivityModule;
-import pl.cyrzan.prowadzpatryk.di.scope.PerActivity;
-import pl.cyrzan.prowadzpatryk.view.base.BaseActivity;
-import pl.cyrzan.prowadzpatryk.view.main.MainActivity;
+import pl.cyrzan.prowadzpatryk.di.module.FragmentModule;
+import pl.cyrzan.prowadzpatryk.ui.base.BaseActivity;
+import pl.cyrzan.prowadzpatryk.ui.main.MainActivity;
 
 import dagger.Subcomponent;
 
@@ -11,11 +11,14 @@ import dagger.Subcomponent;
  * Created by Patryk on 08.02.2017.
  */
 
-@PerActivity
-@Subcomponent(modules = ActivityModule.class)
+@Subcomponent(
+        modules = {
+                ActivityModule.class,
+        }
+)
 public interface ActivityComponent {
 
-    void inject(BaseActivity baseActivity);
+    FragmentComponent plus(FragmentModule fragmentModule);
 
     void inject(MainActivity mainActivity);
 

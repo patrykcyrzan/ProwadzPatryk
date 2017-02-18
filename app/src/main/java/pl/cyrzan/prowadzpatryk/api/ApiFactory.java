@@ -5,14 +5,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import pl.cyrzan.prowadzpatryk.BuildConfig;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 /**
@@ -30,7 +31,7 @@ public class ApiFactory {
                 .baseUrl(BuildConfig.OTP_API_URL)
                 .client(makeOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.newThread()))
                 .build();
         return retrofit.create(ApiService.class);
     }
