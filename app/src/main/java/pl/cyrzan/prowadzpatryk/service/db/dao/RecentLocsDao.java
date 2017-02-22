@@ -1,16 +1,10 @@
-package pl.cyrzan.prowadzpatryk.db.dao;
-
-import android.text.TextUtils;
+package pl.cyrzan.prowadzpatryk.service.db.dao;
 
 import com.squareup.sqlbrite.BriteDatabase;
 
-import pl.cyrzan.prowadzpatryk.db.dto.RecentLocs;
-
-import java.util.ArrayList;
-import java.util.List;
+import pl.cyrzan.prowadzpatryk.service.db.dto.RecentLocs;
 
 import rx.Observable;
-import rx.android.*;
 
 /**
  * Created by Patryk on 15.02.2017.

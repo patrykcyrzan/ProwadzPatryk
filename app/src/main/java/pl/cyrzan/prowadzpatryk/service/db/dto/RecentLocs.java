@@ -1,4 +1,4 @@
-package pl.cyrzan.prowadzpatryk.db.dto;
+package pl.cyrzan.prowadzpatryk.service.db.dto;
 
 import android.content.ContentValues;
 import android.database.Cursor;

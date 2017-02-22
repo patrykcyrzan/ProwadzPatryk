@@ -20,6 +20,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
 
 import pl.cyrzan.prowadzpatryk.R;
+import pl.cyrzan.prowadzpatryk.util.ViewUtil;
 
 import java.io.Serializable;
 import java.lang.annotation.Retention;
@@ -1034,6 +1035,7 @@ public class SlideUp implements View.OnTouchListener, ValueAnimator.AnimatorUpda
             if (sliderView.getVisibility() != GONE) {
                 sliderView.setVisibility(GONE);
                 notifyVisibilityChanged(GONE);
+                hideSoftInput();
             }
         }
     }

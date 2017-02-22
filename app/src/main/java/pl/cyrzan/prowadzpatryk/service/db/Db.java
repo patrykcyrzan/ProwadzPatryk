@@ -1,4 +1,4 @@
-package pl.cyrzan.prowadzpatryk.db;
+package pl.cyrzan.prowadzpatryk.service.db;
 
 /**
  * Created by Patryk on 13.02.2017.

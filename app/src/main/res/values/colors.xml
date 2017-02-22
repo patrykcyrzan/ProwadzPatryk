@@ -51,5 +51,6 @@
     <color name="item_background">@color/iron_10</color>
 
     <color name="dimBg">#bf000000</color>
+    <color name="drawableTintLight">@color/viking</color>
 
 </resources>

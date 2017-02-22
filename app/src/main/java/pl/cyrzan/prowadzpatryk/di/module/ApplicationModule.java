@@ -1,10 +1,14 @@
 package pl.cyrzan.prowadzpatryk.di.module;
 
-import android.app.Application;
-import android.content.Context;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-import pl.cyrzan.prowadzpatryk.api.ApiFactory;
-import pl.cyrzan.prowadzpatryk.api.ApiService;
+import android.app.Application;
+
+
+import org.joda.time.LocalDate;
+
+import pl.cyrzan.prowadzpatryk.service.api.LocalDateDeserializer;
 
 import javax.inject.Singleton;
 
@@ -31,10 +35,12 @@ public class ApplicationModule {
         return application;
     }
 
-    @Provides
     @Singleton
-    static ApiService provideApiService() {
-        return ApiFactory.makeApiService();
+    @Provides
+    public Gson provideGson() {
+        return new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateDeserializer())
+                .create();
     }
 
 }

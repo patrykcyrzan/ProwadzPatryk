@@ -10,30 +10,30 @@ import rx.subscriptions.CompositeSubscription;
 
 public class RxPresenter<T extends BaseContract.BaseView> implements BaseContract.BasePresenter<T> {
 
-    protected T mView;
-    protected CompositeSubscription mCompositeSubscription;
+    protected T view;
+    protected CompositeSubscription compositeSubscription;
 
     protected void unSubscribe() {
-        if (mCompositeSubscription != null) {
-            mCompositeSubscription.unsubscribe();
+        if (compositeSubscription != null) {
+            compositeSubscription.unsubscribe();
         }
     }
 
-    protected void addSubscrebe(Subscription subscription) {
-        if (mCompositeSubscription == null) {
-            mCompositeSubscription = new CompositeSubscription();
+    protected void addSubscribe(Subscription subscription) {
+        if (compositeSubscription == null) {
+            compositeSubscription = new CompositeSubscription();
         }
-        mCompositeSubscription.add(subscription);
+        compositeSubscription.add(subscription);
     }
 
     @Override
     public void attachView(T view) {
-        this.mView = view;
+        this.view = view;
     }
 
     @Override
     public void detachView() {
-        this.mView = null;
+        this.view = null;
         unSubscribe();
     }
 }

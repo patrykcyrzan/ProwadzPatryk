@@ -1,6 +1,7 @@
 package pl.cyrzan.prowadzpatryk.ui.base;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
@@ -16,6 +18,7 @@ import pl.cyrzan.prowadzpatryk.R;
 import pl.cyrzan.prowadzpatryk.util.ViewUtil;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 
@@ -26,6 +29,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_base);
+        setupActivityComponent();
 
         container = (ViewGroup) findViewById(R.id.container);
 
@@ -46,10 +50,43 @@ public abstract class BaseActivity extends RxAppCompatActivity {
                 getWindow().setNavigationBarColor(color);
             }
         }
+
+        configViews();
     }
+
+    protected abstract void setupActivityComponent();
+
+    public abstract void configViews();
+
+    public abstract int getLayoutId();
 
     protected ViewGroup getContainer() {
         return container;
+    }
+
+    protected void gone(final View... views) {
+        if (views != null && views.length > 0) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setVisibility(View.GONE);
+                }
+            }
+        }
+    }
+
+    protected void visible(final View... views) {
+        if (views != null && views.length > 0) {
+            for (View view : views) {
+                if (view != null) {
+                    view.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+
+    }
+
+    protected boolean isVisible(View view) {
+        return view.getVisibility() == View.VISIBLE;
     }
 
     /**

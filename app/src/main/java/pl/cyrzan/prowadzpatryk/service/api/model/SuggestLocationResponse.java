@@ -1,4 +1,4 @@
-package pl.cyrzan.prowadzpatryk.api.model;
+package pl.cyrzan.prowadzpatryk.service.api.model;
 
 /**
  * Created by Patryk on 08.01.2017.

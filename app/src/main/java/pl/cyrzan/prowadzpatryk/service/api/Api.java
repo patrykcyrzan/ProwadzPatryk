@@ -1,18 +1,19 @@
-package pl.cyrzan.prowadzpatryk.api;
+package pl.cyrzan.prowadzpatryk.service.api;
+
+import pl.cyrzan.prowadzpatryk.service.api.model.SuggestLocationResponse;
 
 import java.util.List;
 
 import okhttp3.ResponseBody;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
 
 /**
- * Created by Patryk on 07.02.2017.
+ * Created by Patryk on 20.02.2017.
  */
 
-public interface ApiService {
+public interface Api {
 
     @GET("/otp/routers/default/plan?arriveBy=false&wheelchair=false&locale=pl")
     Observable<ResponseBody> getRoutesFromTo(@Query("fromPlace") String fromPlace,
@@ -23,5 +24,5 @@ public interface ApiService {
                                              @Query("maxWalkDistance") String maxWalkDistance);
 
     @GET("/otp/routers/default/geocode")
-    Observable<List<ResponseBody>> getSuggestLocations(@Query("query") String query);
+    Observable<List<SuggestLocationResponse>> getSuggestLocations(@Query("query") String query);
 }

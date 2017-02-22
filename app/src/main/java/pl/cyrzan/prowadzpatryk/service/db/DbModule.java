@@ -1,4 +1,4 @@
-package pl.cyrzan.prowadzpatryk.db;
+package pl.cyrzan.prowadzpatryk.service.db;
 
 import android.app.Application;
 import android.database.sqlite.SQLiteOpenHelper;

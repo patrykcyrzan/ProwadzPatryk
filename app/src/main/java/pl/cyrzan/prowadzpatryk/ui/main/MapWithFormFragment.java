@@ -22,11 +22,12 @@ import org.osmdroid.views.overlay.MapEventsOverlay;
 
 import pl.cyrzan.prowadzpatryk.ProwadzPatrykApplication;
 import pl.cyrzan.prowadzpatryk.R;
-import pl.cyrzan.prowadzpatryk.db.dto.RecentLocs;
 import pl.cyrzan.prowadzpatryk.di.module.ActivityModule;
 import pl.cyrzan.prowadzpatryk.di.module.FragmentModule;
 import pl.cyrzan.prowadzpatryk.ui.base.BaseFragment;
 import pl.cyrzan.prowadzpatryk.ui.common.views.SlideUp;
+import pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInput;
+import pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInputAdapter;
 
 import javax.inject.Inject;
 
@@ -42,6 +43,7 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
 
     private MapView map;
     private SlideUp slideUp;
+    private LocationInputAdapter adapter;
 
     @Inject
     BriteDatabase db;
@@ -52,6 +54,8 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
     View sliderView;
     @BindView(R.id.dim)
     View dim;
+    @BindView(R.id.locationInput)
+    LocationInput locationInput;
 
     @Nullable
     @Override
@@ -83,8 +87,14 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
         setupMap();
 
         initSlideUp();
+        initLocationInput();
 
-        db.insert(RecentLocs.TABLE, new RecentLocs.Builder().lat(52.12355).lon(45.468786).name("asdas").lastUsed("2016-02-02 15:02:15").build());
+        //db.insert(RecentLocs.TABLE, new RecentLocs.Builder().lat(52.12355).lon(45.468786).name("asdas").lastUsed("2016-02-02 15:02:15").build());
+    }
+
+    private void initLocationInput(){
+        //adapter = new LocationInputAdapter()
+        locationInput.setOnLocationInputActionListener(((MainActivity) getActivity()).getPresenter());
     }
 
     private void initSlideUp(){
@@ -102,7 +112,7 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
                         }
                     }
                 })
-                .withStartGravity(Gravity.BOTTOM)
+                .withStartGravity(Gravity.TOP)
                 .withLoggingEnabled(true)
                 .withGesturesEnabled(true)
                 .withStartState(SlideUp.State.HIDDEN)

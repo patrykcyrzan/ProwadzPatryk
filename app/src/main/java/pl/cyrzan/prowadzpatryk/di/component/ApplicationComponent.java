@@ -1,12 +1,14 @@
 package pl.cyrzan.prowadzpatryk.di.component;
 
-import android.content.Context;
-
 import pl.cyrzan.prowadzpatryk.ProwadzPatrykApplication;
-import pl.cyrzan.prowadzpatryk.db.DbModule;
+import pl.cyrzan.prowadzpatryk.service.api.ApiModule;
+import pl.cyrzan.prowadzpatryk.service.db.DbModule;
 import pl.cyrzan.prowadzpatryk.di.module.ActivityModule;
 import pl.cyrzan.prowadzpatryk.di.module.ApplicationModule;
-import pl.cyrzan.prowadzpatryk.di.module.NetworkModule;
+import pl.cyrzan.prowadzpatryk.eventbus.EventBusModule;
+import pl.cyrzan.prowadzpatryk.service.preferences.PreferencesModule;
+import pl.cyrzan.prowadzpatryk.service.repository.RepositoryModule;
+import pl.cyrzan.prowadzpatryk.service.user.UserModule;
 
 import javax.inject.Singleton;
 
@@ -20,8 +22,12 @@ import dagger.Component;
 @Component(
         modules = {
                 ApplicationModule.class,
-                NetworkModule.class,
-                DbModule.class
+                RepositoryModule.class,
+                PreferencesModule.class,
+                UserModule.class,
+                ApiModule.class,
+                DbModule.class,
+                EventBusModule.class
         }
 )
 public interface ApplicationComponent {

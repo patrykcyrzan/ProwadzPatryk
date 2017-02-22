@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.DimenRes;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 /**
  * Created by Patryk on 09.02.2017.
@@ -50,5 +51,16 @@ public final class ViewUtil {
         Resources resources = context.getResources();
         int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
         return resources.getDimensionPixelSize(resourceId);
+    }
+
+    public static void makeToast(Context context, String message) {
+        if (context == null)
+            return;
+
+        Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+
+        toast.setText(message);
+        toast.setGravity(android.view.Gravity.CENTER, 0, 0);
+        toast.show();
     }
 }

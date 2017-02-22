@@ -1,4 +1,4 @@
-package pl.cyrzan.prowadzpatryk.api;
+package pl.cyrzan.prowadzpatryk.service.api;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -8,6 +8,11 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import pl.cyrzan.prowadzpatryk.BuildConfig;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -20,20 +25,31 @@ import timber.log.Timber;
  * Created by Patryk on 07.02.2017.
  */
 
-public class ApiFactory {
+@Module
+public class ApiModule {
 
-    public static ApiService makeApiService() {
-        return makeMvpStarterService(makeGson());
+    @Singleton
+    @Provides
+    public ApiService provideApiService(Api api) {
+        return new ApiServiceImpl(api);
     }
 
-    private static ApiService makeMvpStarterService(Gson gson) {
-        Retrofit retrofit = new Retrofit.Builder()
+    @Singleton
+    @Provides
+    @Named("api")
+    public Retrofit provideRetrofit(Gson gson) {
+        return new Retrofit.Builder()
                 .baseUrl(BuildConfig.OTP_API_URL)
                 .client(makeOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.newThread()))
                 .build();
-        return retrofit.create(ApiService.class);
+    }
+
+    @Singleton
+    @Provides
+    public Api provideApi(@Named("api") Retrofit retrofit) {
+        return retrofit.create(Api.class);
     }
 
     private static OkHttpClient makeOkHttpClient() {
@@ -49,12 +65,5 @@ public class ApiFactory {
         }
 
         return httpClientBuilder.build();
-    }
-
-    private static Gson makeGson() {
-        return new GsonBuilder()
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .create();
     }
 }

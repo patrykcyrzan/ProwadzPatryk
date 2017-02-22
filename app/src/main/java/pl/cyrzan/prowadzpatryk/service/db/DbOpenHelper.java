@@ -1,10 +1,10 @@
-package pl.cyrzan.prowadzpatryk.db;
+package pl.cyrzan.prowadzpatryk.service.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import pl.cyrzan.prowadzpatryk.db.dto.RecentLocs;
+import pl.cyrzan.prowadzpatryk.service.db.dto.RecentLocs;
 
 /**
  * Created by Patryk on 15.02.2017.

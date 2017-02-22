@@ -3,6 +3,7 @@ package pl.cyrzan.prowadzpatryk.ui.main;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.ImageView;
@@ -11,6 +12,8 @@ import pl.cyrzan.prowadzpatryk.ProwadzPatrykApplication;
 import pl.cyrzan.prowadzpatryk.R;
 import pl.cyrzan.prowadzpatryk.di.module.ActivityModule;
 import pl.cyrzan.prowadzpatryk.ui.base.BaseActivity;
+import pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInputAdapter;
+import pl.cyrzan.prowadzpatryk.util.ViewUtil;
 
 import java.util.ArrayList;
 
@@ -20,6 +23,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements MainContract.View {
+
+    private static final String TAG = "MainActivity";
 
     @Inject
     MainPresenter mainPresenter;
@@ -39,16 +44,29 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ProwadzPatrykApplication.get(this).getComponent()
-                .plus(new ActivityModule(this))
-                .inject(this);
-
-        setContentView(R.layout.activity_main);
+        setContentView(getLayoutId());
 
         setSupportActionBar(toolbar);
         correctTitleMargin();
 
         initViewPager(viewPager);
+    }
+
+    @Override
+    protected void setupActivityComponent() {
+        ProwadzPatrykApplication.get(this).getComponent()
+                .plus(new ActivityModule(this))
+                .inject(this);
+    }
+
+    @Override
+    public void configViews() {
+        mainPresenter.attachView(this);
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_main;
     }
 
     private void correctTitleMargin() {
@@ -115,12 +133,20 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     }
 
     @Override
-    public void showError() {
-
+    public void showError(int errorReport) {
+        Log.i(TAG, "error "+errorReport);
+        ViewUtil.makeToast(getApplicationContext(), getText(errorReport).toString());
+        /*if (t != null && t.getMessage() != null) {
+            Log.d(this.getClass().toString(), t.getMessage());
+        }*/
     }
 
     @Override
     public void complete() {
 
+    }
+
+    public MainContract.Presenter getPresenter() {
+        return mainPresenter;
     }
 }
