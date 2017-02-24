@@ -1,12 +1,13 @@
 package pl.cyrzan.prowadzpatryk.service.api;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
+import android.content.Context;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import pl.cyrzan.prowadzpatryk.BuildConfig;
+import pl.cyrzan.prowadzpatryk.ProwadzPatrykApplication;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -22,7 +23,7 @@ import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
 /**
- * Created by Patryk on 07.02.2017.
+ * Created by Patryk on 23.02.2017.
  */
 
 @Module

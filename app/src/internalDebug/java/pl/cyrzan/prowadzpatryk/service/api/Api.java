@@ -10,10 +10,12 @@ import retrofit2.http.Query;
 import rx.Observable;
 
 /**
- * Created by Patryk on 20.02.2017.
+ * Created by Patryk on 23.02.2017.
  */
 
 public interface Api {
+
+    public static final String API_VERSION = "api/v1";
 
     @GET("/otp/routers/default/plan?arriveBy=false&wheelchair=false&locale=pl")
     Observable<ResponseBody> getRoutesFromTo(@Query("fromPlace") String fromPlace,
@@ -23,6 +25,6 @@ public interface Api {
                                              @Query("mode") String mode,
                                              @Query("maxWalkDistance") String maxWalkDistance);
 
-    @GET("/otp/routers/default/geocode")
+    @GET(API_VERSION + "/getsuggestlocations")
     Observable<List<SuggestLocationResponse>> getSuggestLocations(@Query("query") String query);
 }

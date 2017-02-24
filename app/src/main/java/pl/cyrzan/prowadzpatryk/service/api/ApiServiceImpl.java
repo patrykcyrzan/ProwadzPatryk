@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import okhttp3.ResponseBody;
 import rx.Observable;
 
 /**
