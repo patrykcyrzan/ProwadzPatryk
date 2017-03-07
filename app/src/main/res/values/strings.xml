@@ -5,4 +5,15 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error_unable_to_load_suggest_locations">Błąd przy pobieraniu proponowanych lokalizacji</string>
     <string name="error_unable_to_conect">Nie można połączyć się z serwerem.</string>
+    <string name="from">Z</string>
+    <string name="location_gps">Użyj obecnego położenia.</string>
+    <string name="to">Do</string>
+    <string name="permission_denied_gps">Nie zezwolono na korzystanie z GPS.</string>
+    <string name="searching_position">Trwa szukanie Twojego położenia...</string>
+    <string name="error_no_location_provider">Nie można określić Twojej pozycji. Sprawdź swój GPS.</string>
+    <string name="time_and_date">Czas i data</string>
+    <string name="time">Czas</string>
+    <string name="date">Data</string>
+    <string name="less">mniej</string>
+    <string name="more">więcej</string>
 </resources>

@@ -16,6 +16,7 @@ import java.util.List;
 import static pl.cyrzan.prowadzpatryk.model.WrapLocation.WrapType.GPS;
 import static pl.cyrzan.prowadzpatryk.model.WrapLocation.WrapType.HOME;
 import static pl.cyrzan.prowadzpatryk.model.WrapLocation.WrapType.MAP;
+import static pl.cyrzan.prowadzpatryk.model.WrapLocation.WrapType.NORMAL;
 
 /**
  * Created by Patryk on 13.02.2017.
@@ -50,6 +51,9 @@ public final class MainUtil {
         }
         else if(w.getType() == MAP) {
             return getTintedDrawable(context, R.drawable.ic_action_location_map);
+        }
+        else if(w.getType() == NORMAL) {
+            return getTintedDrawable(context, R.drawable.ic_location_address);
         }
         else if(is_fav) {
             return getTintedDrawable(context, R.drawable.ic_action_star);

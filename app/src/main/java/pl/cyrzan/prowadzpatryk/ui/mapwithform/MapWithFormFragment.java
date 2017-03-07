@@ -1,16 +1,21 @@
-package pl.cyrzan.prowadzpatryk.ui.main;
+package pl.cyrzan.prowadzpatryk.ui.mapwithform;
 
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.squareup.sqlbrite.BriteDatabase;
 
@@ -28,25 +33,34 @@ import pl.cyrzan.prowadzpatryk.ui.base.BaseFragment;
 import pl.cyrzan.prowadzpatryk.ui.common.views.SlideUp;
 import pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInput;
 import pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInputAdapter;
+import pl.cyrzan.prowadzpatryk.ui.common.views.inputWithGps.LocationGpsInput;
+import pl.cyrzan.prowadzpatryk.ui.main.MainActivity;
+import pl.cyrzan.prowadzpatryk.util.ViewUtil;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapWithFormFragment extends BaseFragment implements MapEventsReceiver {
+public class MapWithFormFragment extends BaseFragment implements MapEventsReceiver, MapWithFormContract.View {
 
     private static final String TAG = "MapWithFormFragment";
 
     private MapView map;
     private SlideUp slideUp;
-    private LocationInputAdapter adapter;
+    private boolean showingMore = false;
 
     @Inject
     BriteDatabase db;
+
+    @Inject
+    MapWithFormPresenter mapWithFormPresenter;
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
@@ -56,6 +70,16 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
     View dim;
     @BindView(R.id.locationInput)
     LocationInput locationInput;
+    @BindView(R.id.locationGpsInput)
+    LocationGpsInput locationGpsInput;
+    @BindView(R.id.date_line_layout)
+    LinearLayout dateLine;
+    @BindView(R.id.time_line_layout)
+    LinearLayout timeLine;
+    @BindView(R.id.time_and_date_line_layout)
+    LinearLayout timeAndDateLayout;
+    @BindView(R.id.show_more_button)
+    Button showMoreButton;
 
     @Nullable
     @Override
@@ -66,12 +90,6 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        Activity activity = getActivity();
-        ProwadzPatrykApplication.get(activity).getComponent()
-                .plus(new ActivityModule(activity))
-                .plus(new FragmentModule(this))
-                .inject(this);
     }
 
     @Override
@@ -85,16 +103,31 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
         }
 
         setupMap();
-
+        showLess(false);
         initSlideUp();
         initLocationInput();
 
         //db.insert(RecentLocs.TABLE, new RecentLocs.Builder().lat(52.12355).lon(45.468786).name("asdas").lastUsed("2016-02-02 15:02:15").build());
     }
 
+    @Override
+    protected void setupActivityComponent() {
+        Activity activity = getActivity();
+        ProwadzPatrykApplication.get(activity).getComponent()
+                .plus(new ActivityModule(activity))
+                .plus(new FragmentModule(this))
+                .inject(this);
+    }
+
+    @Override
+    public void configViews() {
+        mapWithFormPresenter.attachView(this);
+    }
+
     private void initLocationInput(){
-        //adapter = new LocationInputAdapter()
-        locationInput.setOnLocationInputActionListener(((MainActivity) getActivity()).getPresenter());
+        Log.i(TAG, mapWithFormPresenter.toString());
+        locationInput.setOnLocationInputActionListener(mapWithFormPresenter);
+        locationGpsInput.setOnLocationInputActionListener(mapWithFormPresenter);
     }
 
     private void initSlideUp(){
@@ -131,11 +164,60 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
         mapController.setCenter(startPoint);
     }
 
+    public LocationInput getLocationInput(){
+        return locationInput;
+    }
+
+    public LocationGpsInput getLocationGpsInput(){
+        return locationGpsInput;
+    }
+
+    public int test(){
+        return 5;
+    }
+
     @OnClick(R.id.fab)
     public void onClickFab(){
         Log.i(TAG, "onClickFab");
         slideUp.show();
         fab.hide();
+    }
+
+    @OnClick(R.id.show_more_button)
+    public void moreOnClick(){
+        if(timeAndDateLayout.getVisibility() == GONE){
+            showMore(true);
+        } else {
+            showLess(true);
+        }
+    }
+
+    private void showMore(boolean animate) {
+        showingMore = true;
+
+        if(animate && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            DisplayMetrics dm = new DisplayMetrics();
+            getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+            timeAndDateLayout.setAlpha(0f);
+            timeAndDateLayout.animate().setDuration(500).alpha(1f).withEndAction(new Runnable() {
+                @Override
+                public void run() {
+                    timeAndDateLayout.setVisibility(VISIBLE);
+                    showMoreButton.setText(R.string.less);
+                }
+            });
+        } else {
+            timeAndDateLayout.setVisibility(VISIBLE);
+            showMoreButton.setText(R.string.less);
+        }
+    }
+
+    private void showLess(boolean animate) {
+        showingMore = false;
+
+        timeAndDateLayout.setVisibility(GONE);
+        showMoreButton.setText(R.string.more);
     }
 
     @Override
@@ -146,5 +228,26 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
     @Override
     public boolean longPressHelper(GeoPoint geoPoint) {
         return false;
+    }
+
+    @Override
+    public void showError(int errorReport) {
+        Log.i(TAG, "error "+errorReport);
+        ViewUtil.makeToast(getContext(), getText(errorReport).toString());
+    }
+
+    @Override
+    public void complete() {
+
+    }
+
+    @Override
+    public MapWithFormContract.LocationInputView getLocationInputView() {
+        return locationInput;
+    }
+
+    @Override
+    public MapWithFormContract.LocationGpsInputView getLocationGpsInputView() {
+        return locationGpsInput;
     }
 }

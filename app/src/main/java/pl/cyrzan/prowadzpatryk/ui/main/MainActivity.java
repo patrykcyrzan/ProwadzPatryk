@@ -12,7 +12,7 @@ import pl.cyrzan.prowadzpatryk.ProwadzPatrykApplication;
 import pl.cyrzan.prowadzpatryk.R;
 import pl.cyrzan.prowadzpatryk.di.module.ActivityModule;
 import pl.cyrzan.prowadzpatryk.ui.base.BaseActivity;
-import pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInputAdapter;
+import pl.cyrzan.prowadzpatryk.ui.mapwithform.MapWithFormFragment;
 import pl.cyrzan.prowadzpatryk.util.ViewUtil;
 
 import java.util.ArrayList;
@@ -37,6 +37,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     ImageView mapFormImage;
     @BindView(R.id.trips_image)
     ImageView tripsImage;
+
+    private MainAdapter adapter;
 
     private ArrayList<ImageView> tabs = new ArrayList<>();
 
@@ -76,7 +78,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     private void initViewPager(ViewPager viewPager) {
         tabs.add(mapFormImage);
         tabs.add(tripsImage);
-        viewPager.setAdapter(new MainAdapter(getSupportFragmentManager()));
+        adapter = new MainAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -134,19 +137,11 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     @Override
     public void showError(int errorReport) {
-        Log.i(TAG, "error "+errorReport);
         ViewUtil.makeToast(getApplicationContext(), getText(errorReport).toString());
-        /*if (t != null && t.getMessage() != null) {
-            Log.d(this.getClass().toString(), t.getMessage());
-        }*/
     }
 
     @Override
     public void complete() {
 
-    }
-
-    public MainContract.Presenter getPresenter() {
-        return mainPresenter;
     }
 }

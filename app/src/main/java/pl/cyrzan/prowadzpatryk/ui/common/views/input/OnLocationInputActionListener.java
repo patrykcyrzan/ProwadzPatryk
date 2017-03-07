@@ -6,4 +6,5 @@ package pl.cyrzan.prowadzpatryk.ui.common.views.input;
 
 public interface OnLocationInputActionListener {
     void onTextChanged(String autocompleteText);
+    void stopSuggestLocationsTask();
 }

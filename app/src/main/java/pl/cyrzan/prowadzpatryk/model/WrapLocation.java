@@ -2,6 +2,7 @@ package pl.cyrzan.prowadzpatryk.model;
 
 import android.support.annotation.Nullable;
 
+import pl.cyrzan.prowadzpatryk.service.api.model.SuggestLocationResponse;
 import pl.cyrzan.prowadzpatryk.util.MainUtil;
 
 import java.io.Serializable;
@@ -36,6 +37,11 @@ public class WrapLocation implements Serializable {
 
     public WrapLocation(LatLng latLng) {
         this.loc = Location.coord(latLng.getLatitude(), latLng.getLongitude());
+        this.type = NORMAL;
+    }
+
+    public WrapLocation(SuggestLocationResponse suggest){
+        this.loc = new Location(ANY, suggest.getId(), suggest.getDescription(), suggest.getLat(), suggest.getLng());
         this.type = NORMAL;
     }
 

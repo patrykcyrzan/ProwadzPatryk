@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal" android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/requestItem"
+              android:clickable="true"
+              android:background="?attr/selectableItemBackground"
+              android:gravity="center_vertical">
 
     <ImageView
+            android:tint="@color/material_grey_600"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:id="@+id/imageView"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:padding="3dp"
-            android:scaleType="fitCenter"
-            android:tint="?colorControlNormal"
-            tools:ignore="ContentDescription"
-            tools:src="@drawable/ic_action_home_on"/>
+            android:src="@drawable/ic_action_home_on"
+            android:padding="13dp" />
 
     <TextView
-            android:id="@+id/textView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:ellipsize="middle"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:padding="3dp"
-            android:text="Medium Text"/>
-
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Last request"
+            android:id="@+id/text"
+            android:textColor="@android:color/black" />
 </LinearLayout>

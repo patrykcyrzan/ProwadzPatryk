@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -22,6 +23,7 @@ import rx.schedulers.Schedulers;
 public class MainPresenter extends RxPresenter<MainContract.View> implements MainContract.Presenter<MainContract.View> {
 
     private static final String TAG = "MainPresenter";
+    private Subscription suggestLocationsTaskSub;
 
     @Inject
     RepositoryService repositoryService;
@@ -29,34 +31,4 @@ public class MainPresenter extends RxPresenter<MainContract.View> implements Mai
     @Inject
     public MainPresenter() {
     }
-
-    private void onSuggestLocationsAvailable(List<SuggestLocationResponse> suggestLocations){
-
-    }
-
-
-    @Override
-    public void onTextChanged(String autocompleteText){
-        MainContract.View v = view;
-
-
-        repositoryService.getSuggestLocations(autocompleteText)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::onSuggestLocationsAvailable,
-                        throwable -> {
-                            try {
-                                if(throwable instanceof ConnectException) {
-                                    view.showError(R.string.error_unable_to_conect);
-                                } else {
-                                    view.showError(R.string.error_unable_to_load_suggest_locations);
-                                }
-                            } catch (Exception e) {
-                                Log.e(TAG, "Problem with error handling code", e);
-                            } finally {
-                                Log.i(TAG, "Unable to find suggest locations", throwable);
-                            }
-                        });
-    }
-
 }

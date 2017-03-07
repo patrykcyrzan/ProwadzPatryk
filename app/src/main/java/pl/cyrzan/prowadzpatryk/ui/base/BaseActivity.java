@@ -14,7 +14,9 @@ import android.view.WindowManager;
 
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
+import pl.cyrzan.prowadzpatryk.ProwadzPatrykApplication;
 import pl.cyrzan.prowadzpatryk.R;
+import pl.cyrzan.prowadzpatryk.di.component.ApplicationComponent;
 import pl.cyrzan.prowadzpatryk.util.ViewUtil;
 
 import butterknife.ButterKnife;
@@ -96,6 +98,10 @@ public abstract class BaseActivity extends RxAppCompatActivity {
      */
     protected boolean addExtraTopPadding() {
         return true;
+    }
+
+    public ApplicationComponent getComponent() {
+        return ((ProwadzPatrykApplication) getApplication()).getComponent();
     }
 
     @Override

@@ -23,6 +23,12 @@ public abstract class BaseFragment extends Fragment{
     //@CallSuper
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setupActivityComponent();
+        configViews();
         ButterKnife.bind(this, view);
     }
+
+    protected abstract void setupActivityComponent();
+
+    public abstract void configViews();
 }

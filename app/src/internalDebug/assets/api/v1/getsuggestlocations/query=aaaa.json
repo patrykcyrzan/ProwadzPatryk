@@ -1,0 +1,25 @@
+{
+  "status": 200,
+  "response": {
+    "items": [
+      {
+        "lat": 54.5943733887918,
+        "lng": 18.3537681581653,
+        "description": "stop Reda ",
+        "id": "1_40019"
+      },
+      {
+        "lat": 54.5952484108873,
+        "lng": 18.3543152146001,
+        "description": "stop Reda Dworzec PKP ",
+        "id": "1_31310"
+      },
+      {
+        "lat": 54.357124685308,
+        "lng": 18.6198665343971,
+        "description": "stop Cygańska Góra ",
+        "id": "1_1332"
+      }
+    ]
+  }
+}

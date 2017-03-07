@@ -1,7 +1,7 @@
 package pl.cyrzan.prowadzpatryk.di.component;
 
 import pl.cyrzan.prowadzpatryk.di.module.FragmentModule;
-import pl.cyrzan.prowadzpatryk.ui.main.MapWithFormFragment;
+import pl.cyrzan.prowadzpatryk.ui.mapwithform.MapWithFormFragment;
 import pl.cyrzan.prowadzpatryk.ui.main.TripsFragment;
 
 import dagger.Subcomponent;
@@ -19,6 +19,5 @@ import dagger.Subcomponent;
 public interface FragmentComponent {
 
     void inject(MapWithFormFragment mapWithFormFragment);
-
     void inject(TripsFragment tripsFragment);
 }

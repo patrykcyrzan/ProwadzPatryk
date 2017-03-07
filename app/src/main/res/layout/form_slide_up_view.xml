@@ -14,24 +14,55 @@
             android:id="@+id/slideView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white">
+            android:animateLayoutChanges="true"
+            android:background="@color/neonCarrot">
+
+        <pl.cyrzan.prowadzpatryk.ui.common.views.inputWithGps.LocationGpsInput
+                android:id="@+id/locationGpsInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:placeholder="@string/from">
+
+        </pl.cyrzan.prowadzpatryk.ui.common.views.inputWithGps.LocationGpsInput>
 
         <pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInput
                 android:id="@+id/locationInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/locationGpsInput"
+                app:placeholder="@string/to"/>
 
-
-        </pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInput>
-
-        <ImageView
-                android:layout_below="@+id/textView"
+        <LinearLayout
+                android:id="@+id/time_and_date_line_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_action_home_on"
-                android:id="@+id/imageView"
-                android:layout_marginTop="4dp"/>
+                android:layout_below="@+id/locationInput"
+                android:orientation="horizontal">
+
+            <include
+                    layout="@layout/time_and_date_card"
+                    />
+        </LinearLayout>
+
+
+
+        <View
+                android:id="@+id/border"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/time_and_date_line_layout"
+                android:background="@color/material_grey_300"/>
+
+        <Button
+                android:id="@+id/show_more_button"
+                android:layout_below="@+id/border"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
     </RelativeLayout>
+
+
+
+
 
 </RelativeLayout>

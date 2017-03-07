@@ -9,6 +9,7 @@ import pl.cyrzan.prowadzpatryk.eventbus.EventBusModule;
 import pl.cyrzan.prowadzpatryk.service.preferences.PreferencesModule;
 import pl.cyrzan.prowadzpatryk.service.repository.RepositoryModule;
 import pl.cyrzan.prowadzpatryk.service.user.UserModule;
+import pl.cyrzan.prowadzpatryk.ui.common.views.inputWithGps.LocationGpsInput;
 
 import javax.inject.Singleton;
 
@@ -36,4 +37,5 @@ public interface ApplicationComponent {
     ActivityComponent plus(ActivityModule activityModule);
 
     void inject(ProwadzPatrykApplication prowadzPatrykApplication);
+    void inject(LocationGpsInput locationGpsInput);
 }
