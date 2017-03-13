@@ -10,6 +10,8 @@ import org.joda.time.LocalDate;
 
 import pl.cyrzan.prowadzpatryk.service.api.LocalDateDeserializer;
 
+import java.util.Date;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -39,7 +41,7 @@ public class ApplicationModule {
     @Provides
     public Gson provideGson() {
         return new GsonBuilder()
-                .registerTypeAdapter(LocalDate.class, new LocalDateDeserializer())
+                .registerTypeAdapter(Date.class, new LocalDateDeserializer())
                 .create();
     }
 

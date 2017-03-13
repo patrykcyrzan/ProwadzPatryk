@@ -2,11 +2,14 @@ package pl.cyrzan.prowadzpatryk.ui.mapwithform;
 
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -14,11 +17,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TimePicker;
 
 import com.squareup.sqlbrite.BriteDatabase;
 
+import org.opentripplanner.api.ws.Request;
+import org.opentripplanner.routing.core.TraverseMode;
+import org.opentripplanner.routing.core.TraverseModeSet;
+import org.opentripplanner.v092snapshot.api.ws.Response;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.events.MapEventsReceiver;
 import org.osmdroid.util.GeoPoint;
@@ -29,12 +38,17 @@ import pl.cyrzan.prowadzpatryk.ProwadzPatrykApplication;
 import pl.cyrzan.prowadzpatryk.R;
 import pl.cyrzan.prowadzpatryk.di.module.ActivityModule;
 import pl.cyrzan.prowadzpatryk.di.module.FragmentModule;
+import pl.cyrzan.prowadzpatryk.model.Location;
+import pl.cyrzan.prowadzpatryk.service.api.model.TripRequest;
 import pl.cyrzan.prowadzpatryk.ui.base.BaseFragment;
 import pl.cyrzan.prowadzpatryk.ui.common.views.SlideUp;
+import pl.cyrzan.prowadzpatryk.ui.common.views.dateandtimeview.TimeAndDateView;
 import pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInput;
 import pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInputAdapter;
 import pl.cyrzan.prowadzpatryk.ui.common.views.inputWithGps.LocationGpsInput;
 import pl.cyrzan.prowadzpatryk.ui.main.MainActivity;
+import pl.cyrzan.prowadzpatryk.ui.main.MainAdapter;
+import pl.cyrzan.prowadzpatryk.ui.trips.TripsFragment;
 import pl.cyrzan.prowadzpatryk.util.ViewUtil;
 
 import javax.inject.Inject;
@@ -48,13 +62,15 @@ import static android.view.View.VISIBLE;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MapWithFormFragment extends BaseFragment implements MapEventsReceiver, MapWithFormContract.View {
+public class MapWithFormFragment extends BaseFragment implements MapEventsReceiver, MapWithFormContract.View,
+        TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener{
 
     private static final String TAG = "MapWithFormFragment";
 
     private MapView map;
     private SlideUp slideUp;
     private boolean showingMore = false;
+    private boolean now = true, today = true;
 
     @Inject
     BriteDatabase db;
@@ -72,12 +88,8 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
     LocationInput locationInput;
     @BindView(R.id.locationGpsInput)
     LocationGpsInput locationGpsInput;
-    @BindView(R.id.date_line_layout)
-    LinearLayout dateLine;
-    @BindView(R.id.time_line_layout)
-    LinearLayout timeLine;
     @BindView(R.id.time_and_date_line_layout)
-    LinearLayout timeAndDateLayout;
+    TimeAndDateView timeAndDateLayout;
     @BindView(R.id.show_more_button)
     Button showMoreButton;
 
@@ -85,11 +97,6 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_map_with_form, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -106,8 +113,6 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
         showLess(false);
         initSlideUp();
         initLocationInput();
-
-        //db.insert(RecentLocs.TABLE, new RecentLocs.Builder().lat(52.12355).lon(45.468786).name("asdas").lastUsed("2016-02-02 15:02:15").build());
     }
 
     @Override
@@ -164,31 +169,61 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
         mapController.setCenter(startPoint);
     }
 
-    public LocationInput getLocationInput(){
-        return locationInput;
-    }
-
-    public LocationGpsInput getLocationGpsInput(){
-        return locationGpsInput;
-    }
-
-    public int test(){
-        return 5;
-    }
-
     @OnClick(R.id.fab)
-    public void onClickFab(){
+    public void onFabClick(){
         Log.i(TAG, "onClickFab");
         slideUp.show();
         fab.hide();
     }
 
     @OnClick(R.id.show_more_button)
-    public void moreOnClick(){
+    public void onMoreClick(){
         if(timeAndDateLayout.getVisibility() == GONE){
             showMore(true);
         } else {
             showLess(true);
+        }
+    }
+
+    @OnClick(R.id.search_button)
+    public void onSearchClick(){
+        if(locationGpsInput == null && locationInput == null){
+            return;
+        }
+
+        TripRequest request = new TripRequest();
+
+        if(checkLocation(locationInput)){
+            request.setTo(locationInput.getLocation().getCoordAddress());
+        } else {
+            ViewUtil.makeToast(getContext(), getResources().getString(R.string.error_invalid_to));
+            return;
+        }
+
+        if(checkLocation(locationGpsInput)){
+            request.setFrom(locationGpsInput.getLocation().getCoordAddress());
+        } else {
+            ViewUtil.makeToast(getContext(), getResources().getString(R.string.error_invalid_from));
+            return;
+        }
+
+        request.setDateTime(timeAndDateLayout.getDateTime());
+        TraverseModeSet traverseModeSet = new TraverseModeSet();
+        traverseModeSet.setWalk(true);
+        traverseModeSet.setTransit(true);
+        request.setModes(traverseModeSet);
+
+        mapWithFormPresenter.loadTrips(request);
+
+    }
+
+    private Boolean checkLocation(LocationInput locationInput){
+        Location location = locationInput.getLocation();
+
+        if(location == null){
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -249,5 +284,24 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
     @Override
     public MapWithFormContract.LocationGpsInputView getLocationGpsInputView() {
         return locationGpsInput;
+    }
+
+    @Override
+    public void showTrips(Response response) {
+        ViewPager viewPager = ((MainActivity)getActivity()).getViewPager();
+        MainAdapter adapter = ((MainActivity)getActivity()).getAdapter();
+        TripsFragment fragment = (TripsFragment) adapter.getFragment(viewPager, 1);
+        fragment.setResponse(response);
+        viewPager.setCurrentItem(1);
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+
+    }
+
+    @Override
+    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+
     }
 }

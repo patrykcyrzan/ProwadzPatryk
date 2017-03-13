@@ -15,4 +15,5 @@
 
     <dimen name="mal_card_radius">2dp</dimen>
     <dimen name="mal_card_elevation">2dp</dimen>
+    <dimen name="line_box_height">20dp</dimen>
 </resources>

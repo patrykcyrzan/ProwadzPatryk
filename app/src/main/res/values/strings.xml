@@ -16,4 +16,12 @@
     <string name="date">Data</string>
     <string name="less">mniej</string>
     <string name="more">więcej</string>
+    <string name="now">Teraz</string>
+    <string name="today">Dzisiaj</string>
+    <string name="cancel">Anuluj</string>
+    <string name="ok">Zatwierdź</string>
+    <string name="search">search</string>
+    <string name="error_invalid_to">Niepoprawne miejsce docelowe</string>
+    <string name="error_invalid_from">Niepoprawne miejsce rozpoczęcia</string>
+    <string name="error_unable_to_load_trips">Problem przy pobieraniu połączeń</string>
 </resources>

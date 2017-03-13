@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import pl.cyrzan.prowadzpatryk.ui.mapwithform.MapWithFormFragment;
+import pl.cyrzan.prowadzpatryk.ui.trips.TripsFragment;
 
 /**
  * Created by Patryk on 10.02.2017.

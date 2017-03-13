@@ -241,6 +241,10 @@ public class LocationInput extends RelativeLayout implements MapWithFormContract
         }
     }
 
+    public Location getLocation(){
+        return location;
+    }
+
     public void clearLocation() {
         setLocation(null, null);
         /*if(getAdapter() != null) {

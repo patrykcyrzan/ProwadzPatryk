@@ -100,6 +100,20 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         mapFormImage.setSelected(true);
     }
 
+    public ViewPager getViewPager() {
+        if (null == viewPager) {
+            return null;
+        }
+        return viewPager;
+    }
+
+    public MainAdapter getAdapter(){
+        if(adapter == null){
+            return null;
+        }
+        return adapter;
+    }
+
     private void switchTabs(int position) {
         for (int i = 0; i < tabs.size(); i++) {
             if (position == i) {

@@ -52,5 +52,6 @@
 
     <color name="dimBg">#bf000000</color>
     <color name="drawableTintLight">@color/viking</color>
+    <color name="black">#000000</color>
 
 </resources>

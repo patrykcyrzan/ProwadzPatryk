@@ -32,17 +32,13 @@
                 android:layout_below="@+id/locationGpsInput"
                 app:placeholder="@string/to"/>
 
-        <LinearLayout
+        <pl.cyrzan.prowadzpatryk.ui.common.views.dateandtimeview.TimeAndDateView
                 android:id="@+id/time_and_date_line_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/locationInput"
                 android:orientation="horizontal">
-
-            <include
-                    layout="@layout/time_and_date_card"
-                    />
-        </LinearLayout>
+        </pl.cyrzan.prowadzpatryk.ui.common.views.dateandtimeview.TimeAndDateView>
 
 
 
@@ -56,6 +52,15 @@
         <Button
                 android:id="@+id/show_more_button"
                 android:layout_below="@+id/border"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <Button
+                android:id="@+id/search_button"
+                android:layout_below="@+id/border"
+                android:layout_centerHorizontal="true"
+                android:text="@string/search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

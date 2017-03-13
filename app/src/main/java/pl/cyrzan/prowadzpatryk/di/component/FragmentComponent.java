@@ -2,7 +2,7 @@ package pl.cyrzan.prowadzpatryk.di.component;
 
 import pl.cyrzan.prowadzpatryk.di.module.FragmentModule;
 import pl.cyrzan.prowadzpatryk.ui.mapwithform.MapWithFormFragment;
-import pl.cyrzan.prowadzpatryk.ui.main.TripsFragment;
+import pl.cyrzan.prowadzpatryk.ui.trips.TripsFragment;
 
 import dagger.Subcomponent;
 

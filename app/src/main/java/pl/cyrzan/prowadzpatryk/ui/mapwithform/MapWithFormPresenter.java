@@ -2,11 +2,16 @@ package pl.cyrzan.prowadzpatryk.ui.mapwithform;
 
 import android.util.Log;
 
+import org.opentripplanner.api.ws.Request;
+import org.opentripplanner.routing.core.TraverseMode;
+import org.opentripplanner.routing.core.TraverseModeSet;
+import org.opentripplanner.v092snapshot.api.ws.Response;
+
 import pl.cyrzan.prowadzpatryk.R;
 import pl.cyrzan.prowadzpatryk.service.api.model.SuggestLocationResponse;
+import pl.cyrzan.prowadzpatryk.service.api.model.TripRequest;
 import pl.cyrzan.prowadzpatryk.service.repository.RepositoryService;
 import pl.cyrzan.prowadzpatryk.ui.base.RxPresenter;
-import pl.cyrzan.prowadzpatryk.ui.main.MainContract;
 
 import java.net.ConnectException;
 import java.util.List;
@@ -25,6 +30,7 @@ public class MapWithFormPresenter extends RxPresenter<MapWithFormContract.View> 
 
     private static final String TAG = "MapWithFormPresenter";
     private Subscription suggestLocationsTaskSub;
+    private Subscription tripsTaskSub;
 
     @Inject
     RepositoryService repositoryService;
@@ -77,8 +83,6 @@ public class MapWithFormPresenter extends RxPresenter<MapWithFormContract.View> 
 
     @Override
     public void onTextChangedGps(String autocompleteText) {
-        Log.i(TAG, "Wyslij");
-
         suggestLocationsTaskSub = repositoryService.getSuggestLocations(autocompleteText)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -102,10 +106,36 @@ public class MapWithFormPresenter extends RxPresenter<MapWithFormContract.View> 
 
     @Override
     public void stopSuggestLocationsTaskGps() {
-        Log.i(TAG, "nie wysylaj");
         view.getLocationGpsInputView().onSuggestLocationsResult(null);
         if(suggestLocationsTaskSub != null) {
             suggestLocationsTaskSub.unsubscribe();
         }
+    }
+
+    private void onResponseAvailable(Response response){
+        Log.i(TAG, response.getPlan().from.name);
+        view.showTrips(response);
+    }
+
+    @Override
+    public void loadTrips(TripRequest request) {
+        tripsTaskSub = repositoryService.getTrips(request.getFrom(), request.getTo(), request.getTime(), request.getDate(),
+                request.getModes(), request.getMaxWalkDistance())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::onResponseAvailable,throwable -> {
+                    try {
+                        if(throwable instanceof ConnectException) {
+                            view.showError(R.string.error_unable_to_conect);
+                        } else {
+                            view.showError(R.string.error_unable_to_load_trips);
+                        }
+                    } catch (Exception e) {
+                        Log.e(TAG, "Problem with error handling code", e);
+                    } finally {
+                        Log.i(TAG, "Unable to load trips", throwable);
+                    }
+                });
+        addSubscribe(tripsTaskSub);
     }
 }

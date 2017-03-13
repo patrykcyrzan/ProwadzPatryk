@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import pl.cyrzan.prowadzpatryk.model.enums.LocationType;
 import pl.cyrzan.prowadzpatryk.model.enums.Product;
+import pl.cyrzan.prowadzpatryk.util.Constants;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -108,6 +109,14 @@ public final class Location implements Serializable {
 
     public final boolean hasName() {
         return name != null;
+    }
+
+    public String getCoordAddress(){
+        if(hasLocation()){
+            return String.format(Constants.OTP_LOCALE, "%g,%g", lat, lon);
+        } else {
+            return null;
+        }
     }
 
     public final boolean isIdentified() {

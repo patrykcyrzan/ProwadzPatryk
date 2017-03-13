@@ -1,0 +1,1620 @@
+{
+  "status": 200,
+  "response": {
+    "requestParameters": {
+      "date": "03-12-2017",
+      "mode": "TRANSIT,WALK",
+      "arriveBy": "false",
+      "wheelchair": "false",
+      "fromPlace": "54.5188,18.5470",
+      "toPlace": "54.3837,18.7075",
+      "time": "20:04PM",
+      "maxWalkDistance": "1.7976931348623157E308",
+      "locale": "pl"
+    },
+    "plan": {
+      "date": 1489388640000,
+      "from": {
+        "name": "Origin",
+        "lon": 18.547,
+        "lat": 54.5188,
+        "orig": "",
+        "vertexType": "NORMAL"
+      },
+      "to": {
+        "name": "Destination",
+        "lon": 18.7075,
+        "lat": 54.3837,
+        "orig": "",
+        "vertexType": "NORMAL"
+      },
+      "itineraries": [
+        {
+          "duration": 6648,
+          "startTime": 1489389049000,
+          "endTime": 1489395697000,
+          "walkTime": 2072,
+          "transitTime": 3960,
+          "waitingTime": 616,
+          "walkDistance": 2650.1606165301687,
+          "walkLimitExceeded": false,
+          "elevationLost": 0,
+          "elevationGained": 0,
+          "transfers": 2,
+          "fare": {
+            "fare": {
+              "regular": {
+                "currency": {
+                  "symbol": "zł",
+                  "currency": "PLN",
+                  "defaultFractionDigits": 2,
+                  "currencyCode": "PLN"
+                },
+                "cents": 1240
+              }
+            },
+            "details": {
+              "regular": [
+                {
+                  "fareId": "1:ZKM",
+                  "price": {
+                    "currency": {
+                      "symbol": "zł",
+                      "currency": "PLN",
+                      "defaultFractionDigits": 2,
+                      "currencyCode": "PLN"
+                    },
+                    "cents": 320
+                  },
+                  "routes": [
+                    "1:100240061"
+                  ]
+                },
+                {
+                  "fareId": "1:SKM 19-24",
+                  "price": {
+                    "currency": {
+                      "symbol": "zł",
+                      "currency": "PLN",
+                      "defaultFractionDigits": 2,
+                      "currencyCode": "PLN"
+                    },
+                    "cents": 600
+                  },
+                  "routes": [
+                    "1:200000042"
+                  ]
+                },
+                {
+                  "fareId": "1:ZTM",
+                  "price": {
+                    "currency": {
+                      "symbol": "zł",
+                      "currency": "PLN",
+                      "defaultFractionDigits": 2,
+                      "currencyCode": "PLN"
+                    },
+                    "cents": 320
+                  },
+                  "routes": [
+                    "1:80011"
+                  ]
+                }
+              ]
+            }
+          },
+          "legs": [
+            {
+              "startTime": 1489389049000,
+              "endTime": 1489389359000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 373.66799999999995,
+              "pathway": false,
+              "mode": "WALK",
+              "route": "",
+              "agencyTimeZoneOffset": 3600000,
+              "interlineWithPreviousLeg": false,
+              "from": {
+                "name": "Origin",
+                "lon": 18.547,
+                "lat": 54.5188,
+                "departure": 1489389049000,
+                "orig": "",
+                "vertexType": "NORMAL"
+              },
+              "to": {
+                "name": "Skwer Kościuszki - InfoBox",
+                "stopId": "1:35220",
+                "lon": 18.5421230523895,
+                "lat": 54.5187780630599,
+                "arrival": 1489389359000,
+                "departure": 1489389360000,
+                "zoneId": "5220",
+                "stopIndex": 6,
+                "stopSequence": 6,
+                "vertexType": "TRANSIT"
+              },
+              "legGeometry": {
+                "points": "sewkIwmepBCdAK~EEbCCz@Ap@?HGvCIvD?JWIAHALC`@@AF?n@ZRJH@",
+                "length": 19
+              },
+              "rentedBike": false,
+              "transitLeg": false,
+              "duration": 310,
+              "steps": [
+                {
+                  "distance": 22.664,
+                  "relativeDirection": "DEPART",
+                  "streetName": "Aleja Jana Pawła II",
+                  "absoluteDirection": "WEST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": false,
+                  "lon": 18.54700349226403,
+                  "lat": 54.5188238106691,
+                  "elevation": []
+                },
+                {
+                  "distance": 262.92900000000003,
+                  "relativeDirection": "CONTINUE",
+                  "streetName": "Skwer Tadeusza Kościuszki",
+                  "absoluteDirection": "WEST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": false,
+                  "lon": 18.546653600000003,
+                  "lat": 54.5188411,
+                  "elevation": []
+                },
+                {
+                  "distance": 37.194,
+                  "relativeDirection": "CONTINUE",
+                  "streetName": "path",
+                  "absoluteDirection": "WEST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.5425964,
+                  "lat": 54.519054100000005,
+                  "elevation": []
+                },
+                {
+                  "distance": 50.881,
+                  "relativeDirection": "LEFT",
+                  "streetName": "sidewalk",
+                  "absoluteDirection": "SOUTH",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.5422978,
+                  "lat": 54.5192172,
+                  "elevation": []
+                }
+              ]
+            },
+            {
+              "startTime": 1489389360000,
+              "endTime": 1489389720000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 1299.9644372530001,
+              "pathway": false,
+              "mode": "CABLE_CAR",
+              "route": "24",
+              "agencyName": "PKT Gdynia",
+              "agencyUrl": "http://",
+              "agencyTimeZoneOffset": 3600000,
+              "routeColor": "0074C5",
+              "routeType": 5,
+              "routeId": "1:100240061",
+              "routeTextColor": "FFFFFF",
+              "interlineWithPreviousLeg": false,
+              "headsign": "Dąbrowa Miętowa",
+              "agencyId": "5",
+              "tripId": "1:4C93CD6743B9",
+              "serviceDate": "20170313",
+              "from": {
+                "name": "Skwer Kościuszki - InfoBox",
+                "stopId": "1:35220",
+                "lon": 18.5421230523895,
+                "lat": 54.5187780630599,
+                "arrival": 1489389359000,
+                "departure": 1489389360000,
+                "zoneId": "5220",
+                "stopIndex": 6,
+                "stopSequence": 6,
+                "vertexType": "TRANSIT"
+              },
+              "to": {
+                "name": "Wzgórze Św. Maksymiliana SKM",
+                "stopId": "1:35250",
+                "lon": 18.5365702944149,
+                "lat": 54.5075715436152,
+                "arrival": 1489389720000,
+                "departure": 1489389720000,
+                "zoneId": "5250",
+                "stopIndex": 10,
+                "stopSequence": 10,
+                "vertexType": "TRANSIT"
+              },
+              "legGeometry": {
+                "points": "gewkIcpdpBH@\\LXJPFn@Td@NF@RJLBd@RTFlBn@XJTHn@RZLn@TF@zDrAh@RpBp@|Bv@D@zE~Al@TZHzBr@fBh@jA\\dCt@ZHTLb@NH?GxAIxAAXAb@Ct@JA\\BfADh@Ad@?^@lA?hAFR?",
+                "length": 49
+              },
+              "routeShortName": "24",
+              "routeLongName": "+ Stocznia Gdynia > Dąbrowa Miętowa",
+              "rentedBike": false,
+              "transitLeg": true,
+              "duration": 360,
+              "steps": []
+            },
+            {
+              "startTime": 1489389720000,
+              "endTime": 1489389824000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 134.93200000000002,
+              "pathway": false,
+              "mode": "WALK",
+              "route": "",
+              "agencyTimeZoneOffset": 3600000,
+              "interlineWithPreviousLeg": false,
+              "from": {
+                "name": "Wzgórze Św. Maksymiliana SKM",
+                "stopId": "1:35250",
+                "lon": 18.5365702944149,
+                "lat": 54.5075715436152,
+                "arrival": 1489389720000,
+                "departure": 1489389720000,
+                "zoneId": "5250",
+                "stopIndex": 10,
+                "stopSequence": 10,
+                "vertexType": "TRANSIT"
+              },
+              "to": {
+                "name": "Gdynia Wzgórze Św. Maksymiliana",
+                "stopId": "1:40028",
+                "lon": 18.5355581638093,
+                "lat": 54.5077037365961,
+                "arrival": 1489389824000,
+                "departure": 1489390320000,
+                "zoneId": "40030",
+                "stopIndex": 13,
+                "stopSequence": 13,
+                "vertexType": "TRANSIT"
+              },
+              "legGeometry": {
+                "points": "i_ukIklcpBE??@OA?F?L?Pa@\\QPQPA`@CJ?PA^\\?",
+                "length": 15
+              },
+              "rentedBike": false,
+              "transitLeg": false,
+              "duration": 104,
+              "steps": [
+                {
+                  "distance": 4.262,
+                  "relativeDirection": "DEPART",
+                  "streetName": "Wzgórze Św. Maksymiliana SKM",
+                  "absoluteDirection": "NORTH",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": false,
+                  "lon": 18.5365445092043,
+                  "lat": 54.5075719478925,
+                  "elevation": []
+                },
+                {
+                  "distance": 9.013,
+                  "relativeDirection": "CONTINUE",
+                  "streetName": "sidewalk",
+                  "absoluteDirection": "NORTH",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.536533900000002,
+                  "lat": 54.5076036,
+                  "elevation": []
+                },
+                {
+                  "distance": 7.108,
+                  "relativeDirection": "LEFT",
+                  "streetName": "sidewalk",
+                  "absoluteDirection": "WEST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.5365487,
+                  "lat": 54.5076842,
+                  "elevation": []
+                },
+                {
+                  "distance": 50.393,
+                  "relativeDirection": "RIGHT",
+                  "streetName": "path",
+                  "absoluteDirection": "NORTHWEST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.5364386,
+                  "lat": 54.507685200000004,
+                  "elevation": []
+                },
+                {
+                  "distance": 31.592,
+                  "relativeDirection": "LEFT",
+                  "streetName": "underpass",
+                  "absoluteDirection": "WEST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.536016500000002,
+                  "lat": 54.508039600000004,
+                  "elevation": []
+                },
+                {
+                  "distance": 32.564,
+                  "relativeDirection": "LEFT",
+                  "streetName": "steps",
+                  "absoluteDirection": "SOUTH",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.535535,
+                  "lat": 54.508073200000005,
+                  "elevation": []
+                }
+              ]
+            },
+            {
+              "startTime": 1489390320000,
+              "endTime": 1489392120000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 18189.88147932136,
+              "pathway": false,
+              "mode": "RAIL",
+              "route": "SKM",
+              "agencyName": "SKM",
+              "agencyUrl": "http://",
+              "agencyTimeZoneOffset": 3600000,
+              "routeColor": "000000",
+              "routeType": 2,
+              "routeId": "1:200000042",
+              "routeTextColor": "FFFFFF",
+              "interlineWithPreviousLeg": false,
+              "headsign": "Gdańsk Sródmieści",
+              "agencyId": "16",
+              "tripId": "1:4C943BE9AB79",
+              "serviceDate": "20170313",
+              "from": {
+                "name": "Gdynia Wzgórze Św. Maksymiliana",
+                "stopId": "1:40028",
+                "lon": 18.5355581638093,
+                "lat": 54.5077037365961,
+                "arrival": 1489389824000,
+                "departure": 1489390320000,
+                "zoneId": "40030",
+                "stopIndex": 13,
+                "stopSequence": 13,
+                "vertexType": "TRANSIT"
+              },
+              "to": {
+                "name": "Gdańsk Stocznia",
+                "stopId": "1:40040",
+                "lon": 18.6422724799211,
+                "lat": 54.3641901389358,
+                "arrival": 1489392120000,
+                "departure": 1489392120000,
+                "zoneId": "40042",
+                "stopIndex": 25,
+                "stopSequence": 25,
+                "vertexType": "TRANSIT"
+              },
+              "legGeometry": {
+                "points": "c`ukIgecpBjBDxBF`CFdBHvB@jCHfCDbCFdBDjA@`CLxADtA@nAA`AGdAIr@KnAW|E{A`IoCbIgCjBo@hEwARAdBa@bBk@TGt@SjFgB`Cy@dDcAlBm@~Ag@bBk@jBw@nCqA`C}A`DeCfA{@pAeAbBwAtAiAx@q@xAkA~AuAvBeBx@q@vBiBbBwAlCaChAiA`IaHb@_@fEoDtCaCdEoDrCaC|DgDnDwC`D{BhB}@~Bq@~AYbBQpBCdCLpARnBh@|ChAvFrBpCbA~Bx@fBf@nAR|@FfABj@Al@AbACv@IbB[r@O~Cm@fCi@z@QRGvA[xBm@rCeArHkEdDmBvCcBxBuAtEiClEgChEgCzCeBtC{AlCeApBm@dAYpBi@rCs@hBg@|A_@tA]`@KbIcBfDs@r@O^I|Cq@jAWtCo@dCi@zBk@jCk@xAYxD{@vCm@jH{AzBe@PELAhFgAvIkBbIeBhFgAlDu@~ImBlAWdKyB`@IlEaA|IiBvCq@jDm@pCs@hIiBdHwA`Ba@hFyAtCq@VG~A]nEeA`DaAjDw@~Am@jD_BvBgArDsBxC}AtEuBbBeAxAw@~@q@ZULIhAeAhAqA|@iApCcElMaRdOmTtB}C~BkD`BkC`BqCdA{B^q@l@eAxA}CxFgLhC}FrBiEtJcStC}FxCeGbAqBbBoDfAyB~@wBzAgEt@}Bv@wBX{@Z_AdAeDbAsDjCqKnHmYvA_G~AsGhByH|GqXhA}EdAiElAsFbAeFLi@fBsHhAuEzAiFpAuClAmCbBuChAwAhCgDlFmG|GoItAiBfA{ArD}E~A}B~AuBnCwDbAsA^i@",
+                "length": 220
+              },
+              "routeShortName": "SKM",
+              "routeLongName": "Wejherowo > Gdańsk Śródmieście",
+              "rentedBike": false,
+              "transitLeg": true,
+              "duration": 1800,
+              "steps": []
+            },
+            {
+              "startTime": 1489392120000,
+              "endTime": 1489392242000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 158.84000000000003,
+              "pathway": false,
+              "mode": "WALK",
+              "route": "",
+              "agencyTimeZoneOffset": 3600000,
+              "interlineWithPreviousLeg": false,
+              "from": {
+                "name": "Gdańsk Stocznia",
+                "stopId": "1:40040",
+                "lon": 18.6422724799211,
+                "lat": 54.3641901389358,
+                "arrival": 1489392120000,
+                "departure": 1489392120000,
+                "zoneId": "40042",
+                "stopIndex": 25,
+                "stopSequence": 25,
+                "vertexType": "TRANSIT"
+              },
+              "to": {
+                "name": "Stocznia SKM",
+                "stopId": "1:2064",
+                "lon": 18.6426968119575,
+                "lat": 54.3645760022176,
+                "arrival": 1489392242000,
+                "departure": 1489392360000,
+                "zoneId": "2064",
+                "stopIndex": 21,
+                "stopSequence": 21,
+                "vertexType": "TRANSIT"
+              },
+              "legGeometry": {
+                "points": "s`yjIi_xpBCKw@_CQi@JMJ\\BHV[FR?BKN",
+                "length": 11
+              },
+              "rentedBike": false,
+              "transitLeg": false,
+              "duration": 122,
+              "steps": [
+                {
+                  "distance": 90.087,
+                  "relativeDirection": "DEPART",
+                  "streetName": "footbridge",
+                  "absoluteDirection": "NORTHEAST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.641974627242348,
+                  "lat": 54.36442552873913,
+                  "elevation": []
+                },
+                {
+                  "distance": 7.473,
+                  "relativeDirection": "RIGHT",
+                  "streetName": "footbridge",
+                  "absoluteDirection": "SOUTHEAST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.6428853,
+                  "lat": 54.364812900000004,
+                  "elevation": []
+                },
+                {
+                  "distance": 61.28,
+                  "relativeDirection": "RIGHT",
+                  "streetName": "steps",
+                  "absoluteDirection": "SOUTHWEST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.6429516,
+                  "lat": 54.3647579,
+                  "elevation": []
+                }
+              ]
+            },
+            {
+              "startTime": 1489392360000,
+              "endTime": 1489394160000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 9073.441647258509,
+              "pathway": false,
+              "mode": "TRAM",
+              "route": "8",
+              "agencyName": "GAiT Tramwaje",
+              "agencyUrl": "http://",
+              "agencyTimeZoneOffset": 3600000,
+              "routeColor": "8D1CFF",
+              "routeType": 0,
+              "routeId": "1:80011",
+              "routeTextColor": "FFFFFF",
+              "interlineWithPreviousLeg": false,
+              "headsign": "Stogi Plaża",
+              "agencyId": "2",
+              "tripId": "1:4C93D8FB48C9",
+              "serviceDate": "20170313",
+              "from": {
+                "name": "Stocznia SKM",
+                "stopId": "1:2064",
+                "lon": 18.6426968119575,
+                "lat": 54.3645760022176,
+                "arrival": 1489392242000,
+                "departure": 1489392360000,
+                "zoneId": "2064",
+                "stopIndex": 21,
+                "stopSequence": 21,
+                "vertexType": "TRANSIT"
+              },
+              "to": {
+                "name": "Stogi Plaża",
+                "stopId": "1:207",
+                "lon": 18.72843079735,
+                "lat": 54.3728998285398,
+                "arrival": 1489394160000,
+                "departure": 1489394161000,
+                "zoneId": "207",
+                "stopIndex": 39,
+                "stopSequence": 39,
+                "vertexType": "TRANSIT"
+              },
+              "legGeometry": {
+                "points": "sayjI_dxpBd@o@hBwBNQj@c@p@g@tAq@n@]PQVa@N]p@yBVu@\\u@Zi@R[Zc@|@}@JKf@kAFMFKx@cAbAmAHEFCJGN?L@TF~CzBhCbB\\^HHHVb@dATj@FJHJDDLDZ?bBFvEt@rATlBXpEl@JBPALCh@Sj@[jCyBb@]\\S\\SNELCLAP@R@d@H`Cl@n@P\\H^JfAXvJfBL?H?FCFEBIFMDUFW@[HyCDiBBcALuBHi@PsA\\}B`ByJVsA^yBp@wDTaBPaBb@mE`@wEHgA\\oDJoAtCo[Dk@Bk@?u@AoACq@QeBWiCg@oEg@wDOs@Qs@Uo@]w@a@o@]_@c@_@i@]e@SyBy@m@Q}Ai@wAe@aA]i@OYMWC_BIo@C}@Oy@Su@UcAg@u@c@_As@s@k@y@{@a@c@IKe@m@_ByBi@cAw@_CmCuJ_@mAI[oAqCeEyIw@qBQk@Ka@qAsIG]Mc@Sm@Ui@We@S]Wk@EICEO]ESCUAQ?Q?GB[NkBb@kF@U?Q?UAQEMEQWo@w@oBc@eAs@aBi@oA_@u@OSg@q@w@iAOSO[O_@Mg@Ok@Ia@My@My@_@{BAMKs@UwAEUYwAWgAW_A]cAuAgEiAgD}@oCqBaG}CeJ[{@I]Oi@AMCMEc@C]AaA?SBa@@e@z@kNTyDBWF{@Fu@?AFe@BUVw@r@eBlGiM??r@gBFOVi@DUDQ?K?UAWAMCME[UkAU}@SeAMq@Ik@C[Gq@G_AIaBQcDCk@QmDIsACe@EiA?GOEUGu@Og@Ig@I_@GEA_AOQC[GSC[GUGOKIKYk@O[K]I_@MOW{@kAuE{@iDuAyFsAoGSy@Qs@u@_Ce@mAg@qAa@}@m@cAg@k@a@c@m@a@kFsDyPuLyAaAyAiAo@a@c@FUh@",
+                "length": 294
+              },
+              "routeShortName": "8",
+              "routeLongName": "Jelitkowo(201) - Stogi Plaża(207)",
+              "rentedBike": false,
+              "transitLeg": true,
+              "duration": 1800,
+              "steps": []
+            },
+            {
+              "startTime": 1489394161000,
+              "endTime": 1489395697000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 1982.3739999999998,
+              "pathway": false,
+              "mode": "WALK",
+              "route": "",
+              "agencyTimeZoneOffset": 3600000,
+              "interlineWithPreviousLeg": false,
+              "from": {
+                "name": "Stogi Plaża",
+                "stopId": "1:207",
+                "lon": 18.72843079735,
+                "lat": 54.3728998285398,
+                "arrival": 1489394160000,
+                "departure": 1489394161000,
+                "zoneId": "207",
+                "stopIndex": 39,
+                "stopSequence": 39,
+                "vertexType": "TRANSIT"
+              },
+              "to": {
+                "name": "Destination",
+                "lon": 18.7075,
+                "lat": 54.3837,
+                "arrival": 1489395697000,
+                "orig": "",
+                "vertexType": "NORMAL"
+              },
+              "legGeometry": {
+                "points": "}uzjIe|hqBABITMf@Ud@SJO?WEIG_@Yk@i@QSOh@qDpNaBxF`AnB{@`DcBnFy@lB{AzEaAbD}CbJg@bA}@~B{A|DcApCcAnD_AbDe@xB{@pAk@hA_@r@[^Qd@Y\\QJSl@o@xAk@tAWj@GVOXQj@OJ_@bAy@`CQr@Sx@Oh@CCGSEGA?E?YMEFEBGDE?K@MCa@GGCG?GBEFILEH",
+                "length": 68
+              },
+              "alerts": [
+                {
+                  "alertHeaderText": "Unpaved surface"
+                }
+              ],
+              "rentedBike": false,
+              "transitLeg": false,
+              "duration": 1536,
+              "steps": [
+                {
+                  "distance": 1982.3739999999998,
+                  "relativeDirection": "DEPART",
+                  "streetName": "path",
+                  "absoluteDirection": "NORTHWEST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.72851338697506,
+                  "lat": 54.37295872731935,
+                  "elevation": [],
+                  "alerts": [
+                    {
+                      "alertHeaderText": "Unpaved surface"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "tooSloped": false
+        },
+        {
+          "duration": 6559,
+          "startTime": 1489390338000,
+          "endTime": 1489396897000,
+          "walkTime": 2779,
+          "transitTime": 3540,
+          "waitingTime": 240,
+          "walkDistance": 3542.0645037416034,
+          "walkLimitExceeded": false,
+          "elevationLost": 0,
+          "elevationGained": 0,
+          "transfers": 1,
+          "fare": {
+            "fare": {
+              "regular": {
+                "currency": {
+                  "symbol": "zł",
+                  "currency": "PLN",
+                  "defaultFractionDigits": 2,
+                  "currencyCode": "PLN"
+                },
+                "cents": 920
+              }
+            },
+            "details": {
+              "regular": [
+                {
+                  "fareId": "1:SKM 19-24",
+                  "price": {
+                    "currency": {
+                      "symbol": "zł",
+                      "currency": "PLN",
+                      "defaultFractionDigits": 2,
+                      "currencyCode": "PLN"
+                    },
+                    "cents": 600
+                  },
+                  "routes": [
+                    "1:200000042"
+                  ]
+                },
+                {
+                  "fareId": "1:ZTM",
+                  "price": {
+                    "currency": {
+                      "symbol": "zł",
+                      "currency": "PLN",
+                      "defaultFractionDigits": 2,
+                      "currencyCode": "PLN"
+                    },
+                    "cents": 320
+                  },
+                  "routes": [
+                    "1:80011"
+                  ]
+                }
+              ]
+            }
+          },
+          "legs": [
+            {
+              "startTime": 1489390338000,
+              "endTime": 1489391459000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 1400.2989999999998,
+              "pathway": false,
+              "mode": "WALK",
+              "route": "",
+              "agencyTimeZoneOffset": 3600000,
+              "interlineWithPreviousLeg": false,
+              "from": {
+                "name": "Origin",
+                "lon": 18.547,
+                "lat": 54.5188,
+                "departure": 1489390338000,
+                "orig": "",
+                "vertexType": "NORMAL"
+              },
+              "to": {
+                "name": "Gdynia Główna",
+                "stopId": "1:40027",
+                "lon": 18.5314932988471,
+                "lat": 54.5200267918069,
+                "arrival": 1489391459000,
+                "departure": 1489391460000,
+                "zoneId": "40029",
+                "stopIndex": 12,
+                "stopSequence": 12,
+                "vertexType": "TRANSIT"
+              },
+              "legGeometry": {
+                "points": "sewkIwmepBCdAK~EEbCCz@}@AAj@MdH?RAp@CbA?NChAElBGhD?`@Ab@EdCAPCz@?ZC~@?LI~DEbCAZ?HErB?RCdAAx@?JAREtBAl@ChBAh@AJ?ZClAAZ?VAFCLEJGFsAd@OF@P@PSPg@hBHHDD_AbDIXEJ_@nAJLNNHYBDn@{Al@mA~AmC",
+                "length": 65
+              },
+              "rentedBike": false,
+              "transitLeg": false,
+              "duration": 1121,
+              "steps": [
+                {
+                  "distance": 22.664,
+                  "relativeDirection": "DEPART",
+                  "streetName": "Aleja Jana Pawła II",
+                  "absoluteDirection": "WEST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": false,
+                  "lon": 18.54700349226403,
+                  "lat": 54.5188238106691,
+                  "elevation": []
+                },
+                {
+                  "distance": 301.665,
+                  "relativeDirection": "CONTINUE",
+                  "streetName": "Skwer Tadeusza Kościuszki",
+                  "absoluteDirection": "WEST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": false,
+                  "lon": 18.546653600000003,
+                  "lat": 54.5188411,
+                  "elevation": []
+                },
+                {
+                  "distance": 654.472,
+                  "relativeDirection": "CONTINUE",
+                  "streetName": "10 Lutego",
+                  "absoluteDirection": "WEST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": false,
+                  "lon": 18.5425429,
+                  "lat": 54.5193584,
+                  "elevation": []
+                },
+                {
+                  "distance": 57.469,
+                  "relativeDirection": "SLIGHTLY_RIGHT",
+                  "streetName": "Dworcowa",
+                  "absoluteDirection": "NORTH",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": false,
+                  "lon": 18.5325004,
+                  "lat": 54.51992370000001,
+                  "elevation": []
+                },
+                {
+                  "distance": 12.184,
+                  "relativeDirection": "LEFT",
+                  "streetName": "path",
+                  "absoluteDirection": "WEST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.532279600000003,
+                  "lat": 54.5204244,
+                  "elevation": []
+                },
+                {
+                  "distance": 60.153999999999996,
+                  "relativeDirection": "RIGHT",
+                  "streetName": "sidewalk",
+                  "absoluteDirection": "NORTHWEST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.532096000000003,
+                  "lat": 54.5204,
+                  "elevation": []
+                },
+                {
+                  "distance": 114.189,
+                  "relativeDirection": "RIGHT",
+                  "streetName": "sidewalk",
+                  "absoluteDirection": "NORTHWEST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.531423800000002,
+                  "lat": 54.5206571,
+                  "elevation": []
+                },
+                {
+                  "distance": 18.265,
+                  "relativeDirection": "LEFT",
+                  "streetName": "path",
+                  "absoluteDirection": "SOUTHWEST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.5299866,
+                  "lat": 54.5211878,
+                  "elevation": []
+                },
+                {
+                  "distance": 10.456,
+                  "relativeDirection": "LEFT",
+                  "streetName": "path",
+                  "absoluteDirection": "SOUTHEAST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.529832900000002,
+                  "lat": 54.5210499,
+                  "elevation": []
+                },
+                {
+                  "distance": 148.781,
+                  "relativeDirection": "CONTINUE",
+                  "streetName": "Peron 1",
+                  "absoluteDirection": "SOUTHEAST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": false,
+                  "lon": 18.5299665,
+                  "lat": 54.520996700000005,
+                  "elevation": []
+                }
+              ]
+            },
+            {
+              "startTime": 1489391460000,
+              "endTime": 1489393200000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 19585.04004093125,
+              "pathway": false,
+              "mode": "RAIL",
+              "route": "SKM",
+              "agencyName": "SKM",
+              "agencyUrl": "http://",
+              "agencyTimeZoneOffset": 3600000,
+              "routeColor": "000000",
+              "routeType": 2,
+              "routeId": "1:200000042",
+              "routeTextColor": "FFFFFF",
+              "interlineWithPreviousLeg": false,
+              "headsign": "Gdańsk Sródmieści",
+              "agencyId": "16",
+              "tripId": "1:4C943BEA95D9",
+              "serviceDate": "20170313",
+              "from": {
+                "name": "Gdynia Główna",
+                "stopId": "1:40027",
+                "lon": 18.5314932988471,
+                "lat": 54.5200267918069,
+                "arrival": 1489391459000,
+                "departure": 1489391460000,
+                "zoneId": "40029",
+                "stopIndex": 12,
+                "stopSequence": 12,
+                "vertexType": "TRANSIT"
+              },
+              "to": {
+                "name": "Gdańsk Stocznia",
+                "stopId": "1:40040",
+                "lon": 18.6422724799211,
+                "lat": 54.3641901389358,
+                "arrival": 1489393200000,
+                "departure": 1489393200000,
+                "zoneId": "40042",
+                "stopIndex": 25,
+                "stopSequence": 25,
+                "vertexType": "TRANSIT"
+              },
+              "legGeometry": {
+                "points": "_mwkIslbpBBIlAoBh@_A~@aBjA}A`AmAb@e@j@g@hByAlA{@|@e@p@WdAc@|Ag@fB[dBO|@AnA?hBBz@DdABjCHzAF~@@lABjBFrBH`AB~@BnBBzAFv@@P@jBDxBF`CFdBHvB@jCHfCDbCFdBDjA@`CLxADtA@nAA`AGdAIr@KnAW|E{A`IoCbIgCjBo@hEwARAdBa@bBk@TGt@SjFgB`Cy@dDcAlBm@~Ag@bBk@jBw@nCqA`C}A`DeCfA{@pAeAbBwAtAiAx@q@xAkA~AuAvBeBx@q@vBiBbBwAlCaChAiA`IaHb@_@fEoDtCaCdEoDrCaC|DgDnDwC`D{BhB}@~Bq@~AYbBQpBCdCLpARnBh@|ChAvFrBpCbA~Bx@fBf@nAR|@FfABj@Al@AbACv@IbB[r@O~Cm@fCi@z@QRGvA[xBm@rCeArHkEdDmBvCcBxBuAtEiClEgChEgCzCeBtC{AlCeApBm@dAYpBi@rCs@hBg@|A_@tA]`@KbIcBfDs@r@O^I|Cq@jAWtCo@dCi@zBk@jCk@xAYxD{@vCm@jH{AzBe@PELAhFgAvIkBbIeBhFgAlDu@~ImBlAWdKyB`@IlEaA|IiBvCq@jDm@pCs@hIiBdHwA`Ba@hFyAtCq@VG~A]nEeA`DaAjDw@~Am@jD_BvBgArDsBxC}AtEuBbBeAxAw@~@q@ZULIhAeAhAqA|@iApCcElMaRdOmTtB}C~BkD`BkC`BqCdA{B^q@l@eAxA}CxFgLhC}FrBiEtJcStC}FxCeGbAqBbBoDfAyB~@wBzAgEt@}Bv@wBX{@Z_AdAeDbAsDjCqKnHmYvA_G~AsGhByH|GqXhA}EdAiElAsFbAeFLi@fBsHhAuEzAiFpAuClAmCbBuChAwAhCgDlFmG|GoItAiBfA{ArD}E~A}B~AuBnCwDbAsA^i@",
+                "length": 253
+              },
+              "routeShortName": "SKM",
+              "routeLongName": "Wejherowo > Gdańsk Śródmieście",
+              "rentedBike": false,
+              "transitLeg": true,
+              "duration": 1740,
+              "steps": []
+            },
+            {
+              "startTime": 1489393200000,
+              "endTime": 1489393322000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 158.84000000000003,
+              "pathway": false,
+              "mode": "WALK",
+              "route": "",
+              "agencyTimeZoneOffset": 3600000,
+              "interlineWithPreviousLeg": false,
+              "from": {
+                "name": "Gdańsk Stocznia",
+                "stopId": "1:40040",
+                "lon": 18.6422724799211,
+                "lat": 54.3641901389358,
+                "arrival": 1489393200000,
+                "departure": 1489393200000,
+                "zoneId": "40042",
+                "stopIndex": 25,
+                "stopSequence": 25,
+                "vertexType": "TRANSIT"
+              },
+              "to": {
+                "name": "Stocznia SKM",
+                "stopId": "1:2064",
+                "lon": 18.6426968119575,
+                "lat": 54.3645760022176,
+                "arrival": 1489393322000,
+                "departure": 1489393560000,
+                "zoneId": "2064",
+                "stopIndex": 21,
+                "stopSequence": 21,
+                "vertexType": "TRANSIT"
+              },
+              "legGeometry": {
+                "points": "s`yjIi_xpBCKw@_CQi@JMJ\\BHV[FR?BKN",
+                "length": 11
+              },
+              "rentedBike": false,
+              "transitLeg": false,
+              "duration": 122,
+              "steps": [
+                {
+                  "distance": 90.087,
+                  "relativeDirection": "DEPART",
+                  "streetName": "footbridge",
+                  "absoluteDirection": "NORTHEAST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.641974627242348,
+                  "lat": 54.36442552873913,
+                  "elevation": []
+                },
+                {
+                  "distance": 7.473,
+                  "relativeDirection": "RIGHT",
+                  "streetName": "footbridge",
+                  "absoluteDirection": "SOUTHEAST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.6428853,
+                  "lat": 54.364812900000004,
+                  "elevation": []
+                },
+                {
+                  "distance": 61.28,
+                  "relativeDirection": "RIGHT",
+                  "streetName": "steps",
+                  "absoluteDirection": "SOUTHWEST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.6429516,
+                  "lat": 54.3647579,
+                  "elevation": []
+                }
+              ]
+            },
+            {
+              "startTime": 1489393560000,
+              "endTime": 1489395360000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 9073.441647258509,
+              "pathway": false,
+              "mode": "TRAM",
+              "route": "8",
+              "agencyName": "GAiT Tramwaje",
+              "agencyUrl": "http://",
+              "agencyTimeZoneOffset": 3600000,
+              "routeColor": "8D1CFF",
+              "routeType": 0,
+              "routeId": "1:80011",
+              "routeTextColor": "FFFFFF",
+              "interlineWithPreviousLeg": false,
+              "headsign": "Stogi Plaża",
+              "agencyId": "2",
+              "tripId": "1:4C93D8FD92B9",
+              "serviceDate": "20170313",
+              "from": {
+                "name": "Stocznia SKM",
+                "stopId": "1:2064",
+                "lon": 18.6426968119575,
+                "lat": 54.3645760022176,
+                "arrival": 1489393322000,
+                "departure": 1489393560000,
+                "zoneId": "2064",
+                "stopIndex": 21,
+                "stopSequence": 21,
+                "vertexType": "TRANSIT"
+              },
+              "to": {
+                "name": "Stogi Plaża",
+                "stopId": "1:207",
+                "lon": 18.72843079735,
+                "lat": 54.3728998285398,
+                "arrival": 1489395360000,
+                "departure": 1489395361000,
+                "zoneId": "207",
+                "stopIndex": 39,
+                "stopSequence": 39,
+                "vertexType": "TRANSIT"
+              },
+              "legGeometry": {
+                "points": "sayjI_dxpBd@o@hBwBNQj@c@p@g@tAq@n@]PQVa@N]p@yBVu@\\u@Zi@R[Zc@|@}@JKf@kAFMFKx@cAbAmAHEFCJGN?L@TF~CzBhCbB\\^HHHVb@dATj@FJHJDDLDZ?bBFvEt@rATlBXpEl@JBPALCh@Sj@[jCyBb@]\\S\\SNELCLAP@R@d@H`Cl@n@P\\H^JfAXvJfBL?H?FCFEBIFMDUFW@[HyCDiBBcALuBHi@PsA\\}B`ByJVsA^yBp@wDTaBPaBb@mE`@wEHgA\\oDJoAtCo[Dk@Bk@?u@AoACq@QeBWiCg@oEg@wDOs@Qs@Uo@]w@a@o@]_@c@_@i@]e@SyBy@m@Q}Ai@wAe@aA]i@OYMWC_BIo@C}@Oy@Su@UcAg@u@c@_As@s@k@y@{@a@c@IKe@m@_ByBi@cAw@_CmCuJ_@mAI[oAqCeEyIw@qBQk@Ka@qAsIG]Mc@Sm@Ui@We@S]Wk@EICEO]ESCUAQ?Q?GB[NkBb@kF@U?Q?UAQEMEQWo@w@oBc@eAs@aBi@oA_@u@OSg@q@w@iAOSO[O_@Mg@Ok@Ia@My@My@_@{BAMKs@UwAEUYwAWgAW_A]cAuAgEiAgD}@oCqBaG}CeJ[{@I]Oi@AMCMEc@C]AaA?SBa@@e@z@kNTyDBWF{@Fu@?AFe@BUVw@r@eBlGiM??r@gBFOVi@DUDQ?K?UAWAMCME[UkAU}@SeAMq@Ik@C[Gq@G_AIaBQcDCk@QmDIsACe@EiA?GOEUGu@Og@Ig@I_@GEA_AOQC[GSC[GUGOKIKYk@O[K]I_@MOW{@kAuE{@iDuAyFsAoGSy@Qs@u@_Ce@mAg@qAa@}@m@cAg@k@a@c@m@a@kFsDyPuLyAaAyAiAo@a@c@FUh@",
+                "length": 294
+              },
+              "routeShortName": "8",
+              "routeLongName": "Jelitkowo(201) - Stogi Plaża(207)",
+              "rentedBike": false,
+              "transitLeg": true,
+              "duration": 1800,
+              "steps": []
+            },
+            {
+              "startTime": 1489395361000,
+              "endTime": 1489396897000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 1982.3739999999998,
+              "pathway": false,
+              "mode": "WALK",
+              "route": "",
+              "agencyTimeZoneOffset": 3600000,
+              "interlineWithPreviousLeg": false,
+              "from": {
+                "name": "Stogi Plaża",
+                "stopId": "1:207",
+                "lon": 18.72843079735,
+                "lat": 54.3728998285398,
+                "arrival": 1489395360000,
+                "departure": 1489395361000,
+                "zoneId": "207",
+                "stopIndex": 39,
+                "stopSequence": 39,
+                "vertexType": "TRANSIT"
+              },
+              "to": {
+                "name": "Destination",
+                "lon": 18.7075,
+                "lat": 54.3837,
+                "arrival": 1489396897000,
+                "orig": "",
+                "vertexType": "NORMAL"
+              },
+              "legGeometry": {
+                "points": "}uzjIe|hqBABITMf@Ud@SJO?WEIG_@Yk@i@QSOh@qDpNaBxF`AnB{@`DcBnFy@lB{AzEaAbD}CbJg@bA}@~B{A|DcApCcAnD_AbDe@xB{@pAk@hA_@r@[^Qd@Y\\QJSl@o@xAk@tAWj@GVOXQj@OJ_@bAy@`CQr@Sx@Oh@CCGSEGA?E?YMEFEBGDE?K@MCa@GGCG?GBEFILEH",
+                "length": 68
+              },
+              "alerts": [
+                {
+                  "alertHeaderText": "Unpaved surface"
+                }
+              ],
+              "rentedBike": false,
+              "transitLeg": false,
+              "duration": 1536,
+              "steps": [
+                {
+                  "distance": 1982.3739999999998,
+                  "relativeDirection": "DEPART",
+                  "streetName": "path",
+                  "absoluteDirection": "NORTHWEST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.72851338697506,
+                  "lat": 54.37295872731935,
+                  "elevation": [],
+                  "alerts": [
+                    {
+                      "alertHeaderText": "Unpaved surface"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "tooSloped": false
+        },
+        {
+          "duration": 7219,
+          "startTime": 1489390878000,
+          "endTime": 1489398097000,
+          "walkTime": 2779,
+          "transitTime": 3720,
+          "waitingTime": 720,
+          "walkDistance": 3542.0645037416034,
+          "walkLimitExceeded": false,
+          "elevationLost": 0,
+          "elevationGained": 0,
+          "transfers": 1,
+          "fare": {
+            "fare": {
+              "regular": {
+                "currency": {
+                  "symbol": "zł",
+                  "currency": "PLN",
+                  "defaultFractionDigits": 2,
+                  "currencyCode": "PLN"
+                },
+                "cents": 920
+              }
+            },
+            "details": {
+              "regular": [
+                {
+                  "fareId": "1:SKM 19-24",
+                  "price": {
+                    "currency": {
+                      "symbol": "zł",
+                      "currency": "PLN",
+                      "defaultFractionDigits": 2,
+                      "currencyCode": "PLN"
+                    },
+                    "cents": 600
+                  },
+                  "routes": [
+                    "1:200000102"
+                  ]
+                },
+                {
+                  "fareId": "1:ZTM",
+                  "price": {
+                    "currency": {
+                      "symbol": "zł",
+                      "currency": "PLN",
+                      "defaultFractionDigits": 2,
+                      "currencyCode": "PLN"
+                    },
+                    "cents": 320
+                  },
+                  "routes": [
+                    "1:80011"
+                  ]
+                }
+              ]
+            }
+          },
+          "legs": [
+            {
+              "startTime": 1489390878000,
+              "endTime": 1489391999000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 1400.2989999999998,
+              "pathway": false,
+              "mode": "WALK",
+              "route": "",
+              "agencyTimeZoneOffset": 3600000,
+              "interlineWithPreviousLeg": false,
+              "from": {
+                "name": "Origin",
+                "lon": 18.547,
+                "lat": 54.5188,
+                "departure": 1489390878000,
+                "orig": "",
+                "vertexType": "NORMAL"
+              },
+              "to": {
+                "name": "Gdynia Główna",
+                "stopId": "1:40027",
+                "lon": 18.5314932988471,
+                "lat": 54.5200267918069,
+                "arrival": 1489391999000,
+                "departure": 1489392000000,
+                "zoneId": "40029",
+                "stopIndex": 4,
+                "stopSequence": 4,
+                "vertexType": "TRANSIT"
+              },
+              "legGeometry": {
+                "points": "sewkIwmepBCdAK~EEbCCz@}@AAj@MdH?RAp@CbA?NChAElBGhD?`@Ab@EdCAPCz@?ZC~@?LI~DEbCAZ?HErB?RCdAAx@?JAREtBAl@ChBAh@AJ?ZClAAZ?VAFCLEJGFsAd@OF@P@PSPg@hBHHDD_AbDIXEJ_@nAJLNNHYBDn@{Al@mA~AmC",
+                "length": 65
+              },
+              "rentedBike": false,
+              "transitLeg": false,
+              "duration": 1121,
+              "steps": [
+                {
+                  "distance": 22.664,
+                  "relativeDirection": "DEPART",
+                  "streetName": "Aleja Jana Pawła II",
+                  "absoluteDirection": "WEST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": false,
+                  "lon": 18.54700349226403,
+                  "lat": 54.5188238106691,
+                  "elevation": []
+                },
+                {
+                  "distance": 301.665,
+                  "relativeDirection": "CONTINUE",
+                  "streetName": "Skwer Tadeusza Kościuszki",
+                  "absoluteDirection": "WEST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": false,
+                  "lon": 18.546653600000003,
+                  "lat": 54.5188411,
+                  "elevation": []
+                },
+                {
+                  "distance": 654.472,
+                  "relativeDirection": "CONTINUE",
+                  "streetName": "10 Lutego",
+                  "absoluteDirection": "WEST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": false,
+                  "lon": 18.5425429,
+                  "lat": 54.5193584,
+                  "elevation": []
+                },
+                {
+                  "distance": 57.469,
+                  "relativeDirection": "SLIGHTLY_RIGHT",
+                  "streetName": "Dworcowa",
+                  "absoluteDirection": "NORTH",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": false,
+                  "lon": 18.5325004,
+                  "lat": 54.51992370000001,
+                  "elevation": []
+                },
+                {
+                  "distance": 12.184,
+                  "relativeDirection": "LEFT",
+                  "streetName": "path",
+                  "absoluteDirection": "WEST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.532279600000003,
+                  "lat": 54.5204244,
+                  "elevation": []
+                },
+                {
+                  "distance": 60.153999999999996,
+                  "relativeDirection": "RIGHT",
+                  "streetName": "sidewalk",
+                  "absoluteDirection": "NORTHWEST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.532096000000003,
+                  "lat": 54.5204,
+                  "elevation": []
+                },
+                {
+                  "distance": 114.189,
+                  "relativeDirection": "RIGHT",
+                  "streetName": "sidewalk",
+                  "absoluteDirection": "NORTHWEST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.531423800000002,
+                  "lat": 54.5206571,
+                  "elevation": []
+                },
+                {
+                  "distance": 18.265,
+                  "relativeDirection": "LEFT",
+                  "streetName": "path",
+                  "absoluteDirection": "SOUTHWEST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.5299866,
+                  "lat": 54.5211878,
+                  "elevation": []
+                },
+                {
+                  "distance": 10.456,
+                  "relativeDirection": "LEFT",
+                  "streetName": "path",
+                  "absoluteDirection": "SOUTHEAST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.529832900000002,
+                  "lat": 54.5210499,
+                  "elevation": []
+                },
+                {
+                  "distance": 148.781,
+                  "relativeDirection": "CONTINUE",
+                  "streetName": "Peron 1",
+                  "absoluteDirection": "SOUTHEAST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": false,
+                  "lon": 18.5299665,
+                  "lat": 54.520996700000005,
+                  "elevation": []
+                }
+              ]
+            },
+            {
+              "startTime": 1489392000000,
+              "endTime": 1489393920000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 19585.04004093125,
+              "pathway": false,
+              "mode": "RAIL",
+              "route": "SKM",
+              "agencyName": "SKM",
+              "agencyUrl": "http://",
+              "agencyTimeZoneOffset": 3600000,
+              "routeColor": "000000",
+              "routeType": 2,
+              "routeId": "1:200000102",
+              "routeTextColor": "FFFFFF",
+              "interlineWithPreviousLeg": false,
+              "headsign": "Gdańsk Sródmieści",
+              "agencyId": "16",
+              "tripId": "1:4C943BEBCE59",
+              "serviceDate": "20170313",
+              "from": {
+                "name": "Gdynia Główna",
+                "stopId": "1:40027",
+                "lon": 18.5314932988471,
+                "lat": 54.5200267918069,
+                "arrival": 1489391999000,
+                "departure": 1489392000000,
+                "zoneId": "40029",
+                "stopIndex": 4,
+                "stopSequence": 4,
+                "vertexType": "TRANSIT"
+              },
+              "to": {
+                "name": "Gdańsk Stocznia",
+                "stopId": "1:40040",
+                "lon": 18.6422724799211,
+                "lat": 54.3641901389358,
+                "arrival": 1489393920000,
+                "departure": 1489393920000,
+                "zoneId": "40042",
+                "stopIndex": 17,
+                "stopSequence": 17,
+                "vertexType": "TRANSIT"
+              },
+              "legGeometry": {
+                "points": "_mwkIslbpBBIlAoBh@_A~@aBjA}A`AmAb@e@j@g@hByAlA{@|@e@p@WdAc@|Ag@fB[dBO|@AnA?hBBz@DdABjCHzAF~@@lABjBFrBH`AB~@BnBBzAFv@@P@jBDxBF`CFdBHvB@jCHfCDbCFdBDjA@`CLxADtA@nAA`AGdAIr@KnAW|E{A`IoCbIgCjBo@hEwARAdBa@bBk@TGt@SjFgB`Cy@dDcAlBm@~Ag@bBk@jBw@nCqA`C}A`DeCfA{@pAeAbBwAtAiAx@q@xAkA~AuAvBeBx@q@vBiBbBwAlCaChAiA`IaHb@_@fEoDtCaCdEoDrCaC|DgDnDwC`D{BhB}@~Bq@~AYbBQpBCdCLpARnBh@|ChAvFrBpCbA~Bx@fBf@nAR|@FfABj@Al@AbACv@IbB[r@O~Cm@fCi@z@QRGvA[xBm@rCeArHkEdDmBvCcBxBuAtEiClEgChEgCzCeBtC{AlCeApBm@dAYpBi@rCs@hBg@|A_@tA]`@KbIcBfDs@r@O^I|Cq@jAWtCo@dCi@zBk@jCk@xAYxD{@vCm@jH{AzBe@PELAhFgAvIkBbIeBhFgAlDu@~ImBlAWdKyB`@IlEaA|IiBvCq@jDm@pCs@hIiBdHwA`Ba@hFyAtCq@VG~A]nEeA`DaAjDw@~Am@jD_BvBgArDsBxC}AtEuBbBeAxAw@~@q@ZULIhAeAhAqA|@iApCcElMaRdOmTtB}C~BkD`BkC`BqCdA{B^q@l@eAxA}CxFgLhC}FrBiEtJcStC}FxCeGbAqBbBoDfAyB~@wBzAgEt@}Bv@wBX{@Z_AdAeDbAsDjCqKnHmYvA_G~AsGhByH|GqXhA}EdAiElAsFbAeFLi@fBsHhAuEzAiFpAuClAmCbBuChAwAhCgDlFmG|GoItAiBfA{ArD}E~A}B~AuBnCwDbAsA^i@",
+                "length": 253
+              },
+              "routeShortName": "SKM",
+              "routeLongName": "Gdynia Chylonia > Gdańsk Śródmieście",
+              "rentedBike": false,
+              "transitLeg": true,
+              "duration": 1920,
+              "steps": []
+            },
+            {
+              "startTime": 1489393920000,
+              "endTime": 1489394042000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 158.84000000000003,
+              "pathway": false,
+              "mode": "WALK",
+              "route": "",
+              "agencyTimeZoneOffset": 3600000,
+              "interlineWithPreviousLeg": false,
+              "from": {
+                "name": "Gdańsk Stocznia",
+                "stopId": "1:40040",
+                "lon": 18.6422724799211,
+                "lat": 54.3641901389358,
+                "arrival": 1489393920000,
+                "departure": 1489393920000,
+                "zoneId": "40042",
+                "stopIndex": 17,
+                "stopSequence": 17,
+                "vertexType": "TRANSIT"
+              },
+              "to": {
+                "name": "Stocznia SKM",
+                "stopId": "1:2064",
+                "lon": 18.6426968119575,
+                "lat": 54.3645760022176,
+                "arrival": 1489394042000,
+                "departure": 1489394760000,
+                "zoneId": "2064",
+                "stopIndex": 21,
+                "stopSequence": 21,
+                "vertexType": "TRANSIT"
+              },
+              "legGeometry": {
+                "points": "s`yjIi_xpBCKw@_CQi@JMJ\\BHV[FR?BKN",
+                "length": 11
+              },
+              "rentedBike": false,
+              "transitLeg": false,
+              "duration": 122,
+              "steps": [
+                {
+                  "distance": 90.087,
+                  "relativeDirection": "DEPART",
+                  "streetName": "footbridge",
+                  "absoluteDirection": "NORTHEAST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.641974627242348,
+                  "lat": 54.36442552873913,
+                  "elevation": []
+                },
+                {
+                  "distance": 7.473,
+                  "relativeDirection": "RIGHT",
+                  "streetName": "footbridge",
+                  "absoluteDirection": "SOUTHEAST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.6428853,
+                  "lat": 54.364812900000004,
+                  "elevation": []
+                },
+                {
+                  "distance": 61.28,
+                  "relativeDirection": "RIGHT",
+                  "streetName": "steps",
+                  "absoluteDirection": "SOUTHWEST",
+                  "stayOn": true,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.6429516,
+                  "lat": 54.3647579,
+                  "elevation": []
+                }
+              ]
+            },
+            {
+              "startTime": 1489394760000,
+              "endTime": 1489396560000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 9073.441647258509,
+              "pathway": false,
+              "mode": "TRAM",
+              "route": "8",
+              "agencyName": "GAiT Tramwaje",
+              "agencyUrl": "http://",
+              "agencyTimeZoneOffset": 3600000,
+              "routeColor": "8D1CFF",
+              "routeType": 0,
+              "routeId": "1:80011",
+              "routeTextColor": "FFFFFF",
+              "interlineWithPreviousLeg": false,
+              "headsign": "Stogi Plaża",
+              "agencyId": "2",
+              "tripId": "1:4C93D9916E49",
+              "serviceDate": "20170313",
+              "from": {
+                "name": "Stocznia SKM",
+                "stopId": "1:2064",
+                "lon": 18.6426968119575,
+                "lat": 54.3645760022176,
+                "arrival": 1489394042000,
+                "departure": 1489394760000,
+                "zoneId": "2064",
+                "stopIndex": 21,
+                "stopSequence": 21,
+                "vertexType": "TRANSIT"
+              },
+              "to": {
+                "name": "Stogi Plaża",
+                "stopId": "1:207",
+                "lon": 18.72843079735,
+                "lat": 54.3728998285398,
+                "arrival": 1489396560000,
+                "departure": 1489396561000,
+                "zoneId": "207",
+                "stopIndex": 39,
+                "stopSequence": 39,
+                "vertexType": "TRANSIT"
+              },
+              "legGeometry": {
+                "points": "sayjI_dxpBd@o@hBwBNQj@c@p@g@tAq@n@]PQVa@N]p@yBVu@\\u@Zi@R[Zc@|@}@JKf@kAFMFKx@cAbAmAHEFCJGN?L@TF~CzBhCbB\\^HHHVb@dATj@FJHJDDLDZ?bBFvEt@rATlBXpEl@JBPALCh@Sj@[jCyBb@]\\S\\SNELCLAP@R@d@H`Cl@n@P\\H^JfAXvJfBL?H?FCFEBIFMDUFW@[HyCDiBBcALuBHi@PsA\\}B`ByJVsA^yBp@wDTaBPaBb@mE`@wEHgA\\oDJoAtCo[Dk@Bk@?u@AoACq@QeBWiCg@oEg@wDOs@Qs@Uo@]w@a@o@]_@c@_@i@]e@SyBy@m@Q}Ai@wAe@aA]i@OYMWC_BIo@C}@Oy@Su@UcAg@u@c@_As@s@k@y@{@a@c@IKe@m@_ByBi@cAw@_CmCuJ_@mAI[oAqCeEyIw@qBQk@Ka@qAsIG]Mc@Sm@Ui@We@S]Wk@EICEO]ESCUAQ?Q?GB[NkBb@kF@U?Q?UAQEMEQWo@w@oBc@eAs@aBi@oA_@u@OSg@q@w@iAOSO[O_@Mg@Ok@Ia@My@My@_@{BAMKs@UwAEUYwAWgAW_A]cAuAgEiAgD}@oCqBaG}CeJ[{@I]Oi@AMCMEc@C]AaA?SBa@@e@z@kNTyDBWF{@Fu@?AFe@BUVw@r@eBlGiM??r@gBFOVi@DUDQ?K?UAWAMCME[UkAU}@SeAMq@Ik@C[Gq@G_AIaBQcDCk@QmDIsACe@EiA?GOEUGu@Og@Ig@I_@GEA_AOQC[GSC[GUGOKIKYk@O[K]I_@MOW{@kAuE{@iDuAyFsAoGSy@Qs@u@_Ce@mAg@qAa@}@m@cAg@k@a@c@m@a@kFsDyPuLyAaAyAiAo@a@c@FUh@",
+                "length": 294
+              },
+              "routeShortName": "8",
+              "routeLongName": "Jelitkowo(201) - Stogi Plaża(207)",
+              "rentedBike": false,
+              "transitLeg": true,
+              "duration": 1800,
+              "steps": []
+            },
+            {
+              "startTime": 1489396561000,
+              "endTime": 1489398097000,
+              "departureDelay": 0,
+              "arrivalDelay": 0,
+              "realTime": false,
+              "distance": 1982.3739999999998,
+              "pathway": false,
+              "mode": "WALK",
+              "route": "",
+              "agencyTimeZoneOffset": 3600000,
+              "interlineWithPreviousLeg": false,
+              "from": {
+                "name": "Stogi Plaża",
+                "stopId": "1:207",
+                "lon": 18.72843079735,
+                "lat": 54.3728998285398,
+                "arrival": 1489396560000,
+                "departure": 1489396561000,
+                "zoneId": "207",
+                "stopIndex": 39,
+                "stopSequence": 39,
+                "vertexType": "TRANSIT"
+              },
+              "to": {
+                "name": "Destination",
+                "lon": 18.7075,
+                "lat": 54.3837,
+                "arrival": 1489398097000,
+                "orig": "",
+                "vertexType": "NORMAL"
+              },
+              "legGeometry": {
+                "points": "}uzjIe|hqBABITMf@Ud@SJO?WEIG_@Yk@i@QSOh@qDpNaBxF`AnB{@`DcBnFy@lB{AzEaAbD}CbJg@bA}@~B{A|DcApCcAnD_AbDe@xB{@pAk@hA_@r@[^Qd@Y\\QJSl@o@xAk@tAWj@GVOXQj@OJ_@bAy@`CQr@Sx@Oh@CCGSEGA?E?YMEFEBGDE?K@MCa@GGCG?GBEFILEH",
+                "length": 68
+              },
+              "alerts": [
+                {
+                  "alertHeaderText": "Unpaved surface"
+                }
+              ],
+              "rentedBike": false,
+              "transitLeg": false,
+              "duration": 1536,
+              "steps": [
+                {
+                  "distance": 1982.3739999999998,
+                  "relativeDirection": "DEPART",
+                  "streetName": "path",
+                  "absoluteDirection": "NORTHWEST",
+                  "stayOn": false,
+                  "area": false,
+                  "bogusName": true,
+                  "lon": 18.72851338697506,
+                  "lat": 54.37295872731935,
+                  "elevation": [],
+                  "alerts": [
+                    {
+                      "alertHeaderText": "Unpaved surface"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "tooSloped": false
+        }
+      ]
+    },
+    "debugOutput": {
+      "precalculationTime": 133,
+      "pathCalculationTime": 938,
+      "pathTimes": [
+        334,
+        272,
+        332
+      ],
+      "renderingTime": 10,
+      "totalTime": 1081,
+      "timedOut": false
+    }
+  }
+}
