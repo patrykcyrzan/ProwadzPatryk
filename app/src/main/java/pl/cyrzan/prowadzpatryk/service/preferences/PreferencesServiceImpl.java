@@ -3,8 +3,11 @@ package pl.cyrzan.prowadzpatryk.service.preferences;
 import com.google.gson.Gson;
 
 import android.content.SharedPreferences;
+import android.support.annotation.Nullable;
+import android.util.Log;
 
 import pl.cyrzan.prowadzpatryk.service.api.ApiService;
+import pl.cyrzan.prowadzpatryk.service.preferences.model.UserPreferences;
 import pl.cyrzan.prowadzpatryk.service.repository.RepositoryService;
 import pl.cyrzan.prowadzpatryk.service.user.UserService;
 
@@ -24,6 +27,20 @@ public class PreferencesServiceImpl implements PreferencesService {
     public PreferencesServiceImpl(SharedPreferences sharedPreferences, Gson gson) {
         mSharedPreferences = sharedPreferences;
         mGson = gson;
+    }
+
+    @Override
+    public void setUserPreferences(UserPreferences userPreferences) {
+        String json = mGson.toJson(userPreferences);
+        mSharedPreferences.edit().putString(KEY_USER_PREFERENCES, json).apply();
+    }
+
+    @Nullable
+    @Override
+    public UserPreferences getUserPreferences() {
+        String json = mSharedPreferences.getString(KEY_USER_PREFERENCES, null);
+        UserPreferences userPreferences = mGson.fromJson(json, UserPreferences.class);
+        return userPreferences != null ? userPreferences : new UserPreferences();
     }
 
     @Override

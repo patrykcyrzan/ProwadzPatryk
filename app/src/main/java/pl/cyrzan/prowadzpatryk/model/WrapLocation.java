@@ -16,10 +16,20 @@ import static pl.cyrzan.prowadzpatryk.model.enums.LocationType.ANY;
  */
 public class WrapLocation implements Serializable {
 
-    public enum WrapType { NORMAL, HOME, GPS, MAP }
+    public enum WrapType { NORMAL, HOME, GPS, MAP, RECENT }
 
     private Location loc;
     private WrapType type;
+
+    public String getLastUsed() {
+        return lastUsed;
+    }
+
+    public void setLastUsed(String lastUsed) {
+        this.lastUsed = lastUsed;
+    }
+
+    private String lastUsed;
 
     public WrapLocation(Location loc) {
         this(loc, NORMAL);

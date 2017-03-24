@@ -12,12 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.opentripplanner.v092snapshot.api.ws.Response;
+import org.joda.time.DateTime;
 
 import pl.cyrzan.prowadzpatryk.ProwadzPatrykApplication;
 import pl.cyrzan.prowadzpatryk.R;
 import pl.cyrzan.prowadzpatryk.di.module.ActivityModule;
 import pl.cyrzan.prowadzpatryk.di.module.FragmentModule;
+import pl.cyrzan.prowadzpatryk.model.ListTrip;
+import pl.cyrzan.prowadzpatryk.model.Location;
+import pl.cyrzan.prowadzpatryk.model.Response;
+import pl.cyrzan.prowadzpatryk.model.WrapLocation;
+import pl.cyrzan.prowadzpatryk.model.enums.LocationType;
+import pl.cyrzan.prowadzpatryk.service.db.dto.RecentLocs;
 import pl.cyrzan.prowadzpatryk.ui.base.BaseFragment;
 
 import javax.inject.Inject;
@@ -38,6 +44,7 @@ public class TripsFragment extends BaseFragment implements TripsContract.View {
     RecyclerView recyclerView;
 
     private Response response;
+    private TripAdapter tripAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +59,10 @@ public class TripsFragment extends BaseFragment implements TripsContract.View {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
+
+        tripAdapter = new TripAdapter(null, getActivity(), false);
+        tripAdapter.setHasStableIds(false);
+        recyclerView.setAdapter(tripAdapter);
     }
 
     @Override
@@ -68,9 +79,16 @@ public class TripsFragment extends BaseFragment implements TripsContract.View {
         tripsPresenter.attachView(this);
     }
 
-    public void setResponse(Response response){
+    public void setResponse(Response response, Location from, Location to, DateTime date){
         this.response = response;
-        Log.i(TAG, response.getPlan().from.name);
+        Log.i(TAG, response.getPlan().getFrom().name);
+
+        Log.i(TAG, "itineraries: "+response.getPlan().getItinerary().size());
+        tripAdapter.addAll(ListTrip.getList(response.getPlan().getItinerary(), from, to, date));
+        /*Location location = new Location(LocationType.ANY, null, "mama", 50.123, 23.123);
+        WrapLocation wrapLocation = new WrapLocation(location, WrapLocation.WrapType.RECENT);
+        wrapLocation.setLastUsed("asdas");
+        tripsPresenter.saveRecentLoc(wrapLocation);*/
     }
 
     @Override

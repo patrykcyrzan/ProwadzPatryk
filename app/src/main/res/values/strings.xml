@@ -24,4 +24,13 @@
     <string name="error_invalid_to">Niepoprawne miejsce docelowe</string>
     <string name="error_invalid_from">Niepoprawne miejsce rozpoczęcia</string>
     <string name="error_unable_to_load_trips">Problem przy pobieraniu połączeń</string>
+    <string name="products">Środki transportu</string>
+    <string name="products_preferences_dialog_title">Wybierz środki transportu</string>
+    <string name="walk">Pieszo</string>
+    <string name="tram">Tramwaj</string>
+    <string name="regional_train">SKM</string>
+    <string name="cable_car">Trolejbus</string>
+    <string name="transit">tranzyt</string>
+    <string name="bus">Autobus</string>
+    <string name="rail">Pociąg</string>
 </resources>

@@ -9,5 +9,5 @@ import pl.cyrzan.prowadzpatryk.model.WrapLocation;
  */
 
 public interface OnLocationInputAdapterActionListener {
-    void OnItemClickListener(WrapLocation location, View view);
+    void onItemClickListener(WrapLocation location, View view);
 }

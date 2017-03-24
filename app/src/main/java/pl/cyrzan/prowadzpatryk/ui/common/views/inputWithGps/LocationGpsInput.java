@@ -3,7 +3,6 @@ package pl.cyrzan.prowadzpatryk.ui.common.views.inputWithGps;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import pl.cyrzan.prowadzpatryk.R;
@@ -24,7 +22,6 @@ import pl.cyrzan.prowadzpatryk.model.WrapLocation;
 import pl.cyrzan.prowadzpatryk.ui.base.BaseActivity;
 import pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInput;
 import pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInputAdapter;
-import pl.cyrzan.prowadzpatryk.ui.main.MainContract;
 import pl.cyrzan.prowadzpatryk.ui.mapwithform.MapWithFormContract;
 import pl.cyrzan.prowadzpatryk.util.MainUtil;
 
@@ -58,7 +55,7 @@ public class LocationGpsInput extends LocationInput implements MapWithFormContra
 
     @Override
     protected LocationInputAdapter createAdapter(){
-        return new LocationInputAdapter(getContext(), this, true);
+        return new LocationInputAdapter(getContext(), this, true, true);
     }
 
     @Override
@@ -72,13 +69,13 @@ public class LocationGpsInput extends LocationInput implements MapWithFormContra
     }
 
     @Override
-    public void OnItemClickListener(WrapLocation loc, View view) {
+    public void onItemClickListener(WrapLocation loc, View view) {
         if(loc.getType() == GPS){
             locationACTV.setText("");
 
             activateGPS();
         } else {
-            super.OnItemClickListener(loc, view);
+            super.onItemClickListener(loc, view);
         }
     }
 

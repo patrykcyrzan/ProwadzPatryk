@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/item_layout"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="?selectableItemBackground"
+              android:descendantFocusability="blocksDescendants"
+              android:focusable="true"
+              android:minHeight="@dimen/md_listitem_height"
+              android:orientation="horizontal"
+              android:paddingEnd="@dimen/md_dialog_frame_margin"
+              android:paddingLeft="@dimen/md_dialog_frame_margin"
+              android:paddingRight="@dimen/md_dialog_frame_margin"
+              android:paddingStart="@dimen/md_dialog_frame_margin"
+              tools:gravity="start|center_vertical">
+
+    <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/product_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:clickable="false"
+            android:focusable="false"
+            android:gravity="center_vertical" />
+
+    <ImageView
+            android:id="@+id/product_image"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:padding="5dp"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/product_bus"/>
+
+    <TextView
+            android:id="@+id/product_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:minHeight="@dimen/md_listitem_height"
+            android:paddingBottom="@dimen/md_listitem_vertical_margin_choice"
+            android:paddingLeft="@dimen/md_listitem_control_margin"
+            android:paddingStart="@dimen/md_listitem_control_margin"
+            android:paddingTop="@dimen/md_listitem_vertical_margin_choice"
+            android:textSize="@dimen/md_listitem_textsize"
+            tools:ignore="NewApi,RtlSymmetry"
+            tools:text="Item" />
+
+</LinearLayout>

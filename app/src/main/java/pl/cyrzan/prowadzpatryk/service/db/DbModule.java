@@ -17,15 +17,21 @@ import timber.log.Timber;
  * Created by Patryk on 13.02.2017.
  */
 
-@Singleton
+//@Singleton
 @Module
-public final class DbModule {
+public class DbModule {
     @Provides @Singleton SQLiteOpenHelper provideOpenHelper(Application application) {
         return new DbOpenHelper(application);
     }
 
     @Provides @Singleton SqlBrite provideSqlBrite() {
         return SqlBrite.create(message -> Timber.tag("Database").v(message));
+    }
+
+    @Provides
+    @Singleton
+    public DbService provideDbService(BriteDatabase database){
+        return new DbServiceImpl(database);
     }
 
     @Provides

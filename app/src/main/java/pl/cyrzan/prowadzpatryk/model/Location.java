@@ -3,7 +3,6 @@ package pl.cyrzan.prowadzpatryk.model;
 import android.text.TextUtils;
 
 import pl.cyrzan.prowadzpatryk.model.enums.LocationType;
-import pl.cyrzan.prowadzpatryk.model.enums.Product;
 import pl.cyrzan.prowadzpatryk.util.Constants;
 
 import java.io.Serializable;

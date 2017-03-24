@@ -1,10 +1,11 @@
 package pl.cyrzan.prowadzpatryk.ui.mapwithform;
 
-import org.opentripplanner.api.ws.Request;
-import org.opentripplanner.v092snapshot.api.ws.Response;
 
+import pl.cyrzan.prowadzpatryk.model.Response;
 import pl.cyrzan.prowadzpatryk.service.api.model.SuggestLocationResponse;
 import pl.cyrzan.prowadzpatryk.service.api.model.TripRequest;
+import pl.cyrzan.prowadzpatryk.service.db.dto.RecentLocs;
+import pl.cyrzan.prowadzpatryk.service.preferences.model.UserPreferences;
 import pl.cyrzan.prowadzpatryk.ui.base.BaseContract;
 import pl.cyrzan.prowadzpatryk.ui.common.views.input.OnLocationActionListener;
 import pl.cyrzan.prowadzpatryk.ui.main.MainContract;
@@ -22,10 +23,19 @@ public interface MapWithFormContract {
         LocationGpsInputView getLocationGpsInputView();
 
         void showTrips(Response response);
+        void initAdapterWithRecentLocs(List<RecentLocs> recentLocs);
+
+        void showUserPreferences(UserPreferences userPreferences);
+
+        void showProductsPreferencesDialog(UserPreferences userPreferences);
     }
 
     interface Presenter<T> extends BaseContract.BasePresenter<T>, OnLocationActionListener {
         void loadTrips(TripRequest request);
+        void load5RecentLocs();
+        void loadPreferences();
+        void savePreferences(UserPreferences userPreferences);
+        void loadProductsPreferencesDialog();
     }
 
     interface LocationInputView {

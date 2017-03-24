@@ -1,5 +1,7 @@
 package pl.cyrzan.prowadzpatryk.di.component;
 
+import com.squareup.sqlbrite.BriteDatabase;
+
 import pl.cyrzan.prowadzpatryk.ProwadzPatrykApplication;
 import pl.cyrzan.prowadzpatryk.service.api.ApiModule;
 import pl.cyrzan.prowadzpatryk.service.db.DbModule;
@@ -38,4 +40,8 @@ public interface ApplicationComponent {
 
     void inject(ProwadzPatrykApplication prowadzPatrykApplication);
     void inject(LocationGpsInput locationGpsInput);
+
+    BriteDatabase database();
+
+
 }

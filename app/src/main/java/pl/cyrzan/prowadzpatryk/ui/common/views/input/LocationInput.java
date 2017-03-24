@@ -31,7 +31,9 @@ import android.widget.TextView;
 import pl.cyrzan.prowadzpatryk.R;
 import pl.cyrzan.prowadzpatryk.model.Location;
 import pl.cyrzan.prowadzpatryk.model.WrapLocation;
+import pl.cyrzan.prowadzpatryk.model.enums.LocationType;
 import pl.cyrzan.prowadzpatryk.service.api.model.SuggestLocationResponse;
+import pl.cyrzan.prowadzpatryk.service.db.dto.RecentLocs;
 import pl.cyrzan.prowadzpatryk.ui.common.models.SuggestLocationsResult;
 import pl.cyrzan.prowadzpatryk.ui.main.MainContract;
 import pl.cyrzan.prowadzpatryk.ui.mapwithform.MapWithFormContract;
@@ -42,6 +44,8 @@ import pl.cyrzan.prowadzpatryk.util.ViewUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -145,7 +149,7 @@ public class LocationInput extends RelativeLayout implements MapWithFormContract
     }
 
     protected LocationInputAdapter createAdapter(){
-        return new LocationInputAdapter(getContext(), this, false);
+        return new LocationInputAdapter(getContext(), this, false, true);
     }
 
     public void setOnLocationInputActionListener(OnLocationActionListener onLocationActionListener) {
@@ -386,6 +390,14 @@ public class LocationInput extends RelativeLayout implements MapWithFormContract
         adapter.clearSuggestions();
     }
 
+    public LocationInputAdapter getAdapter(){
+        if(adapter != null){
+            return adapter;
+        } else {
+            return null;
+        }
+    }
+
     @Override
     public void onSuggestLocationsResultFail() {
         progressBar.setVisibility(View.GONE);
@@ -446,7 +458,7 @@ public class LocationInput extends RelativeLayout implements MapWithFormContract
     }
 
     @Override
-    public void OnItemClickListener(WrapLocation loc, View view) {
+    public void onItemClickListener(WrapLocation loc, View view) {
         Drawable icon = ((ImageView) view.findViewById(R.id.imageView)).getDrawable();
         setLocation(loc.getLocation(), icon);
         locationACTV.requestFocus();

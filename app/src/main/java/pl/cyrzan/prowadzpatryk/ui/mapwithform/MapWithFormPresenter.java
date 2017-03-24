@@ -2,14 +2,13 @@ package pl.cyrzan.prowadzpatryk.ui.mapwithform;
 
 import android.util.Log;
 
-import org.opentripplanner.api.ws.Request;
-import org.opentripplanner.routing.core.TraverseMode;
-import org.opentripplanner.routing.core.TraverseModeSet;
-import org.opentripplanner.v092snapshot.api.ws.Response;
-
 import pl.cyrzan.prowadzpatryk.R;
+import pl.cyrzan.prowadzpatryk.model.Response;
 import pl.cyrzan.prowadzpatryk.service.api.model.SuggestLocationResponse;
 import pl.cyrzan.prowadzpatryk.service.api.model.TripRequest;
+import pl.cyrzan.prowadzpatryk.service.db.dto.RecentLocs;
+import pl.cyrzan.prowadzpatryk.service.preferences.PreferencesService;
+import pl.cyrzan.prowadzpatryk.service.preferences.model.UserPreferences;
 import pl.cyrzan.prowadzpatryk.service.repository.RepositoryService;
 import pl.cyrzan.prowadzpatryk.ui.base.RxPresenter;
 
@@ -31,12 +30,31 @@ public class MapWithFormPresenter extends RxPresenter<MapWithFormContract.View> 
     private static final String TAG = "MapWithFormPresenter";
     private Subscription suggestLocationsTaskSub;
     private Subscription tripsTaskSub;
+    private Subscription recentLocsTaskSub;
 
     @Inject
     RepositoryService repositoryService;
 
     @Inject
+    PreferencesService preferencesService;
+
+    @Inject
     public MapWithFormPresenter() {
+    }
+
+    @Override
+    public void loadPreferences(){
+        view.showUserPreferences(preferencesService.getUserPreferences());
+    }
+
+    @Override
+    public void savePreferences(UserPreferences userPreferences) {
+        preferencesService.setUserPreferences(userPreferences);
+    }
+
+    @Override
+    public void loadProductsPreferencesDialog() {
+        view.showProductsPreferencesDialog(preferencesService.getUserPreferences());
     }
 
     private void onSuggestLocationsAvailable(List<SuggestLocationResponse> suggestLocations){
@@ -113,7 +131,7 @@ public class MapWithFormPresenter extends RxPresenter<MapWithFormContract.View> 
     }
 
     private void onResponseAvailable(Response response){
-        Log.i(TAG, response.getPlan().from.name);
+        Log.i(TAG, response.getPlan().getFrom().name);
         view.showTrips(response);
     }
 
@@ -137,5 +155,18 @@ public class MapWithFormPresenter extends RxPresenter<MapWithFormContract.View> 
                     }
                 });
         addSubscribe(tripsTaskSub);
+    }
+
+    private void onRecentLocsAvailable(List<RecentLocs> recentLocs){
+        view.initAdapterWithRecentLocs(recentLocs);
+    }
+
+    @Override
+    public void load5RecentLocs() {
+        recentLocsTaskSub = repositoryService.get5RecentLocs()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::onRecentLocsAvailable);
+        addSubscribe(recentLocsTaskSub);
     }
 }

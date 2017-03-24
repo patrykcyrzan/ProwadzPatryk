@@ -2,6 +2,7 @@ package pl.cyrzan.prowadzpatryk.ui.common.views.input;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import pl.cyrzan.prowadzpatryk.R;
-import pl.cyrzan.prowadzpatryk.model.Location;
 import pl.cyrzan.prowadzpatryk.model.WrapLocation;
-import pl.cyrzan.prowadzpatryk.service.api.model.SuggestLocationResponse;
 import pl.cyrzan.prowadzpatryk.util.MainUtil;
 
 import java.util.ArrayList;
@@ -22,6 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static pl.cyrzan.prowadzpatryk.model.WrapLocation.WrapType.GPS;
+import static pl.cyrzan.prowadzpatryk.model.WrapLocation.WrapType.RECENT;
 
 /**
  * Created by Patryk on 19.02.2017.
@@ -29,19 +29,25 @@ import static pl.cyrzan.prowadzpatryk.model.WrapLocation.WrapType.GPS;
 
 public class LocationInputAdapter extends RecyclerView.Adapter<LocationInputAdapter.LocationInputViewHolder> {
 
+    private static final String TAG = "LocationInputAdapter";
+
     private List<WrapLocation> suggestions = new ArrayList<>();
     private List<WrapLocation> optionalLocations = new ArrayList<>();
+    private List<WrapLocation> recentLocations = new ArrayList<>();
     private OnLocationInputAdapterActionListener onLocationInputAdapterActionListener;
     protected int maxSuggestionsCount = 5;
     private final boolean includeGPS;
+    private final boolean includeRecentLocs;
     private Context context;
 
     public LocationInputAdapter(Context context,
                                 OnLocationInputAdapterActionListener onLocationInputAdapterActionListener,
-                                boolean includeGPS){
+                                boolean includeGPS,
+                                boolean includeRecentLocs){
         this.context = context;
         this.onLocationInputAdapterActionListener = onLocationInputAdapterActionListener;
         this.includeGPS = includeGPS;
+        this.includeRecentLocs = includeRecentLocs;
 
         getOptionalLocations();
         addOptionalLocationsToDropDown();
@@ -62,6 +68,8 @@ public class LocationInputAdapter extends RecyclerView.Adapter<LocationInputAdap
 
         if(wrapLocation.getType() == GPS){
             holder.text.setText(context.getString(R.string.location_gps));
+        } else if(wrapLocation.getType() == RECENT) {
+            holder.text.setText(wrapLocation.getName());
         } else {
             holder.text.setText(wrapLocation.getName());
         }
@@ -129,10 +137,23 @@ public class LocationInputAdapter extends RecyclerView.Adapter<LocationInputAdap
         notifyDataSetChanged();
     }
 
+    public void setRecentLocations(List<WrapLocation> recentLocations){
+        Log.i(TAG, "setRecentLocations");
+        for(WrapLocation wrapLocation:recentLocations){
+            Log.i(TAG, ""+wrapLocation.getName());
+        }
+        this.recentLocations = recentLocations;
+        resetOptionalLocations();
+        notifyDataSetChanged();
+    }
+
     private List<WrapLocation> getOptionalLocations(){
 
         if(includeGPS) {
             optionalLocations.add(new WrapLocation(GPS));
+        }
+        if(includeRecentLocs){
+            optionalLocations.addAll(recentLocations);
         }
 
         return optionalLocations;
@@ -164,19 +185,12 @@ public class LocationInputAdapter extends RecyclerView.Adapter<LocationInputAdap
             super(itemView);
             this.view = itemView;
             ButterKnife.bind(this, itemView);
-
-            /*text = (TextView) itemView.findViewById(R.id.text);
-            //iv_delete = (ImageView) itemView.findViewById(R.id.iv_delete);
-            itemView.setOnClickListener(v -> {
-                v.setTag(getSuggestions().get(getAdapterPosition()));
-                listener.OnItemClickListener(getAdapterPosition(), v);
-            });*/
         }
 
         @OnClick(R.id.text)
         public void onItemClick(){
             WrapLocation location = getSuggestLocationAtPosition(getAdapterPosition());
-            onLocationInputAdapterActionListener.OnItemClickListener(location, view);
+            onLocationInputAdapterActionListener.onItemClickListener(location, view);
         }
 
     }

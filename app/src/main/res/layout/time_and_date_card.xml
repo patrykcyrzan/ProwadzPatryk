@@ -45,114 +45,125 @@
                     tools:text="Czas i data" />
 
             <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/time_line_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/mal_baseline_half"
-                    android:paddingBottom="@dimen/mal_baseline_half"
+                    android:layout_height="match_parent"
+                    android:weightSum="1"
                     android:orientation="horizontal">
 
-                <ImageView
-                        android:id="@+id/mal_item_image_time"
-                        android:layout_width="@dimen/mal_action_item_image_width"
-                        android:layout_height="@dimen/mal_action_action_item_image_height"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="@dimen/mal_baseline_half"
-                        android:layout_marginLeft="@dimen/mal_baseline"
-                        android:layout_marginRight="@dimen/mal_baseline_half"
-                        android:layout_marginStart="@dimen/mal_baseline"
-                        android:src="@drawable/ic_time"
-                        android:adjustViewBounds="false"
-                        android:cropToPadding="false"
-                        android:scaleType="centerInside" />
-
                 <LinearLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/time_line_layout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:minHeight="@dimen/mal_action_action_item_image_height"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"
-                        android:layout_marginEnd="@dimen/mal_baseline"
-                        android:layout_marginLeft="@dimen/mal_baseline"
-                        android:layout_marginRight="@dimen/mal_baseline"
-                        android:layout_marginStart="@dimen/mal_baseline"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_weight="0.5"
+                        android:paddingTop="@dimen/mal_baseline_half"
+                        android:paddingBottom="@dimen/mal_baseline_half"
+                        android:orientation="horizontal">
 
-                    <TextView
-                            android:id="@+id/mal_item_text_time"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/time"
-                            tools:text="Czas"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+                    <ImageView
+                            android:id="@+id/mal_item_image_time"
+                            android:layout_width="@dimen/mal_action_item_image_width"
+                            android:layout_height="@dimen/mal_action_action_item_image_height"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/mal_baseline_half"
+                            android:layout_marginLeft="@dimen/mal_baseline"
+                            android:layout_marginRight="@dimen/mal_baseline_half"
+                            android:layout_marginStart="@dimen/mal_baseline"
+                            android:src="@drawable/ic_time"
+                            android:adjustViewBounds="false"
+                            android:cropToPadding="false"
+                            android:scaleType="centerInside" />
 
-                    <TextView
-                            android:id="@+id/time_text"
-                            android:layout_width="match_parent"
+                    <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            tools:text="Czas asdasd"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:visibility="visible" />
+                            android:minHeight="@dimen/mal_action_action_item_image_height"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/mal_baseline"
+                            android:layout_marginLeft="@dimen/mal_baseline"
+                            android:layout_marginRight="@dimen/mal_baseline"
+                            android:layout_marginStart="@dimen/mal_baseline"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:id="@+id/mal_item_text_time"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/time"
+                                tools:text="Czas"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+                        <TextView
+                                android:id="@+id/time_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:text="Czas asdasd"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                android:visibility="visible" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/date_line_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:paddingTop="@dimen/mal_baseline_half"
+                        android:paddingBottom="@dimen/mal_baseline_half"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            android:id="@+id/mal_item_image_date"
+                            android:layout_width="@dimen/mal_action_item_image_width"
+                            android:layout_height="@dimen/mal_action_action_item_image_height"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/mal_baseline_half"
+                            android:layout_marginLeft="@dimen/mal_baseline"
+                            android:layout_marginRight="@dimen/mal_baseline_half"
+                            android:layout_marginStart="@dimen/mal_baseline"
+                            android:src="@drawable/ic_calendar"
+                            android:adjustViewBounds="false"
+                            android:cropToPadding="false"
+                            android:scaleType="centerInside" />
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/mal_action_action_item_image_height"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/mal_baseline"
+                            android:layout_marginLeft="@dimen/mal_baseline"
+                            android:layout_marginRight="@dimen/mal_baseline"
+                            android:layout_marginStart="@dimen/mal_baseline"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:id="@+id/mal_item_text_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/date"
+                                tools:text="Data"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
+
+                        <TextView
+                                android:id="@+id/date_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:text="Czas asdasd"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                android:visibility="visible" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/date_line_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/mal_baseline_half"
-                    android:paddingBottom="@dimen/mal_baseline_half"
-                    android:orientation="horizontal">
-
-                <ImageView
-                        android:id="@+id/mal_item_image_date"
-                        android:layout_width="@dimen/mal_action_item_image_width"
-                        android:layout_height="@dimen/mal_action_action_item_image_height"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="@dimen/mal_baseline_half"
-                        android:layout_marginLeft="@dimen/mal_baseline"
-                        android:layout_marginRight="@dimen/mal_baseline_half"
-                        android:layout_marginStart="@dimen/mal_baseline"
-                        android:src="@drawable/ic_calendar"
-                        android:adjustViewBounds="false"
-                        android:cropToPadding="false"
-                        android:scaleType="centerInside" />
-
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:minHeight="@dimen/mal_action_action_item_image_height"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"
-                        android:layout_marginEnd="@dimen/mal_baseline"
-                        android:layout_marginLeft="@dimen/mal_baseline"
-                        android:layout_marginRight="@dimen/mal_baseline"
-                        android:layout_marginStart="@dimen/mal_baseline"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                    <TextView
-                            android:id="@+id/mal_item_text_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/date"
-                            tools:text="Data"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
-
-                    <TextView
-                            android:id="@+id/date_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            tools:text="Czas asdasd"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:visibility="visible" />
-                </LinearLayout>
-
-            </LinearLayout>
 
         </LinearLayout>
 

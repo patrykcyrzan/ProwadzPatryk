@@ -9,7 +9,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -24,10 +27,7 @@ import android.widget.TimePicker;
 
 import com.squareup.sqlbrite.BriteDatabase;
 
-import org.opentripplanner.api.ws.Request;
-import org.opentripplanner.routing.core.TraverseMode;
 import org.opentripplanner.routing.core.TraverseModeSet;
-import org.opentripplanner.v092snapshot.api.ws.Response;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.events.MapEventsReceiver;
 import org.osmdroid.util.GeoPoint;
@@ -39,8 +39,16 @@ import pl.cyrzan.prowadzpatryk.R;
 import pl.cyrzan.prowadzpatryk.di.module.ActivityModule;
 import pl.cyrzan.prowadzpatryk.di.module.FragmentModule;
 import pl.cyrzan.prowadzpatryk.model.Location;
+import pl.cyrzan.prowadzpatryk.model.Product;
+import pl.cyrzan.prowadzpatryk.model.Response;
+import pl.cyrzan.prowadzpatryk.model.WrapLocation;
+import pl.cyrzan.prowadzpatryk.model.enums.LocationType;
+import pl.cyrzan.prowadzpatryk.model.enums.TraverseMode;
 import pl.cyrzan.prowadzpatryk.service.api.model.TripRequest;
+import pl.cyrzan.prowadzpatryk.service.db.dto.RecentLocs;
+import pl.cyrzan.prowadzpatryk.service.preferences.model.UserPreferences;
 import pl.cyrzan.prowadzpatryk.ui.base.BaseFragment;
+import pl.cyrzan.prowadzpatryk.ui.common.dialogs.ProductsPreferencesDialog;
 import pl.cyrzan.prowadzpatryk.ui.common.views.SlideUp;
 import pl.cyrzan.prowadzpatryk.ui.common.views.dateandtimeview.TimeAndDateView;
 import pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInput;
@@ -50,6 +58,10 @@ import pl.cyrzan.prowadzpatryk.ui.main.MainActivity;
 import pl.cyrzan.prowadzpatryk.ui.main.MainAdapter;
 import pl.cyrzan.prowadzpatryk.ui.trips.TripsFragment;
 import pl.cyrzan.prowadzpatryk.util.ViewUtil;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -71,6 +83,7 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
     private SlideUp slideUp;
     private boolean showingMore = false;
     private boolean now = true, today = true;
+    private ProductsAdapter productsAdapter;
 
     @Inject
     BriteDatabase db;
@@ -92,6 +105,10 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
     TimeAndDateView timeAndDateLayout;
     @BindView(R.id.show_more_button)
     Button showMoreButton;
+    @BindView(R.id.more_layout)
+    LinearLayout moreLayout;
+    @BindView(R.id.products_list)
+    RecyclerView productsRecyclerView;
 
     @Nullable
     @Override
@@ -113,6 +130,7 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
         showLess(false);
         initSlideUp();
         initLocationInput();
+        mapWithFormPresenter.loadPreferences();
     }
 
     @Override
@@ -133,6 +151,8 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
         Log.i(TAG, mapWithFormPresenter.toString());
         locationInput.setOnLocationInputActionListener(mapWithFormPresenter);
         locationGpsInput.setOnLocationInputActionListener(mapWithFormPresenter);
+
+        mapWithFormPresenter.load5RecentLocs();
     }
 
     private void initSlideUp(){
@@ -157,6 +177,13 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
                 .build();
     }
 
+    private void initProductsList(List<Product> productList){
+        productsAdapter = new ProductsAdapter(getActivity(), productList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        productsRecyclerView.setLayoutManager(linearLayoutManager);
+        productsRecyclerView.setAdapter(productsAdapter);
+    }
+
     private void setupMap() {
 
         map.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -178,11 +205,16 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
 
     @OnClick(R.id.show_more_button)
     public void onMoreClick(){
-        if(timeAndDateLayout.getVisibility() == GONE){
+        if(moreLayout.getVisibility() == GONE){
             showMore(true);
         } else {
             showLess(true);
         }
+    }
+
+    @OnClick(R.id.products_card)
+    public void onProductsCardClick(){
+        mapWithFormPresenter.loadProductsPreferencesDialog();
     }
 
     @OnClick(R.id.search_button)
@@ -234,16 +266,16 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
             DisplayMetrics dm = new DisplayMetrics();
             getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-            timeAndDateLayout.setAlpha(0f);
-            timeAndDateLayout.animate().setDuration(500).alpha(1f).withEndAction(new Runnable() {
+            moreLayout.setAlpha(0f);
+            moreLayout.animate().setDuration(500).alpha(1f).withEndAction(new Runnable() {
                 @Override
                 public void run() {
-                    timeAndDateLayout.setVisibility(VISIBLE);
+                    moreLayout.setVisibility(VISIBLE);
                     showMoreButton.setText(R.string.less);
                 }
             });
         } else {
-            timeAndDateLayout.setVisibility(VISIBLE);
+            moreLayout.setVisibility(VISIBLE);
             showMoreButton.setText(R.string.less);
         }
     }
@@ -251,7 +283,7 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
     private void showLess(boolean animate) {
         showingMore = false;
 
-        timeAndDateLayout.setVisibility(GONE);
+        moreLayout.setVisibility(GONE);
         showMoreButton.setText(R.string.more);
     }
 
@@ -291,8 +323,49 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
         ViewPager viewPager = ((MainActivity)getActivity()).getViewPager();
         MainAdapter adapter = ((MainActivity)getActivity()).getAdapter();
         TripsFragment fragment = (TripsFragment) adapter.getFragment(viewPager, 1);
-        fragment.setResponse(response);
+        fragment.setResponse(response, locationGpsInput.getLocation(), locationInput.getLocation(), timeAndDateLayout.getDateTime());
         viewPager.setCurrentItem(1);
+        Log.i(TAG, "showTrips");
+    }
+
+    @Override
+    public void initAdapterWithRecentLocs(List<RecentLocs> recentLocs) {
+        Log.i(TAG, "initAdapterWithRecentLocs");
+
+        if(locationInput.getAdapter() != null){
+            List<WrapLocation> list = new ArrayList<>();
+            for (RecentLocs loc:recentLocs){
+                Location location = new Location(LocationType.ANY, null, loc.name(), loc.lat(), loc.lon());
+                list.add(new WrapLocation(location, WrapLocation.WrapType.RECENT));
+            }
+            locationInput.getAdapter().setRecentLocations(list);
+        }
+
+        if(locationGpsInput.getAdapter() != null){
+            List<WrapLocation> list = new ArrayList<>();
+            for (RecentLocs loc:recentLocs){
+                Location location = new Location(LocationType.ANY, null, loc.name(), loc.lat(), loc.lon());
+                list.add(new WrapLocation(location, WrapLocation.WrapType.RECENT));
+            }
+            locationGpsInput.getAdapter().setRecentLocations(list);
+        }
+    }
+
+    @Override
+    public void showUserPreferences(UserPreferences userPreferences) {
+        initProductsList(userPreferences.getProductList());
+    }
+
+    @Override
+    public void showProductsPreferencesDialog(UserPreferences userPreferences) {
+        ProductsPreferencesDialog dialog = ProductsPreferencesDialog.newInstance(userPreferences);
+        dialog.setListener(newUserPreferences -> {
+            mapWithFormPresenter.savePreferences(newUserPreferences);
+            productsAdapter.setItems(newUserPreferences.getProductList());
+
+        });
+        FragmentManager manager = getFragmentManager();
+        dialog.show(manager, "preferencesDialog");
     }
 
     @Override

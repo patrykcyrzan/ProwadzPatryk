@@ -10,13 +10,12 @@ import pl.cyrzan.prowadzpatryk.R;
 import pl.cyrzan.prowadzpatryk.model.Location;
 import pl.cyrzan.prowadzpatryk.model.WrapLocation;
 import pl.cyrzan.prowadzpatryk.model.enums.LocationType;
-
-import java.util.List;
+import pl.cyrzan.prowadzpatryk.model.enums.TraverseMode;
 
 import static pl.cyrzan.prowadzpatryk.model.WrapLocation.WrapType.GPS;
-import static pl.cyrzan.prowadzpatryk.model.WrapLocation.WrapType.HOME;
 import static pl.cyrzan.prowadzpatryk.model.WrapLocation.WrapType.MAP;
 import static pl.cyrzan.prowadzpatryk.model.WrapLocation.WrapType.NORMAL;
+import static pl.cyrzan.prowadzpatryk.model.WrapLocation.WrapType.RECENT;
 
 /**
  * Created by Patryk on 13.02.2017.
@@ -52,6 +51,9 @@ public final class MainUtil {
         else if(w.getType() == MAP) {
             return getTintedDrawable(context, R.drawable.ic_action_location_map);
         }
+        else if(w.getType() == RECENT) {
+            return getTintedDrawable(context, R.drawable.ic_history_location);
+        }
         else if(w.getType() == NORMAL) {
             return getTintedDrawable(context, R.drawable.ic_location_address);
         }
@@ -71,6 +73,69 @@ public final class MainUtil {
                 return null;
             }
         }
+    }
+
+    static public String getNameForProduct(Context context, TraverseMode mode){
+        String name;
+
+        switch(mode) {
+            case RAIL:
+                name = context.getString(R.string.rail);
+                break;
+            case TRAM:
+                name = context.getString(R.string.tram);
+                break;
+            case BUS:
+                name = context.getString(R.string.bus);
+                break;
+            case REGIONAL_TRAIN:
+                name = context.getString(R.string.regional_train);
+                break;
+            case TRANSIT:
+                name = context.getString(R.string.transit);
+                break;
+            case CABLE_CAR:
+                name = context.getString(R.string.cable_car);
+                break;
+            case WALK:
+                name = context.getString(R.string.rail);
+                break;
+            default:
+                name = "undefinied";
+                break;
+        }
+
+        return name;
+    }
+
+    static public int getDrawableForProduct(TraverseMode mode) {
+        int image_res = R.drawable.product_bus;
+
+        switch(mode) {
+            case RAIL:
+                image_res = R.drawable.product_regional_train;
+                break;
+            case TRAM:
+                image_res = R.drawable.product_tram;
+                break;
+            case BUS:
+                image_res = R.drawable.product_bus;
+                break;
+            case REGIONAL_TRAIN:
+                image_res = R.drawable.product_subway;
+                break;
+            case CABLE_CAR:
+                image_res = R.drawable.product_bus;
+                break;
+            case WALK:
+                image_res = R.drawable.ic_walk;
+                break;
+            default:
+                image_res = R.drawable.ic_walk;
+                break;
+        }
+
+        return image_res;
     }
 
     static public Drawable getTintedDrawable(Context context, boolean dark, Drawable drawable) {

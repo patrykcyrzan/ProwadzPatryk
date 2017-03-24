@@ -2,8 +2,8 @@ package pl.cyrzan.prowadzpatryk.service.api;
 
 import org.joda.time.DateTime;
 import org.opentripplanner.routing.core.TraverseModeSet;
-import org.opentripplanner.v092snapshot.api.ws.Response;
 
+import pl.cyrzan.prowadzpatryk.model.Response;
 import pl.cyrzan.prowadzpatryk.service.api.model.SuggestLocationResponse;
 
 import java.util.List;

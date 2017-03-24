@@ -1,5 +1,7 @@
 package pl.cyrzan.prowadzpatryk.ui.trips;
 
+import pl.cyrzan.prowadzpatryk.model.WrapLocation;
+import pl.cyrzan.prowadzpatryk.service.db.dto.RecentLocs;
 import pl.cyrzan.prowadzpatryk.ui.base.BaseContract;
 
 /**
@@ -13,6 +15,6 @@ public interface TripsContract {
     }
 
     interface Presenter<T> extends BaseContract.BasePresenter<T> {
-
+        void saveRecentLoc(WrapLocation location);
     }
 }

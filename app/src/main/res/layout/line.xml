@@ -1,0 +1,58 @@
+<LinearLayout
+        android:id="@+id/lineView"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="horizontal">
+
+    <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/lineLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="1dp"
+            android:layout_weight="0.80"
+            android:orientation="horizontal"
+            app:alignItems="flex_start"
+            >
+
+        <pl.cyrzan.prowadzpatryk.ui.common.views.LineView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="1dp"
+            android:layout_weight="0.2"
+            android:gravity="center_vertical|end"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/changesView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:gravity="end"
+                android:background="@color/accent"
+                android:text="asdasd"
+                tools:text="9"/>
+
+        <TextView
+                android:id="@+id/durationView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="3:33"
+                android:gravity="center_vertical|end"
+                android:textColor="@color/black"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+    </LinearLayout>
+
+</LinearLayout>

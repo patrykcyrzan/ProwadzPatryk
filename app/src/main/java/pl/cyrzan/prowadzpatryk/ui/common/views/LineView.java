@@ -5,15 +5,16 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.opentripplanner.routing.core.TraverseMode;
-import org.opentripplanner.v092snapshot.api.model.Leg;
-
 import pl.cyrzan.prowadzpatryk.R;
+import pl.cyrzan.prowadzpatryk.model.Leg;
+import pl.cyrzan.prowadzpatryk.model.enums.TraverseMode;
+import pl.cyrzan.prowadzpatryk.util.MainUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,9 +41,13 @@ public class LineView extends LinearLayout {
         }
     }
 
+    public LineView(Context context) {
+        super(context, null);
+    }
+
     public void setLeg(Leg leg){
-        if (leg.getMode().equals(TraverseMode.TRANSIT.toString()) || leg.getMode().equals(TraverseMode.WALK.toString())) {
-            Drawable drawable = ContextCompat.getDrawable(getContext(), MainUtils.getDrawableForProduct(leg.getMode()));
+        if (leg.getMode().isTransit()|| leg.getMode().isWalk()) {
+            Drawable drawable = ContextCompat.getDrawable(getContext(), MainUtil.getDrawableForProduct(leg.getMode()));
             product.setImageDrawable(drawable);
             label.setText(leg.getRoute());
         } else {

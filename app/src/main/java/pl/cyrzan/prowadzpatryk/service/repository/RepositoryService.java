@@ -3,9 +3,11 @@ package pl.cyrzan.prowadzpatryk.service.repository;
 import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
 import org.opentripplanner.routing.core.TraverseModeSet;
-import org.opentripplanner.v092snapshot.api.ws.Response;
 
+import pl.cyrzan.prowadzpatryk.model.Response;
+import pl.cyrzan.prowadzpatryk.model.WrapLocation;
 import pl.cyrzan.prowadzpatryk.service.api.model.SuggestLocationResponse;
+import pl.cyrzan.prowadzpatryk.service.db.dto.RecentLocs;
 
 import java.util.List;
 
@@ -24,4 +26,6 @@ public interface RepositoryService {
                                   String date,
                                   String mode,
                                   Double maxWalkDistance);
+    Observable<List<RecentLocs>> get5RecentLocs();
+    void saveNewRecentLoc(WrapLocation location);
 }
