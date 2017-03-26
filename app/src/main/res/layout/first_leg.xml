@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        android:id="@+id/firstLegLayout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        tools:showIn="@layout/trip"
+        >
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+                android:id="@+id/timesFirstLeg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal"
+                tools:ignore="MissingPrefix">
+
+            <TextView
+                    android:id="@+id/departureTimeViewFirstLeg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="9:15"
+                    android:textAppearance="@style/TextAppearance.Bold"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="5dp"
+                    android:layout_gravity="top|center_vertical|end"
+                    android:textColor="@color/drawableTintLight"
+                    android:textSize="25sp"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/ic_right_arrow"
+                    tools:src="@drawable/ic_action_location_map"/>
+
+            <TextView
+                    android:id="@+id/arrivalTimeViewFirstLeg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|end"
+                    tools:text="9:15"
+                    android:textAppearance="@style/TextAppearance.Bold"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="5dp"
+                    android:textColor="@color/drawableTintLight"
+                    android:textSize="25sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/durationView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.Regular"
+                    tools:text="3:33"
+                    android:layout_gravity="end"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="@string/duration_text"/>
+
+            <View
+                    android:id="@+id/border"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/accent"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+            android:id="@+id/lineView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/lineLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="1dp"
+                android:layout_weight="0.80"
+                android:orientation="horizontal"
+                app:alignItems="flex_start"
+                >
+
+            <pl.cyrzan.prowadzpatryk.ui.common.views.LineView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="1dp"
+                android:layout_weight="0.2"
+                android:gravity="center_vertical|end"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/interchanges"
+                    android:textSize="12sp"/>
+
+            <TextView
+                    android:id="@+id/changesView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:textAppearance="@style/TextAppearance.Regular"
+                    android:gravity="end"
+                    tools:text="9"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -16,6 +16,7 @@
             android:layout_marginTop="5dp"
             tools:visibility="invisible"/>
 
+
     <LinearLayout
             android:alpha="0"
             android:id="@+id/dim"
@@ -43,10 +44,6 @@
 
     </LinearLayout>
 
-
-
-
-
     <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -63,5 +60,13 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+        <include layout="@layout/progress"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

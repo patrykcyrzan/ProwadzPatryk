@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:showIn="@layout/trip"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
         >
 
-    <TableRow
-            android:id="@+id/departureView">
+    <LinearLayout
+            android:id="@+id/departureLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
         <TextView
                 android:id="@+id/departureTimeView"
@@ -16,10 +20,9 @@
                 android:layout_height="wrap_content"
                 tools:text="9:15"
                 android:paddingLeft="3dp"
-                android:paddingTop="3dp"
                 android:paddingRight="5dp"
                 android:layout_gravity="top|center_vertical|end"
-                android:textColor="@color/drawableTintLight"
+                android:textColor="@color/red"
                 android:textSize="20sp"/>
 
         <TextView
@@ -32,66 +35,55 @@
                 android:paddingRight="3dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:textColor="@color/black"/>
+    </LinearLayout>
 
-    </TableRow>
+    <LinearLayout
+            android:id="@+id/arrivalLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TableRow
-            android:id="@+id/infoView">
-
-        <include
-                android:layout_width="match_parent"
+        <TextView
+                android:id="@+id/arrivalTimeView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                layout="@layout/leg_details"
-                android:layout_span="2"
-                android:layout_column="0"
-                android:layout_weight="1"/>
-
-    </TableRow>
-
-    <TableRow
-            android:id="@+id/arrivalView">
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            <TextView
-                    android:id="@+id/arrivalTimeView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|end"
-                    tools:text="9:15"
-                    android:paddingLeft="3dp"
-                    android:paddingTop="3dp"
-                    android:paddingRight="5dp"
-                    android:textColor="@color/drawableTintLight"
-                    android:textSize="20sp"/>
-
-        </LinearLayout>
+                tools:text="9:15"
+                android:text="@string/about"
+                android:paddingLeft="3dp"
+                android:paddingRight="5dp"
+                android:layout_gravity="top|center_vertical|end"
+                android:textColor="@color/red"
+                android:textSize="20sp"/>
 
         <TextView
                 android:id="@+id/arrivalLocationView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Arrival Station with also a long name"
+                tools:text="Departure Station with a long name"
                 android:layout_weight="1"
                 android:paddingTop="3dp"
                 android:paddingRight="3dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:textColor="@color/black"/>
+    </LinearLayout>
 
-    </TableRow>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/infoView">
 
-    <TableRow
-            android:id="@+id/dividerView">
+        <include
+                android:id="@+id/leg_details_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/leg_details"/>
 
         <View
                 android:id="@+id/border"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/material_grey_300"/>
+                android:layout_below="@+id/leg_details_layout"
+                android:background="@color/red"/>
+    </RelativeLayout>
 
-    </TableRow>
-
-</TableLayout>
+</LinearLayout>

@@ -19,6 +19,8 @@ import pl.cyrzan.prowadzpatryk.R;
 import pl.cyrzan.prowadzpatryk.di.component.ApplicationComponent;
 import pl.cyrzan.prowadzpatryk.util.ViewUtil;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -120,6 +122,11 @@ public abstract class BaseActivity extends RxAppCompatActivity {
     public void setContentView(View view, ViewGroup.LayoutParams params) {
         container.addView(view, params);
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase){
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
 }

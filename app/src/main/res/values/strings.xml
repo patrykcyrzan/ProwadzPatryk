@@ -33,4 +33,10 @@
     <string name="transit">tranzyt</string>
     <string name="bus">Autobus</string>
     <string name="rail">Pociąg</string>
+    <string name="about_app">O aplikacji</string>
+    <string name="leave_in">Wyjdź za</string>
+    <string name="duration_text">czas całkowity</string>
+    <string name="interchanges">przesiadki:</string>
+    <string name="error_loading_trips">Nic tu jeszcze nie ma.\nSpróbuj coś wyszukać.</string>
+    <string name="error_loading_trips_empty_itineraries">Nie znaleziono żadnych tras.</string>
 </resources>

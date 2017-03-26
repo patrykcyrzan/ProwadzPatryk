@@ -99,49 +99,17 @@ public class LocationInputAdapter extends RecyclerView.Adapter<LocationInputAdap
         notifyDataSetChanged();
     }
 
-    public void deleteSuggestion(int postion, String r){
-        if(r == null)
-            return;
-        //delete item with animation
-        if(suggestions.contains(r))
-        {
-            this.notifyItemRemoved(postion);
-            suggestions.remove(r);
-        }
-    }
-
-    public List<WrapLocation> getSuggestions() {
-        return suggestions;
-    }
-
-    public void setMaxSuggestionsCount(int maxSuggestionsCount) {
-        this.maxSuggestionsCount = maxSuggestionsCount;
-    }
-
-    public int getMaxSuggestionsCount() {
-        return maxSuggestionsCount;
-    }
-
     private void resetOptionalLocations() {
         optionalLocations.clear();
         getOptionalLocations();
     }
 
-    void resetDropDownLocations() {
-        clearSuggestions();
-        addOptionalLocationsToDropDown();
-    }
-
     private void addOptionalLocationsToDropDown(){
         this.suggestions = optionalLocations;
-        notifyDataSetChanged();
+        this.notifyDataSetChanged();
     }
 
     public void setRecentLocations(List<WrapLocation> recentLocations){
-        Log.i(TAG, "setRecentLocations");
-        for(WrapLocation wrapLocation:recentLocations){
-            Log.i(TAG, ""+wrapLocation.getName());
-        }
         this.recentLocations = recentLocations;
         resetOptionalLocations();
         notifyDataSetChanged();
@@ -160,9 +128,11 @@ public class LocationInputAdapter extends RecyclerView.Adapter<LocationInputAdap
     }
 
     void reset() {
-        //resetSearchTerm();
-        resetOptionalLocations();
-        resetDropDownLocations();
+        suggestions.clear();
+        optionalLocations.clear();
+
+        getOptionalLocations();
+        addOptionalLocationsToDropDown();
     }
 
 

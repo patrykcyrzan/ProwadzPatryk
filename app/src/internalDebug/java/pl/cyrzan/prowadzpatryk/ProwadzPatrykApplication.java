@@ -11,6 +11,8 @@ import pl.cyrzan.prowadzpatryk.di.component.DaggerApplicationComponent;
 import pl.cyrzan.prowadzpatryk.di.module.ApplicationModule;
 import pl.cyrzan.prowadzpatryk.service.api.ApiModule;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 import javax.inject.Inject;
 
 import timber.log.Timber;
@@ -38,6 +40,11 @@ public class ProwadzPatrykApplication extends Application {
             Timber.plant(new Timber.DebugTree());
             Stetho.initializeWithDefaults(this);
         }
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/Lato-Light.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build());
     }
 
     public ApplicationComponent getComponent() {

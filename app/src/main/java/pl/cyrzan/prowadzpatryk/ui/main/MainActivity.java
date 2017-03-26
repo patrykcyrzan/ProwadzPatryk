@@ -1,12 +1,20 @@
 package pl.cyrzan.prowadzpatryk.ui.main;
 
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+
+import com.kekstudio.dachshundtablayout.DachshundTabLayout;
+import com.kekstudio.dachshundtablayout.indicators.DachshundIndicator;
 
 import pl.cyrzan.prowadzpatryk.ProwadzPatrykApplication;
 import pl.cyrzan.prowadzpatryk.R;
@@ -37,6 +45,12 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     ImageView mapFormImage;
     @BindView(R.id.trips_image)
     ImageView tripsImage;
+    @BindView(R.id.navigation_view)
+    NavigationView navigationView;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
+    @BindView(R.id.tab_layout)
+    DachshundTabLayout tabLayout;
 
     private MainAdapter adapter;
 
@@ -48,9 +62,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
         setContentView(getLayoutId());
 
-        setSupportActionBar(toolbar);
-        correctTitleMargin();
-
+        initToolbar();
         initViewPager(viewPager);
     }
 
@@ -73,6 +85,20 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     private void correctTitleMargin() {
         toolbar.setContentInsetsAbsolute(16, 0);
+        toolbar.setTitle("");
+        toolbar.setSubtitle("");
+    }
+
+    private void initToolbar(){
+        setSupportActionBar(toolbar);
+        correctTitleMargin();
+        if(getSupportActionBar() != null) {
+            Log.i(TAG, "actiobar");
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+        toolbar.setNavigationOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
     }
 
     private void initViewPager(ViewPager viewPager) {
@@ -98,6 +124,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         });
 
         mapFormImage.setSelected(true);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     public ViewPager getViewPager() {
@@ -142,11 +169,27 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         viewPager.setCurrentItem(0);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return true;
+    private void setUpNavDrawer() {
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                menuItem.setChecked(true);
+                switch (menuItem.getItemId()) {
+                    case R.id.action_about: {
+                        Log.i(TAG, "showAbout");
+                        //showAbout();
+                        break;
+                    }
+                    default:
+
+                }
+                drawerLayout.closeDrawers();
+                return true;
+            }
+
+
+        });
     }
 
     @Override

@@ -29,9 +29,11 @@
 
     <!-- ... -->
 
-    <color name="primary">@color/comet</color>
-    <color name="primaryDark">@color/brightGray</color>
-    <color name="accent">@color/viking</color>
+    <color name="primary">#27BCA0</color>
+    <color name="primaryDark">#297C74</color>
+    <color name="accent">#30D7BB</color>
+    <color name="whiteDark">#FFFCE6</color>
+    <color name="drawerColor">#6E9996</color>
 
     <color name="windowBackground">@color/celeste</color>
 
@@ -53,5 +55,9 @@
     <color name="dimBg">#bf000000</color>
     <color name="drawableTintLight">@color/viking</color>
     <color name="black">#000000</color>
+    <color name="product_bus">#3498DB</color>
+    <color name="product_tram">#1ABC9C</color>
+    <color name="product_regional_train">#F1C40F</color>
+    <color name="product_subway">#E74C3C</color>
 
 </resources>

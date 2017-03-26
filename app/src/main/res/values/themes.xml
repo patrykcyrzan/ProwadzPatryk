@@ -3,7 +3,7 @@
 
     <!-- For common settings for all API levels, do not use directly -->
     <style name="PatrykProwadzThemeBase" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:windowBackground">@drawable/gradient_pollution</item>
+        <item name="android:windowBackground">@color/primaryDark</item>
     </style>
 
     <style name="PatrykProwadzTheme" parent="PatrykProwadzThemeBase">

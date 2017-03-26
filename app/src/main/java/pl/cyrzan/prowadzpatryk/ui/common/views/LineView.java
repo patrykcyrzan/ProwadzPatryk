@@ -1,12 +1,16 @@
 package pl.cyrzan.prowadzpatryk.ui.common.views;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,6 +36,8 @@ public class LineView extends LinearLayout {
     @BindView(R.id.labelView)
     TextView label;
 
+    private ViewGroup view;
+
     public LineView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
@@ -46,10 +52,18 @@ public class LineView extends LinearLayout {
     }
 
     public void setLeg(Leg leg){
-        if (leg.getMode().isTransit()|| leg.getMode().isWalk()) {
+        GradientDrawable box = (GradientDrawable) view.getBackground();
+        if (leg.getMode().isTransit()) {
             Drawable drawable = ContextCompat.getDrawable(getContext(), MainUtil.getDrawableForProduct(leg.getMode()));
             product.setImageDrawable(drawable);
             label.setText(leg.getRoute());
+            box.mutate();
+            view.setBackgroundColor(MainUtil.getColorForProduct(getContext(), leg.getMode()));
+        } else if(leg.getMode().isWalk()) {
+            Drawable drawable = ContextCompat.getDrawable(getContext(), MainUtil.getDrawableForProduct(leg.getMode()));
+            product.setImageDrawable(drawable);
+            label.setText(leg.getRoute());
+            view.setBackgroundColor(Color.TRANSPARENT);
         } else {
             product.setVisibility(GONE);
             label.setVisibility(GONE);
@@ -60,7 +74,9 @@ public class LineView extends LinearLayout {
         View.inflate(context, R.layout.line_view, this);
         ButterKnife.bind(this);
 
-        setBackground(ContextCompat.getDrawable(context, R.drawable.line_box));
+        view = this;
+
+        view.setBackground(ContextCompat.getDrawable(context, R.drawable.line_box));
 
         int height = context.getResources().getDimensionPixelSize(R.dimen.line_box_height);
         setMinimumHeight(height);

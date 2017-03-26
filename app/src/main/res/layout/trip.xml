@@ -2,6 +2,7 @@
 <android.support.v7.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/cardView"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -20,15 +21,45 @@
             >
 
         <LinearLayout
-                android:id="@+id/legsView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                >
+
+            <TextView
+                    android:id="@+id/arrivalTimeView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|end"
+                    android:text="@string/leave_in"
+                    tools:text="Wyjdź za "
+                    android:paddingLeft="3dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="5dp"
+                    android:textColor="@color/drawableTintLight"
+                    android:textSize="20sp"/>
+        </LinearLayout>
+
+        <View
+                android:id="@+id/border_above"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="@dimen/border_margin"
+                android:layout_marginLeft="@dimen/border_margin"
+                android:layout_marginEnd="@dimen/border_margin"
+                android:layout_marginRight="@dimen/border_margin"
+                android:background="@color/material_grey_300"/>
+
+        <LinearLayout
+                android:id="@+id/legsViewLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="8dp">
 
             <include
-                    android:id="@+id/firstLegView"
-                    layout="@layout/leg"
+                    android:id="@+id/firstLegLayout"
+                    layout="@layout/first_leg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -39,7 +70,11 @@
                 android:id="@+id/border"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/material_grey_300"/>
+                android:background="@color/material_grey_300"
+                android:layout_marginStart="@dimen/border_margin"
+                android:layout_marginLeft="@dimen/border_margin"
+                android:layout_marginEnd="@dimen/border_margin"
+                android:layout_marginRight="@dimen/border_margin"/>
 
         <RelativeLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"

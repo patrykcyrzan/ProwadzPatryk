@@ -1,6 +1,7 @@
 package pl.cyrzan.prowadzpatryk.util;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
@@ -106,6 +107,33 @@ public final class MainUtil {
         }
 
         return name;
+    }
+
+    static public int getColorForProduct(Context context, TraverseMode mode) {
+        int color;
+
+        switch(mode) {
+            case RAIL:
+                color = ContextCompat.getColor(context, R.color.product_regional_train);
+                break;
+            case TRAM:
+                color = ContextCompat.getColor(context, R.color.product_tram);
+                break;
+            case BUS:
+                color = ContextCompat.getColor(context, R.color.product_bus);
+                break;
+            case REGIONAL_TRAIN:
+                color = ContextCompat.getColor(context, R.color.product_subway);
+                break;
+            case CABLE_CAR:
+                color = ContextCompat.getColor(context, R.color.product_bus);
+                break;
+            default:
+                color = ContextCompat.getColor(context, R.color.product_bus);
+                break;
+        }
+
+        return color;
     }
 
     static public int getDrawableForProduct(TraverseMode mode) {

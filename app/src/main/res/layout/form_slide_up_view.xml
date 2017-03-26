@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
-            android:background="@color/neonCarrot">
+            android:background="@drawable/layout_rounded_corners">
 
         <pl.cyrzan.prowadzpatryk.ui.common.views.inputWithGps.LocationGpsInput
                 android:id="@+id/locationGpsInput"

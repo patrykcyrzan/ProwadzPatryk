@@ -48,7 +48,7 @@
                 >
 
             <TextView
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textAppearance="@style/TextAppearance.Regular"
                     android:fontFamily="sans-serif-condensed"
                     android:layout_centerVertical="true"
                     android:textStyle="bold"

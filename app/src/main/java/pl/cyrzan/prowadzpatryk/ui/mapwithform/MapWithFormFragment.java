@@ -4,6 +4,8 @@ package pl.cyrzan.prowadzpatryk.ui.mapwithform;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,15 +19,19 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TimePicker;
 
 import com.squareup.sqlbrite.BriteDatabase;
+import com.vlad1m1r.lemniscate.BernoullisProgressView;
 
 import org.opentripplanner.routing.core.TraverseModeSet;
 import org.osmdroid.api.IMapController;
@@ -109,6 +115,8 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
     LinearLayout moreLayout;
     @BindView(R.id.products_list)
     RecyclerView productsRecyclerView;
+    @BindView(R.id.progressBar)
+    BernoullisProgressView progressView;
 
     @Nullable
     @Override
@@ -246,7 +254,7 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
         request.setModes(traverseModeSet);
 
         mapWithFormPresenter.loadTrips(request);
-
+        progressView.setVisibility(View.VISIBLE);
     }
 
     private Boolean checkLocation(LocationInput locationInput){
@@ -320,6 +328,7 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
 
     @Override
     public void showTrips(Response response) {
+        progressView.setVisibility(View.GONE);
         ViewPager viewPager = ((MainActivity)getActivity()).getViewPager();
         MainAdapter adapter = ((MainActivity)getActivity()).getAdapter();
         TripsFragment fragment = (TripsFragment) adapter.getFragment(viewPager, 1);

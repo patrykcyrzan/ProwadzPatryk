@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -35,6 +37,7 @@ import pl.cyrzan.prowadzpatryk.model.enums.LocationType;
 import pl.cyrzan.prowadzpatryk.service.api.model.SuggestLocationResponse;
 import pl.cyrzan.prowadzpatryk.service.db.dto.RecentLocs;
 import pl.cyrzan.prowadzpatryk.ui.common.models.SuggestLocationsResult;
+import pl.cyrzan.prowadzpatryk.ui.main.MainActivity;
 import pl.cyrzan.prowadzpatryk.ui.main.MainContract;
 import pl.cyrzan.prowadzpatryk.ui.mapwithform.MapWithFormContract;
 import pl.cyrzan.prowadzpatryk.ui.mapwithform.MapWithFormPresenter;
@@ -170,23 +173,18 @@ public class LocationInput extends RelativeLayout implements MapWithFormContract
 
     @OnClick(R.id.inputContainer)
     public void onInputContainerClick(){
-        Log.i(TAG, "onInputContainerClick");
         if(adapter.getItemCount() > 0){
             if(getText().isEmpty()) {
                 showSuggestionsList();
-                Log.i(TAG, "onInputContainerClick2");
             }
         }
     }
 
     @OnClick(R.id.location)
     public void onLocationETClick(){
-        Log.i(TAG, "onLocationETClick");
         if(adapter.getItemCount() > 0){
-            Log.i(TAG, "onLocationETClick2");
             if(getText().isEmpty()) {
                 showSuggestionsList();
-                Log.i(TAG, "onLocationETClick3");
             }
         }
     }
@@ -251,9 +249,6 @@ public class LocationInput extends RelativeLayout implements MapWithFormContract
 
     public void clearLocation() {
         setLocation(null, null);
-        /*if(getAdapter() != null) {
-            getAdapter().resetSearchTerm();
-        }*/
     }
 
     @OnClick(R.id.clearButton)
@@ -313,12 +308,6 @@ public class LocationInput extends RelativeLayout implements MapWithFormContract
             animator.start();
     }
 
-    /**
-     * For calculate the height change when item delete or add animation
-     * false is retrurn the full height of item,
-     * true is return the height of postion subtraction one
-     * @param isSubtraction
-     */
     private int getListHeight(boolean isSubtraction){
         if(!isSubtraction)
             return (int) (adapter.getListHeight() * destiny);
@@ -330,18 +319,18 @@ public class LocationInput extends RelativeLayout implements MapWithFormContract
         Animation out = AnimationUtils.loadAnimation(getContext(), R.anim.fade_out);
         Animation in = AnimationUtils.loadAnimation(getContext(), R.anim.fade_in_right);
         out.setAnimationListener(this);
-        //searchIcon.setVisibility(VISIBLE);
         inputContainer.startAnimation(out);
-        //searchIcon.startAnimation(in);
 
         if (placeholderText != null)
         {
             placeHolderContainer.setVisibility(VISIBLE);
             placeHolderContainer.startAnimation(in);
         }
-        /*if (listenerExists())
-            onSearchActionListener.onSearchStateChanged(false);*/
-        if (suggestionsVisible) animateSuggestions(getListHeight(false), 0);
+
+        if (suggestionsVisible) {
+            animateSuggestions(getListHeight(false), 0);
+            clearSuggestions();
+        }
     }
 
     public void showSuggestionsList(){
@@ -355,13 +344,10 @@ public class LocationInput extends RelativeLayout implements MapWithFormContract
 
     public void reset() {
         if(adapter != null) {
+            disableSearch();
             adapter.reset();
         }
     }
-
-    /*protected LocationInputAdapter getAdapter() {
-        return (LocationInputAdapter) locationACTV.getAdapter();
-    }*/
 
     @Override
     public void onSuggestLocationsResult(@Nullable List<SuggestLocationResponse> suggestLocations) {
@@ -382,10 +368,8 @@ public class LocationInput extends RelativeLayout implements MapWithFormContract
     }
 
     public void clearSuggestions(){
-        Log.i(TAG, "clearSuggestons1");
         if(suggestionsVisible){
             hideSuggestionsList();
-            Log.i(TAG, "clearSuggestons1");
         }
         adapter.clearSuggestions();
     }
@@ -439,16 +423,16 @@ public class LocationInput extends RelativeLayout implements MapWithFormContract
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        Log.i(TAG, "onFocusChange");
         if (hasFocus)
         {
             imm.showSoftInput(v, 0);
-            Log.i(TAG, "onFocusChange1");
+            Log.i(TAG, "has focus");
         }
         else
         {
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-            Log.i(TAG, "onFocusChange2");
+            reset();
+            Log.i(TAG, "no focus");
         }
     }
 

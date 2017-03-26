@@ -40,7 +40,6 @@
                 android:layout_gravity="top|end"
                 android:gravity="end"
                 android:background="@color/accent"
-                android:text="asdasd"
                 tools:text="9"/>
 
         <TextView

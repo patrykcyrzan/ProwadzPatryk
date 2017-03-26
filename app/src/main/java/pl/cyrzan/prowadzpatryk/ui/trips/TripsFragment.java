@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.joda.time.DateTime;
 
@@ -42,6 +44,10 @@ public class TripsFragment extends BaseFragment implements TripsContract.View {
 
     @BindView(R.id.trips_recycler_view)
     RecyclerView recyclerView;
+    @BindView(R.id.linear_layout_error)
+    LinearLayout linearLayoutErrorScreen;
+    @BindView(R.id.text_view_error_screen)
+    TextView textViewErrorMessage;
 
     private Response response;
     private TripAdapter tripAdapter;
@@ -63,6 +69,8 @@ public class TripsFragment extends BaseFragment implements TripsContract.View {
         tripAdapter = new TripAdapter(null, getActivity(), false);
         tripAdapter.setHasStableIds(false);
         recyclerView.setAdapter(tripAdapter);
+
+        tripsPresenter.loadTrips(null, null, null, null);
     }
 
     @Override
@@ -80,11 +88,7 @@ public class TripsFragment extends BaseFragment implements TripsContract.View {
     }
 
     public void setResponse(Response response, Location from, Location to, DateTime date){
-        this.response = response;
-        Log.i(TAG, response.getPlan().getFrom().name);
-
-        Log.i(TAG, "itineraries: "+response.getPlan().getItinerary().size());
-        tripAdapter.addAll(ListTrip.getList(response.getPlan().getItinerary(), from, to, date));
+        tripsPresenter.loadTrips(response, from, to, date);
         /*Location location = new Location(LocationType.ANY, null, "mama", 50.123, 23.123);
         WrapLocation wrapLocation = new WrapLocation(location, WrapLocation.WrapType.RECENT);
         wrapLocation.setLastUsed("asdas");
@@ -93,11 +97,26 @@ public class TripsFragment extends BaseFragment implements TripsContract.View {
 
     @Override
     public void showError(int errorReport) {
-
+        linearLayoutErrorScreen.setVisibility(View.VISIBLE);
+        textViewErrorMessage.setText(getText(errorReport).toString());
     }
 
     @Override
     public void complete() {
 
+    }
+
+    @Override
+    public void showNoTripsDownloadedMessage() {
+        recyclerView.setVisibility(View.GONE);
+        showError(R.string.error_loading_trips);
+    }
+
+    @Override
+    public void showTrips(Response response, Location from, Location to, DateTime date) {
+        this.response = response;
+        linearLayoutErrorScreen.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
+        tripAdapter.addAll(ListTrip.getList(response.getPlan().getItinerary(), from, to, date));
     }
 }

@@ -27,4 +27,8 @@
     <dimen name="md_listitem_vertical_margin_choice">8dp</dimen>
     <dimen name="md_listitem_control_margin">6dp</dimen>
     <dimen name="md_listitem_textsize">16sp</dimen>
+    <dimen name="z_drawer">16dp</dimen>
+
+    <dimen name="border_margin">10dp</dimen>
+    <dimen name="border_padding">8dp</dimen>
 </resources>

@@ -37,6 +37,11 @@ public class ProwadzPatrykApplication extends Application {
             Timber.plant(new Timber.DebugTree());
             Stetho.initializeWithDefaults(this);
         }
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/Lato-Light.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build());
     }
 
     public ApplicationComponent getComponent() {

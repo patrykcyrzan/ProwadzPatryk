@@ -38,7 +38,7 @@
                     android:layout_marginEnd="@dimen/mal_baseline"
                     android:layout_marginTop="@dimen/mal_baseline"
                     android:layout_marginBottom="@dimen/mal_baseline_half"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textAppearance="@style/TextAppearance.Regular"
                     android:text="@string/products"
                     tools:text="Środki transportu" />
 

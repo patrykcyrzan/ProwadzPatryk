@@ -146,6 +146,15 @@ dependencies {
     internalDebugCompile 'com.readystatesoftware.chuck:library:1.0.4'
     internalReleaseCompile 'com.readystatesoftware.chuck:library-no-op:1.0.4'
 
+    //ProgressBar
+    compile 'com.github.vlad1m1r990:Lemniscate:1.2.0'
+
+    //calligraphy
+    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+
+    //Indicator
+    compile 'com.github.Andy671:Dachshund-Tab-Layout:v0.2.0'
+
     testCompile 'junit:junit:4.12'
 
     // APT dependencies
