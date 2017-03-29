@@ -6,6 +6,7 @@ import pl.cyrzan.prowadzpatryk.ui.about.AboutActivity;
 import pl.cyrzan.prowadzpatryk.ui.base.BaseActivity;
 import pl.cyrzan.prowadzpatryk.ui.github.GithubActivity;
 import pl.cyrzan.prowadzpatryk.ui.main.MainActivity;
+import pl.cyrzan.prowadzpatryk.ui.splash.SplashActivity;
 
 import dagger.Subcomponent;
 
@@ -27,5 +28,7 @@ public interface ActivityComponent {
     void inject(AboutActivity aboutActivity);
 
     void inject(GithubActivity githubActivity);
+
+    void inject(SplashActivity splashActivity);
 
 }

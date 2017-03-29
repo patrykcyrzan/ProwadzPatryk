@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProwadzPatryk</string>
+    <string name="app_name">Prowadź Patryk</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -46,4 +46,20 @@
     <string name="patryk_cyrzan_mail">patrykcyrzan@gmail.com</string>
     <string name="patryk_cyrzan_phone">515 108 743</string>
     <string name="githubPageLoading">Otwieranie strony. Proszę czekać...</string>
+
+    <string-array name="icon_strings">
+        <item>M215.008,103.299L113.906,2.196c-2.929-2.928-7.678-2.928-10.606,0L2.197,103.299c-2.929,2.93-2.929,7.678,0,10.607
+		l101.103,101.103c1.464,1.464,3.384,2.196,5.303,2.196c1.919,0,3.839-0.732,5.303-2.196l101.103-101.103
+		C217.938,110.976,217.938,106.228,215.008,103.299z M108.603,199.098l-90.496-90.496l90.496-90.496l90.496,90.496L108.603,199.098z</item>
+        <item>M121.998,81.07h-21.298c-11.633,0-21.098,9.465-21.098,21.099v39.406c0,4.143,3.358,7.5,7.5,7.5c4.142,0,7.5-3.357,7.5-7.5
+		v-39.406c0-3.363,2.735-6.099,6.098-6.099h21.298l-6.217,6.216c-2.929,2.929-2.929,7.678-0.001,10.606
+		c1.465,1.465,3.384,2.197,5.304,2.197c1.919,0,3.839-0.732,5.303-2.196l19.021-19.02c1.406-1.406,2.197-3.314,2.197-5.304
+		c0-1.989-0.79-3.897-2.197-5.304l-18.942-18.94c-2.93-2.928-7.678-2.929-10.607,0.001c-2.929,2.929-2.928,7.678,0.001,10.606
+		L121.998,81.07z</item>
+    </string-array>
+
+    <integer-array name="icon_colors">
+        <item>@color/black</item>
+        <item>@color/black</item>
+    </integer-array>
 </resources>

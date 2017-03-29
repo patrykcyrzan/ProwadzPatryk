@@ -1,0 +1,49 @@
+{
+  "status": 200,
+  "response": {
+    "items": [
+      {
+        "lat": 54.5943733887918,
+        "lng": 18.3537681581653,
+        "description": "Miszewskiego ",
+        "id": "1_40019"
+      },
+      {
+        "lat": 54.5194015656767,
+        "lng": 18.5480350742963,
+        "description": "Brama wyżynna",
+        "id": "1_40073"
+      },
+      {
+        "lat": 54.5232162814871,
+        "lng": 18.5217343354371,
+        "description": "Gdańsk ",
+        "id": "1_37040"
+      },
+      {
+        "lat": 54.5226763702221,
+        "lng": 18.522586139451,
+        "description": "Sobieskiego ",
+        "id": "1_37470"
+      },
+      {
+        "lat": 54.6027277156561,
+        "lng": 18.3175471629721,
+        "description": "Grzybowa ",
+        "id": "1_40018"
+      },
+      {
+        "lat": 54.3869670606218,
+        "lng": 18.5987927500355,
+        "description": "Dworzec Wrzeszcz ",
+        "id": "1_1727"
+      },
+      {
+        "lat": 54.357124685308,
+        "lng": 18.6198665343971,
+        "description": "Cygańska Góra ",
+        "id": "1_1332"
+      }
+    ]
+  }
+}

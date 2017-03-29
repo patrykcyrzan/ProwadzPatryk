@@ -17,15 +17,18 @@
             android:supportsRtl="true"
             android:theme="@style/PatrykProwadzTheme.NoActionBar">
         <activity android:name=".ui.main.MainActivity">
+        </activity>
+        <activity android:name=".ui.about.AboutActivity">
+        </activity>
+        <activity android:name=".ui.github.GithubActivity">
+        </activity>
+        <activity android:name=".ui.splash.SplashActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity android:name=".ui.about.AboutActivity">
-        </activity>
-        <activity android:name=".ui.github.GithubActivity">
         </activity>
     </application>
 
