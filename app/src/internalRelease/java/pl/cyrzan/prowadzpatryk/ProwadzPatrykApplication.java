@@ -3,15 +3,20 @@ package pl.cyrzan.prowadzpatryk;
 import android.app.Application;
 import android.content.Context;
 
+import com.crashlytics.android.Crashlytics;
 import com.facebook.stetho.Stetho;
 import com.squareup.sqlbrite.BriteDatabase;
 
 import pl.cyrzan.prowadzpatryk.di.component.ApplicationComponent;
 import pl.cyrzan.prowadzpatryk.di.component.DaggerApplicationComponent;
 import pl.cyrzan.prowadzpatryk.di.module.ApplicationModule;
+import pl.cyrzan.prowadzpatryk.service.api.ApiModule;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 import javax.inject.Inject;
 
+import io.fabric.sdk.android.Fabric;
 import timber.log.Timber;
 
 /**
@@ -42,12 +47,15 @@ public class ProwadzPatrykApplication extends Application {
                 .setDefaultFontPath("fonts/Lato-Light.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build());
+
+        Fabric.with(this, new Crashlytics());
     }
 
     public ApplicationComponent getComponent() {
         if (applicationComponent== null) {
             applicationComponent = DaggerApplicationComponent.builder()
                     .applicationModule(new ApplicationModule(this))
+                    .apiModule(new ApiModule(this))
                     .build();
         }
         return applicationComponent;

@@ -2,15 +2,20 @@ package pl.cyrzan.prowadzpatryk.service.api;
 
 import com.google.gson.Gson;
 
+import android.content.Context;
+
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.readystatesoftware.chuck.ChuckInterceptor;
 
 import pl.cyrzan.prowadzpatryk.BuildConfig;
+import pl.cyrzan.prowadzpatryk.ProwadzPatrykApplication;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import ir.mirrajabi.okhttpjsonmock.interceptors.OkHttpMockInterceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -25,6 +30,12 @@ import timber.log.Timber;
 
 @Module
 public class ApiModule {
+
+    private Context context;
+
+    public ApiModule(ProwadzPatrykApplication prowadzPatrykApplication) {
+        this.context = prowadzPatrykApplication.getApplicationContext();
+    }
 
     @Singleton
     @Provides
@@ -50,9 +61,10 @@ public class ApiModule {
         return retrofit.create(Api.class);
     }
 
-    private static OkHttpClient makeOkHttpClient() {
+    private OkHttpClient makeOkHttpClient() {
 
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        httpClientBuilder.addInterceptor(new OkHttpMockInterceptor(context, 5));
 
         if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(message

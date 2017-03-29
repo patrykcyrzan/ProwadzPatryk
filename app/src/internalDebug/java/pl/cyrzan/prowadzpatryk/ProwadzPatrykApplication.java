@@ -45,6 +45,8 @@ public class ProwadzPatrykApplication extends Application {
                 .setDefaultFontPath("fonts/Lato-Light.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build());
+
+        Fabric.with(this, new Crashlytics());
     }
 
     public ApplicationComponent getComponent() {

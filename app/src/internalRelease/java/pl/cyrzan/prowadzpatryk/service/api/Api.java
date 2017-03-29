@@ -1,5 +1,6 @@
 package pl.cyrzan.prowadzpatryk.service.api;
 
+import pl.cyrzan.prowadzpatryk.model.Response;
 import pl.cyrzan.prowadzpatryk.service.api.model.SuggestLocationResponse;
 
 import java.util.List;
@@ -15,14 +16,16 @@ import rx.Observable;
 
 public interface Api {
 
-    @GET("/otp/routers/default/plan?arriveBy=false&wheelchair=false&locale=pl")
-    Observable<ResponseBody> getRoutesFromTo(@Query("fromPlace") String fromPlace,
-                                             @Query("toPlace") String toPlace,
-                                             @Query("time") String time,
-                                             @Query("date") String date,
-                                             @Query("mode") String mode,
-                                             @Query("maxWalkDistance") String maxWalkDistance);
+    public static final String API_VERSION = "api/v1";
 
-    @GET("/otp/routers/default/geocode")
+    @GET(API_VERSION + "/gettrips")
+    Observable<Response> getTrips(@Query("fromPlace") String from,
+                                  @Query("toPlace") String to,
+                                  @Query("time") String time,
+                                  @Query("date") String date,
+                                  @Query("mode") String mode,
+                                  @Query("maxWalkDistance") Double maxWalkDistance);
+
+    @GET(API_VERSION + "/getsuggestlocations")
     Observable<List<SuggestLocationResponse>> getSuggestLocations(@Query("query") String query);
 }
