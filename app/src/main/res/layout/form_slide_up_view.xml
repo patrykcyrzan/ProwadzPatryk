@@ -55,23 +55,18 @@
 
         </LinearLayout>
 
-        <View
-                android:id="@+id/border"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/more_layout"
-                android:background="@color/material_grey_300"/>
-
         <Button
                 android:id="@+id/show_more_button"
-                android:layout_below="@+id/border"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_below="@+id/more_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
 
         <Button
                 android:id="@+id/search_button"
-                android:layout_below="@+id/border"
+                android:layout_below="@+id/more_layout"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_centerHorizontal="true"
                 android:text="@string/search"
                 android:layout_width="wrap_content"

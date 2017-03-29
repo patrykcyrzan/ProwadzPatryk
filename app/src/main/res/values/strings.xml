@@ -20,7 +20,7 @@
     <string name="today">Dzisiaj</string>
     <string name="cancel">Anuluj</string>
     <string name="ok">Zatwierdź</string>
-    <string name="search">search</string>
+    <string name="search">Szukaj</string>
     <string name="error_invalid_to">Niepoprawne miejsce docelowe</string>
     <string name="error_invalid_from">Niepoprawne miejsce rozpoczęcia</string>
     <string name="error_unable_to_load_trips">Problem przy pobieraniu połączeń</string>
@@ -39,4 +39,11 @@
     <string name="interchanges">przesiadki:</string>
     <string name="error_loading_trips">Nic tu jeszcze nie ma.\nSpróbuj coś wyszukać.</string>
     <string name="error_loading_trips_empty_itineraries">Nie znaleziono żadnych tras.</string>
+    <string name="minutes">min.</string>
+    <string name="github">Github</string>
+    <string name="author">Autor</string>
+    <string name="patryk_cyrzan">Patryk Cyrzan</string>
+    <string name="patryk_cyrzan_mail">patrykcyrzan@gmail.com</string>
+    <string name="patryk_cyrzan_phone">515 108 743</string>
+    <string name="githubPageLoading">Otwieranie strony. Proszę czekać...</string>
 </resources>

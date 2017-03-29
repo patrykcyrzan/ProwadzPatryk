@@ -2,7 +2,9 @@ package pl.cyrzan.prowadzpatryk.di.component;
 
 import pl.cyrzan.prowadzpatryk.di.module.ActivityModule;
 import pl.cyrzan.prowadzpatryk.di.module.FragmentModule;
+import pl.cyrzan.prowadzpatryk.ui.about.AboutActivity;
 import pl.cyrzan.prowadzpatryk.ui.base.BaseActivity;
+import pl.cyrzan.prowadzpatryk.ui.github.GithubActivity;
 import pl.cyrzan.prowadzpatryk.ui.main.MainActivity;
 
 import dagger.Subcomponent;
@@ -22,5 +24,8 @@ public interface ActivityComponent {
 
     void inject(MainActivity mainActivity);
 
+    void inject(AboutActivity aboutActivity);
+
+    void inject(GithubActivity githubActivity);
 
 }

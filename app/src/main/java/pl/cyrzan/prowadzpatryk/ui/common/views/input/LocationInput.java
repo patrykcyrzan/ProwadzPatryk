@@ -431,7 +431,13 @@ public class LocationInput extends RelativeLayout implements MapWithFormContract
         else
         {
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-            reset();
+            if(getLocation() == null) {
+                reset();
+            } else {
+                animateSuggestions(getListHeight(false), 0);
+                clearSuggestions();
+                adapter.reset();
+            }
             Log.i(TAG, "no focus");
         }
     }

@@ -1,5 +1,6 @@
 package pl.cyrzan.prowadzpatryk.ui.main;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -7,20 +8,19 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.kekstudio.dachshundtablayout.DachshundTabLayout;
-import com.kekstudio.dachshundtablayout.indicators.DachshundIndicator;
 
 import pl.cyrzan.prowadzpatryk.ProwadzPatrykApplication;
 import pl.cyrzan.prowadzpatryk.R;
 import pl.cyrzan.prowadzpatryk.di.module.ActivityModule;
+import pl.cyrzan.prowadzpatryk.ui.about.AboutActivity;
 import pl.cyrzan.prowadzpatryk.ui.base.BaseActivity;
-import pl.cyrzan.prowadzpatryk.ui.mapwithform.MapWithFormFragment;
+import pl.cyrzan.prowadzpatryk.ui.github.GithubActivity;
 import pl.cyrzan.prowadzpatryk.util.ViewUtil;
 
 import java.util.ArrayList;
@@ -64,6 +64,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
         initToolbar();
         initViewPager(viewPager);
+        initNavigation();
     }
 
     @Override
@@ -162,34 +163,22 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     @OnClick(R.id.trips_image)
     public void onClickTrips(){
         viewPager.setCurrentItem(1);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake_rotation);
+        clearAnimations();
+        tripsImage.startAnimation(animation);
     }
 
     @OnClick(R.id.map_form_image)
     public void onClickMapForm(){
         viewPager.setCurrentItem(0);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake_rotation);
+        clearAnimations();
+        mapFormImage.startAnimation(animation);
     }
 
-    private void setUpNavDrawer() {
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                menuItem.setChecked(true);
-                switch (menuItem.getItemId()) {
-                    case R.id.action_about: {
-                        Log.i(TAG, "showAbout");
-                        //showAbout();
-                        break;
-                    }
-                    default:
-
-                }
-                drawerLayout.closeDrawers();
-                return true;
-            }
-
-
-        });
+    private void clearAnimations(){
+        mapFormImage.clearAnimation();
+        tripsImage.clearAnimation();
     }
 
     @Override
@@ -200,5 +189,24 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     @Override
     public void complete() {
 
+    }
+
+    private void initNavigation(){
+        navigationView.setNavigationItemSelectedListener(mainPresenter);
+    }
+
+    @Override
+    public void onCloseDrawer() {
+        if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.closeDrawer(GravityCompat.START);
+    }
+
+    @Override
+    public void onOpenAbout() {
+        AboutActivity.startActivity(this);
+    }
+
+    @Override
+    public void onOpenGithub() {
+        GithubActivity.startActivity(this);
     }
 }

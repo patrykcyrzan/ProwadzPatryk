@@ -3,6 +3,7 @@ package pl.cyrzan.prowadzpatryk.util;
 import android.util.Log;
 
 import org.joda.time.DateTime;
+import org.joda.time.Minutes;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -14,6 +15,13 @@ import java.util.concurrent.TimeUnit;
  */
 
 public final class TimeUtil {
+
+    static public String getLeavInTime(long milliseconds){
+
+        DateTime startTripTime = new DateTime(milliseconds);
+
+        return Integer.toString(Minutes.minutesBetween(new DateTime(), startTripTime).getMinutes());
+    }
 
     static public String getDuration(long duration) {
         long minutes = TimeUnit.SECONDS.toMinutes(duration);

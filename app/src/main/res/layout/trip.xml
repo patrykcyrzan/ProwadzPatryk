@@ -27,12 +27,34 @@
                 >
 
             <TextView
-                    android:id="@+id/arrivalTimeView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|end"
                     android:text="@string/leave_in"
                     tools:text="Wyjdź za "
+                    android:paddingLeft="3dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="5dp"
+                    android:textColor="@color/drawableTintLight"
+                    android:textSize="20sp"/>
+
+            <TextView
+                    android:id="@+id/leaveInTimeView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="3dp"
+                    android:paddingTop="3dp"
+                    android:paddingRight="5dp"
+                    tools:text="5 min"
+                    android:textSize="20sp"
+                    android:textAppearance="@style/TextAppearance.Regular"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|end"
+                    android:text="@string/minutes"
+                    tools:text="min."
                     android:paddingLeft="3dp"
                     android:paddingTop="3dp"
                     android:paddingRight="5dp"

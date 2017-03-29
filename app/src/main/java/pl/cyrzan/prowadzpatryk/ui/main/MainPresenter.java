@@ -1,6 +1,8 @@
 package pl.cyrzan.prowadzpatryk.ui.main;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.MenuItem;
 
 import pl.cyrzan.prowadzpatryk.R;
 import pl.cyrzan.prowadzpatryk.service.api.model.SuggestLocationResponse;
@@ -30,5 +32,18 @@ public class MainPresenter extends RxPresenter<MainContract.View> implements Mai
 
     @Inject
     public MainPresenter() {
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        view.onCloseDrawer();
+        if (item.getItemId() == R.id.about) {
+            view.onOpenAbout();
+            return true;
+        } else if (item.getItemId() == R.id.github) {
+            view.onOpenGithub();
+            return true;
+        }
+        return false;
     }
 }

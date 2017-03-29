@@ -3,6 +3,7 @@ package pl.cyrzan.prowadzpatryk.service.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import pl.cyrzan.prowadzpatryk.service.db.dto.RecentLocs;
 
@@ -12,7 +13,9 @@ import pl.cyrzan.prowadzpatryk.service.db.dto.RecentLocs;
 
 public class DbOpenHelper extends SQLiteOpenHelper {
 
-    private static final int VERSION = 1;
+    private static final String TAG = "DbOpenHelper";
+
+    private static final int VERSION = 8;
 
     private static final String CREATE_RECENT_LOCS = ""
             + "CREATE TABLE "
@@ -27,8 +30,12 @@ public class DbOpenHelper extends SQLiteOpenHelper {
             + RecentLocs.NAME
             + " TEXT, "
             + RecentLocs.LAST_USED
-            + " DATETIME"
+            + " INTEGER NOT NULL DEFAULT 0"
             +")";
+
+    private static final String UPGRADE_TABLE_RECENT_LOCS_VER_3 = ""
+            + "DROP TABLE "+RecentLocs.TABLE+"; "
+            + CREATE_RECENT_LOCS;
 
     public DbOpenHelper(Context context) {
         super(context, "prowadz_patryk.db", null /* factory */, VERSION);
@@ -40,7 +47,8 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        // do nothing
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+        Log.i(TAG, "OldVersion: "+oldVersion+" newVersion: "+newVersion);
+        sqLiteDatabase.execSQL(CREATE_RECENT_LOCS);
     }
 }

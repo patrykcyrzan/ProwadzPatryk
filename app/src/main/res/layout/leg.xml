@@ -5,85 +5,122 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         >
 
-    <LinearLayout
-            android:id="@+id/departureLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-        <TextView
-                android:id="@+id/departureTimeView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="9:15"
-                android:paddingLeft="3dp"
-                android:paddingRight="5dp"
-                android:layout_gravity="top|center_vertical|end"
-                android:textColor="@color/red"
-                android:textSize="20sp"/>
-
-        <TextView
-                android:id="@+id/departureLocationView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Departure Station with a long name"
-                android:layout_weight="1"
-                android:paddingTop="3dp"
-                android:paddingRight="3dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:textColor="@color/black"/>
-    </LinearLayout>
+    <ImageView
+            android:id="@+id/trip_shape"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/middle"/>
 
     <LinearLayout
-            android:id="@+id/arrivalLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-        <TextView
-                android:id="@+id/arrivalTimeView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="9:15"
-                android:text="@string/about"
-                android:paddingLeft="3dp"
-                android:paddingRight="5dp"
-                android:layout_gravity="top|center_vertical|end"
-                android:textColor="@color/red"
-                android:textSize="20sp"/>
-
-        <TextView
-                android:id="@+id/arrivalLocationView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Departure Station with a long name"
-                android:layout_weight="1"
-                android:paddingTop="3dp"
-                android:paddingRight="3dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:textColor="@color/black"/>
-    </LinearLayout>
-
-    <RelativeLayout
+            android:id="@+id/departureAndArrivalLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/infoView">
+            android:weightSum="1"
+            android:orientation="vertical">
 
-        <include
-                android:id="@+id/leg_details_layout"
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                layout="@layout/leg_details"/>
+                android:weightSum="1"
+                android:orientation="horizontal">
 
-        <View
-                android:id="@+id/border"
+            <TextView
+                    android:id="@+id/departureTimeView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:gravity="center"
+                    tools:text="09:15"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="5dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/red"
+                    android:textSize="20sp"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_arrow_right"/>
+
+            <TextView
+                    android:id="@+id/departureLocationView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:text="Departure Station with a long name"
+                    android:layout_weight="0.75"
+                    android:paddingTop="3dp"
+                    android:paddingRight="3dp"
+                    android:gravity="center"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/leg_details_layout"
-                android:background="@color/red"/>
-    </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:orientation="horizontal">
+
+
+            <TextView
+                    android:id="@+id/arrivalLocationView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:text="Departure Station with a long name"
+                    android:layout_weight="0.75"
+                    android:paddingTop="3dp"
+                    android:paddingRight="3dp"
+                    android:gravity="center"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:textColor="@color/black"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_arrow_left"/>
+
+            <TextView
+                    android:id="@+id/arrivalTimeView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    tools:text="9:15"
+                    android:text="@string/about"
+                    android:gravity="center"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="5dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/red"
+                    android:textSize="20sp"/>
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/infoView">
+
+            <include
+                    android:id="@+id/leg_details_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/leg_details"/>
+
+            <View
+                    android:id="@+id/border"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/leg_details_layout"
+                    android:background="@color/accent"/>
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

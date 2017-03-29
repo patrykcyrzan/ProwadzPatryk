@@ -137,6 +137,10 @@ public class MapWithFormPresenter extends RxPresenter<MapWithFormContract.View> 
 
     @Override
     public void loadTrips(TripRequest request) {
+        if(preferencesService.getUserPreferences() != null) {
+            request.setModes(preferencesService.getUserPreferences().getTraverseModeSet());
+        }
+
         tripsTaskSub = repositoryService.getTrips(request.getFrom(), request.getTo(), request.getTime(), request.getDate(),
                 request.getModes(), request.getMaxWalkDistance())
                 .subscribeOn(Schedulers.newThread())

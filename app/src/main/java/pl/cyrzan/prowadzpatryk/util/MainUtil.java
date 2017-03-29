@@ -7,6 +7,8 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 
+import org.opentripplanner.routing.core.TraverseModeSet;
+
 import pl.cyrzan.prowadzpatryk.R;
 import pl.cyrzan.prowadzpatryk.model.Location;
 import pl.cyrzan.prowadzpatryk.model.WrapLocation;
@@ -108,6 +110,7 @@ public final class MainUtil {
 
         return name;
     }
+
 
     static public int getColorForProduct(Context context, TraverseMode mode) {
         int color;

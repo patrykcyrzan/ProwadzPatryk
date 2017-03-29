@@ -3,6 +3,8 @@ package pl.cyrzan.prowadzpatryk.service.preferences.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.opentripplanner.routing.core.TraverseModeSet;
+
 import pl.cyrzan.prowadzpatryk.model.Product;
 import pl.cyrzan.prowadzpatryk.model.enums.TraverseMode;
 
@@ -34,6 +36,30 @@ public class UserPreferences implements Parcelable {
 
     public void setProductList(List<Product> productList) {
         this.productList = productList;
+    }
+
+    public TraverseModeSet getTraverseModeSet(){
+        TraverseModeSet traverseModeSet = new TraverseModeSet();
+
+        for(Product product:productList){
+            if(product.isAvailable()) {
+                if (product.getTraverseMode() == TraverseMode.BUS) {
+                    traverseModeSet.setBus(true);
+                } else if(product.getTraverseMode() == TraverseMode.CABLE_CAR){
+                    traverseModeSet.setCableCar(true);
+                } else if(product.getTraverseMode() == TraverseMode.RAIL){
+                    traverseModeSet.setRail(true);
+                } else if(product.getTraverseMode() == TraverseMode.TRAM){
+                    traverseModeSet.setTram(true);
+                }
+            }
+        }
+
+        //TODO: Zrobić dla REGIONAL_TRAIN (SKM)
+
+        traverseModeSet.setWalk(true);
+
+        return traverseModeSet;
     }
 
     /*public boolean isAvaibleByMode(TraverseMode mode){

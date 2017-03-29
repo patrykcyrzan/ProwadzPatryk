@@ -21,15 +21,15 @@ public class WrapLocation implements Serializable {
     private Location loc;
     private WrapType type;
 
-    public String getLastUsed() {
+    public long getLastUsed() {
         return lastUsed;
     }
 
-    public void setLastUsed(String lastUsed) {
+    public void setLastUsed(long lastUsed) {
         this.lastUsed = lastUsed;
     }
 
-    private String lastUsed;
+    private long lastUsed;
 
     public WrapLocation(Location loc) {
         this(loc, NORMAL);

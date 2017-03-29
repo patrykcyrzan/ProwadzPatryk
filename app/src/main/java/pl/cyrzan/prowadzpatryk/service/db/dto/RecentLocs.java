@@ -36,9 +36,8 @@ public abstract class RecentLocs implements Parcelable{
     @ColumnName(NAME)
     public abstract String name();
 
-    @Nullable
     @ColumnName(LAST_USED)
-    public abstract String lastUsed();
+    public abstract long lastUsed();
 
     public static Func1<Cursor, RecentLocs> mapper() {
         return AutoValue_RecentLocs.MAPPER;
@@ -57,7 +56,7 @@ public abstract class RecentLocs implements Parcelable{
             return this;
         }
 
-        public Builder lastUsed(String lastUsed) {
+        public Builder lastUsed(long lastUsed) {
             values.put(LAST_USED, lastUsed);
             return this;
         }

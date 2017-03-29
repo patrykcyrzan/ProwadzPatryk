@@ -1,5 +1,7 @@
 package pl.cyrzan.prowadzpatryk.ui.main;
 
+import android.support.design.widget.NavigationView;
+
 import pl.cyrzan.prowadzpatryk.service.api.model.SuggestLocationResponse;
 import pl.cyrzan.prowadzpatryk.ui.base.BaseContract;
 import pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInput;
@@ -17,8 +19,14 @@ import java.util.List;
 public interface MainContract {
 
     interface View extends BaseContract.BaseView {
+
+        void onCloseDrawer();
+
+        void onOpenAbout();
+
+        void onOpenGithub();
     }
 
-    interface Presenter<T> extends BaseContract.BasePresenter<T> {
+    interface Presenter<T> extends BaseContract.BasePresenter<T>, NavigationView.OnNavigationItemSelectedListener {
     }
 }

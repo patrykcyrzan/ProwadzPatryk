@@ -45,13 +45,17 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             int color;
             int colorResourceId = android.R.color.transparent;
+            int colorPrimary;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 color = getResources().getColor(colorResourceId, getTheme());
+                colorPrimary = getResources().getColor(R.color.primaryDark, null);
             } else { //noinspection deprecation
                 color = getResources().getColor(colorResourceId);
+                colorPrimary = getResources().getColor(R.color.primaryDark);
             }
             if (getResources().getConfiguration().orientation == ORIENTATION_PORTRAIT) {
                 getWindow().setNavigationBarColor(color);
+                getWindow().setStatusBarColor(colorPrimary);
             }
         }
 

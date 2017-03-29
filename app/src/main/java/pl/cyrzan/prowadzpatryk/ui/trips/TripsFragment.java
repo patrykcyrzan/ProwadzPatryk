@@ -4,6 +4,7 @@ package pl.cyrzan.prowadzpatryk.ui.trips;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +28,9 @@ import pl.cyrzan.prowadzpatryk.model.WrapLocation;
 import pl.cyrzan.prowadzpatryk.model.enums.LocationType;
 import pl.cyrzan.prowadzpatryk.service.db.dto.RecentLocs;
 import pl.cyrzan.prowadzpatryk.ui.base.BaseFragment;
+import pl.cyrzan.prowadzpatryk.ui.main.MainActivity;
+import pl.cyrzan.prowadzpatryk.ui.main.MainAdapter;
+import pl.cyrzan.prowadzpatryk.ui.mapwithform.MapWithFormFragment;
 
 import javax.inject.Inject;
 
@@ -62,15 +66,7 @@ public class TripsFragment extends BaseFragment implements TripsContract.View {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setHasFixedSize(true);
-
-        tripAdapter = new TripAdapter(null, getActivity(), false);
-        tripAdapter.setHasStableIds(false);
-        recyclerView.setAdapter(tripAdapter);
-
-        tripsPresenter.loadTrips(null, null, null, null);
+        initListOfTrips();
     }
 
     @Override
@@ -87,12 +83,37 @@ public class TripsFragment extends BaseFragment implements TripsContract.View {
         tripsPresenter.attachView(this);
     }
 
+    private void initListOfTrips(){
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setHasFixedSize(true);
+
+        tripAdapter = new TripAdapter(null, getActivity(), false);
+        tripAdapter.setHasStableIds(false);
+        recyclerView.setAdapter(tripAdapter);
+
+        tripAdapter.setListener(trip -> {
+            ViewPager viewPager = ((MainActivity)getActivity()).getViewPager();
+            MainAdapter adapter = ((MainActivity)getActivity()).getAdapter();
+            MapWithFormFragment fragment = (MapWithFormFragment) adapter.getFragment(viewPager, 0);
+            fragment.showTrip(trip.getItinerary());
+            viewPager.setCurrentItem(0);
+        });
+
+        tripsPresenter.loadTrips(null, null, null, null);
+    }
+
     public void setResponse(Response response, Location from, Location to, DateTime date){
         tripsPresenter.loadTrips(response, from, to, date);
-        /*Location location = new Location(LocationType.ANY, null, "mama", 50.123, 23.123);
-        WrapLocation wrapLocation = new WrapLocation(location, WrapLocation.WrapType.RECENT);
-        wrapLocation.setLastUsed("asdas");
-        tripsPresenter.saveRecentLoc(wrapLocation);*/
+        Location locationFrom = new Location(LocationType.ANY, null, from.name, from.lat, from.lon);
+        Location locationTo = new Location(LocationType.ANY, null, to.name, to.lat, to.lon);
+        WrapLocation wrapLocationFrom = new WrapLocation(locationFrom, WrapLocation.WrapType.RECENT);
+        WrapLocation wrapLocationTo = new WrapLocation(locationTo, WrapLocation.WrapType.RECENT);
+        wrapLocationFrom.setLastUsed(new DateTime().getMillis());
+        wrapLocationTo.setLastUsed(new DateTime().getMillis());
+        //wrapLocation.setLastUsed("asdas");
+        tripsPresenter.saveRecentLoc(wrapLocationFrom);
+        tripsPresenter.saveRecentLoc(wrapLocationTo);
     }
 
     @Override

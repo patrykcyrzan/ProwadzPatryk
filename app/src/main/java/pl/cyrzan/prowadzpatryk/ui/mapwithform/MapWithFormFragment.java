@@ -4,14 +4,14 @@ package pl.cyrzan.prowadzpatryk.ui.mapwithform;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
-import android.graphics.Rect;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,15 +19,13 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TimePicker;
 
 import com.squareup.sqlbrite.BriteDatabase;
@@ -39,17 +37,20 @@ import org.osmdroid.events.MapEventsReceiver;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.MapEventsOverlay;
+import org.osmdroid.views.overlay.Polyline;
 
 import pl.cyrzan.prowadzpatryk.ProwadzPatrykApplication;
 import pl.cyrzan.prowadzpatryk.R;
 import pl.cyrzan.prowadzpatryk.di.module.ActivityModule;
 import pl.cyrzan.prowadzpatryk.di.module.FragmentModule;
+import pl.cyrzan.prowadzpatryk.model.Itinerary;
+import pl.cyrzan.prowadzpatryk.model.Leg;
+import pl.cyrzan.prowadzpatryk.model.LegShape;
 import pl.cyrzan.prowadzpatryk.model.Location;
 import pl.cyrzan.prowadzpatryk.model.Product;
 import pl.cyrzan.prowadzpatryk.model.Response;
 import pl.cyrzan.prowadzpatryk.model.WrapLocation;
 import pl.cyrzan.prowadzpatryk.model.enums.LocationType;
-import pl.cyrzan.prowadzpatryk.model.enums.TraverseMode;
 import pl.cyrzan.prowadzpatryk.service.api.model.TripRequest;
 import pl.cyrzan.prowadzpatryk.service.db.dto.RecentLocs;
 import pl.cyrzan.prowadzpatryk.service.preferences.model.UserPreferences;
@@ -58,15 +59,14 @@ import pl.cyrzan.prowadzpatryk.ui.common.dialogs.ProductsPreferencesDialog;
 import pl.cyrzan.prowadzpatryk.ui.common.views.SlideUp;
 import pl.cyrzan.prowadzpatryk.ui.common.views.dateandtimeview.TimeAndDateView;
 import pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInput;
-import pl.cyrzan.prowadzpatryk.ui.common.views.input.LocationInputAdapter;
 import pl.cyrzan.prowadzpatryk.ui.common.views.inputWithGps.LocationGpsInput;
 import pl.cyrzan.prowadzpatryk.ui.main.MainActivity;
 import pl.cyrzan.prowadzpatryk.ui.main.MainAdapter;
 import pl.cyrzan.prowadzpatryk.ui.trips.TripsFragment;
+import pl.cyrzan.prowadzpatryk.util.MainUtil;
 import pl.cyrzan.prowadzpatryk.util.ViewUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -90,6 +90,8 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
     private boolean showingMore = false;
     private boolean now = true, today = true;
     private ProductsAdapter productsAdapter;
+    private Animation fabAnimForward;
+    private Animation fabAnimBackward;
 
     @Inject
     BriteDatabase db;
@@ -134,6 +136,9 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
             map.setTilesScaledToDpi(true);
         }
 
+        fabAnimForward = AnimationUtils.loadAnimation(getContext(), R.anim.rotation_forward);
+        fabAnimBackward = AnimationUtils.loadAnimation(getContext(), R.anim.rotation_backward);
+
         setupMap();
         showLess(false);
         initSlideUp();
@@ -174,7 +179,9 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
                     @Override
                     public void onVisibilityChanged(int visibility) {
                         if (visibility == View.GONE){
-                            fab.show();
+                            //fab.startAnimation(fabAnim);
+                        } else if (visibility == View.VISIBLE){
+                            fab.startAnimation(fabAnimForward);
                         }
                     }
                 })
@@ -207,8 +214,19 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
     @OnClick(R.id.fab)
     public void onFabClick(){
         Log.i(TAG, "onClickFab");
-        slideUp.show();
-        fab.hide();
+        if(slideUp.isVisible()){
+            slideUp.hide();
+            fab.startAnimation(fabAnimBackward);
+        } else {
+            slideUp.show();
+        }
+    }
+
+    private void hideSlideUp(){
+        if(slideUp.isVisible()) {
+            slideUp.hide();
+            fab.startAnimation(fabAnimBackward);
+        }
     }
 
     @OnClick(R.id.show_more_button)
@@ -220,7 +238,7 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
         }
     }
 
-    @OnClick(R.id.products_card)
+    @OnClick({R.id.products_card, R.id.products_layout})
     public void onProductsCardClick(){
         mapWithFormPresenter.loadProductsPreferencesDialog();
     }
@@ -248,10 +266,6 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
         }
 
         request.setDateTime(timeAndDateLayout.getDateTime());
-        TraverseModeSet traverseModeSet = new TraverseModeSet();
-        traverseModeSet.setWalk(true);
-        traverseModeSet.setTransit(true);
-        request.setModes(traverseModeSet);
 
         mapWithFormPresenter.loadTrips(request);
         progressView.setVisibility(View.VISIBLE);
@@ -307,8 +321,8 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
 
     @Override
     public void showError(int errorReport) {
-        Log.i(TAG, "error "+errorReport);
         ViewUtil.makeToast(getContext(), getText(errorReport).toString());
+        progressView.setVisibility(View.GONE);
     }
 
     @Override
@@ -334,6 +348,7 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
         TripsFragment fragment = (TripsFragment) adapter.getFragment(viewPager, 1);
         fragment.setResponse(response, locationGpsInput.getLocation(), locationInput.getLocation(), timeAndDateLayout.getDateTime());
         viewPager.setCurrentItem(1);
+        hideSlideUp();
         Log.i(TAG, "showTrips");
     }
 
@@ -385,5 +400,70 @@ public class MapWithFormFragment extends BaseFragment implements MapEventsReceiv
     @Override
     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
 
+    }
+
+    public void showTrip(Itinerary itinerary){
+        clearTrip();
+
+        List<GeoPoint> allGeoPoints = new ArrayList<>();
+
+        for(Leg leg : itinerary.legs){
+            LegShape legShape = new LegShape(leg.getLegGeometry());
+
+            Polyline polyline = new Polyline();
+            if(leg.getMode().isTransit()){
+                    polyline.setColor(MainUtil.getColorForProduct(getContext(), leg.getMode()));
+            } else if (leg.getMode().isWalk()) {
+                polyline.setColor(Color.BLACK);
+            }
+            polyline.setWidth(6.0f);
+            List<GeoPoint> geoPoints = new ArrayList<>(legShape.getLength());
+            if(legShape.getLength() > 0){
+                for(Location location:legShape.getPoints()){
+                    Log.i(TAG,"locations: "+location.toString());
+                    geoPoints.add(new GeoPoint(location.getLatAsDouble(), location.getLonAsDouble()));
+                }
+            }
+            polyline.setPoints(geoPoints);
+            map.getOverlays().add(polyline);
+            map.invalidate();
+            allGeoPoints.addAll(geoPoints);
+        }
+
+        if(allGeoPoints.size() != 0){
+            setViewSpan(allGeoPoints);
+        }
+    }
+
+    private void setViewSpan(List<GeoPoint> points) {
+        if(points.size() == 0) return;
+
+        double maxLat = -180;
+        double minLat = 180;
+        double maxLon = -180;
+        double minLon = 180;
+
+        for(GeoPoint point : points) {
+            maxLat = Math.max(point.getLatitude(), maxLat);
+            minLat = Math.min(point.getLatitude(), minLat);
+            maxLon = Math.max(point.getLongitude(), maxLon);
+            minLon = Math.min(point.getLongitude(), minLon);
+        }
+
+        double center_lat = (maxLat + minLat) / 2;
+        double center_lon = (maxLon + minLon) / 2;
+        final GeoPoint center = new GeoPoint(center_lat, center_lon);
+
+        IMapController mapController = map.getController();
+        mapController.setCenter(center);
+        mapController.setZoom(18);
+        mapController.zoomToSpan(maxLat - minLat, maxLon - minLon);
+    }
+
+    private void clearTrip(){
+        map.getOverlays().clear();
+        MapEventsOverlay mapEventsOverlay = new MapEventsOverlay(this);
+        map.getOverlays().add(0, mapEventsOverlay);
+        map.invalidate();
     }
 }
